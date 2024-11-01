@@ -5,5 +5,7 @@
 # Created Time: 三 10/30 19:58:22 2024
 #########################################################################
 #!/bin/zsh
-clang++ -o ./build/main ./src/main.cpp
-./build/main
+cd build
+cmake ..
+make
+chmod +x ../bin/main

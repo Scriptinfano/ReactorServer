@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     // 使用共享内存，对共享内存进行读写
     cout << "原值：no=" << ptr->no << ", name=" << ptr->name << endl;
     ptr->no = atoi(argv[1]);
-    strcpy(ptr->name, argv[2]); // 把argv[2]上的字符串拷贝到共享内存
+    ptr->name = argv[2];
     cout << "新值：no=" << ptr->no << ", name=" << ptr->name << endl;
     sem.post();
     cout << "已解锁" << endl;

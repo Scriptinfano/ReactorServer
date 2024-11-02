@@ -1,7 +1,8 @@
 #include "temp.hpp"
-#include <string>
-void init_test(int no, char *str, test *const ptr)
+
+
+void init_test(int no,std::string str, test *const ptr)
 {
     ptr->no = no;
-    strncpy(ptr->name, str, sizeof(ptr->name));
+    ptr->name = str;
 }

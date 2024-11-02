@@ -56,3 +56,5 @@ public:
     */
     bool destroy();
 };
+
+void print_sem(Semaphore &sem, std::string name);

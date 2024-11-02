@@ -1,7 +1,7 @@
-
+#include<string>
 typedef struct test
 {
     int no;
-    char name[50];
+    std::string name;
 } test;
-void init_test(int no, char *str, test *const ptr);
+void init_test(int no, std::string str, test *const ptr);

@@ -1,5 +1,5 @@
 #include "semaphore.hpp"
-
+#include<iostream>
 bool Semaphore::init(key_t key, unsigned short value, short the_semflg)
 {
     if (semid != -1)
@@ -91,4 +91,9 @@ bool Semaphore::destroy()
         return false;
     }
     return true;
+}
+
+void print_sem(Semaphore &sem, std::string name)
+{
+    std::cout << "信号量" << name << "=" << sem.getvalue() << std::endl;
 }

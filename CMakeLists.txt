@@ -7,9 +7,12 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 file(GLOB IMPL_FILES src/impl/*.cpp)
 set(EXEC_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+
 add_executable(main ${CMAKE_SOURCE_DIR}/src/main.cpp ${IMPL_FILES})
 set_target_properties(main PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXEC_DIRECTORY})
+
 add_executable(producer ${CMAKE_SOURCE_DIR}/src/producer.cpp ${IMPL_FILES})
-set_target_properties(main PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXEC_DIRECTORY})
+set_target_properties(producer PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXEC_DIRECTORY})
+
 add_executable(consumer ${CMAKE_SOURCE_DIR}/src/consumer.cpp ${IMPL_FILES})
-set_target_properties(main PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXEC_DIRECTORY})
+set_target_properties(consumer PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXEC_DIRECTORY})

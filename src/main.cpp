@@ -1,17 +1,13 @@
-
+#include <iostream>
 #include <sys/shm.h>
-#include "datastructures.hpp"
+#include "temp.hpp"
 #include "semaphore.hpp"
 using namespace std;
 
-typedef struct test
-{
-    int no;
-    char name[50];
-} test;
 int main(int argc, char **argv)
 {
-    if (argc != 3){
+    if (argc != 3)
+    {
         cerr << "argc!=3" << endl;
         return 1;
     }
@@ -29,7 +25,8 @@ int main(int argc, char **argv)
 
     // 使用信号量对共享内存加锁
     Semaphore sem;
-    if(sem.init(0x5005)==false){
+    if (sem.init(0x5005) == false)
+    {
         cerr << "mutex.init(0x5005) failed" << endl;
         return -1;
     }
@@ -38,16 +35,18 @@ int main(int argc, char **argv)
     cout << "加锁成功" << endl;
 
     // 使用共享内存，对共享内存进行读写
-    cout<< "原值：no=" << ptr->no << ", name=" << ptr->name << endl;
+    cout << "原值：no=" << ptr->no << ", name=" << ptr->name << endl;
     ptr->no = atoi(argv[1]);
-    strcpy(ptr->name, argv[2]); // 把argv[2]上的字符串拷贝到共享内存上
+    strcpy(ptr->name, argv[2]); // 把argv[2]上的字符串拷贝到共享内存
     cout << "新值：no=" << ptr->no << ", name=" << ptr->name << endl;
     sem.post();
     cout << "已解锁" << endl;
+    sem.destroy();
     // 将共享内存从当前进程中分离
     shmdt(ptr);
     // 删除共享内存
-    if(shmctl(shmid,IPC_RMID,0)==-1){
+    if (shmctl(shmid, IPC_RMID, 0) == -1)
+    {
         cerr << "shmctl failed" << endl;
         return -1;
     }

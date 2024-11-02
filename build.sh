@@ -9,3 +9,5 @@ cd build
 cmake ..
 make
 chmod +x ../bin/main
+chmod +x ../bin/producer
+chmod +x ../bin/consumer

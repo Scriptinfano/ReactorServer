@@ -1,3 +1,5 @@
 /Users/mavrick/develop/reactor/build/CMakeFiles/main.dir
+/Users/mavrick/develop/reactor/build/CMakeFiles/producer.dir
+/Users/mavrick/develop/reactor/build/CMakeFiles/consumer.dir
 /Users/mavrick/develop/reactor/build/CMakeFiles/edit_cache.dir
 /Users/mavrick/develop/reactor/build/CMakeFiles/rebuild_cache.dir

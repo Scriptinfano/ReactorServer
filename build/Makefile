@@ -129,6 +129,146 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+#=============================================================================
+# Target rules for targets named producer
+
+# Build rule for target.
+producer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 producer
+.PHONY : producer
+
+# fast build rule for target.
+producer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/build
+.PHONY : producer/fast
+
+#=============================================================================
+# Target rules for targets named consumer
+
+# Build rule for target.
+consumer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 consumer
+.PHONY : consumer
+
+# fast build rule for target.
+consumer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/build
+.PHONY : consumer/fast
+
+src/consumer.o: src/consumer.cpp.o
+.PHONY : src/consumer.o
+
+# target to build an object file
+src/consumer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/src/consumer.cpp.o
+.PHONY : src/consumer.cpp.o
+
+src/consumer.i: src/consumer.cpp.i
+.PHONY : src/consumer.i
+
+# target to preprocess a source file
+src/consumer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/src/consumer.cpp.i
+.PHONY : src/consumer.cpp.i
+
+src/consumer.s: src/consumer.cpp.s
+.PHONY : src/consumer.s
+
+# target to generate assembly for a file
+src/consumer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/src/consumer.cpp.s
+.PHONY : src/consumer.cpp.s
+
+src/impl/myerror.o: src/impl/myerror.cpp.o
+.PHONY : src/impl/myerror.o
+
+# target to build an object file
+src/impl/myerror.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/myerror.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/src/impl/myerror.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/src/impl/myerror.cpp.o
+.PHONY : src/impl/myerror.cpp.o
+
+src/impl/myerror.i: src/impl/myerror.cpp.i
+.PHONY : src/impl/myerror.i
+
+# target to preprocess a source file
+src/impl/myerror.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/myerror.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/src/impl/myerror.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/src/impl/myerror.cpp.i
+.PHONY : src/impl/myerror.cpp.i
+
+src/impl/myerror.s: src/impl/myerror.cpp.s
+.PHONY : src/impl/myerror.s
+
+# target to generate assembly for a file
+src/impl/myerror.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/myerror.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/src/impl/myerror.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/src/impl/myerror.cpp.s
+.PHONY : src/impl/myerror.cpp.s
+
+src/impl/semaphore.o: src/impl/semaphore.cpp.o
+.PHONY : src/impl/semaphore.o
+
+# target to build an object file
+src/impl/semaphore.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/semaphore.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/src/impl/semaphore.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/src/impl/semaphore.cpp.o
+.PHONY : src/impl/semaphore.cpp.o
+
+src/impl/semaphore.i: src/impl/semaphore.cpp.i
+.PHONY : src/impl/semaphore.i
+
+# target to preprocess a source file
+src/impl/semaphore.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/semaphore.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/src/impl/semaphore.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/src/impl/semaphore.cpp.i
+.PHONY : src/impl/semaphore.cpp.i
+
+src/impl/semaphore.s: src/impl/semaphore.cpp.s
+.PHONY : src/impl/semaphore.s
+
+# target to generate assembly for a file
+src/impl/semaphore.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/semaphore.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/src/impl/semaphore.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/src/impl/semaphore.cpp.s
+.PHONY : src/impl/semaphore.cpp.s
+
+src/impl/temp.o: src/impl/temp.cpp.o
+.PHONY : src/impl/temp.o
+
+# target to build an object file
+src/impl/temp.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/temp.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/src/impl/temp.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/src/impl/temp.cpp.o
+.PHONY : src/impl/temp.cpp.o
+
+src/impl/temp.i: src/impl/temp.cpp.i
+.PHONY : src/impl/temp.i
+
+# target to preprocess a source file
+src/impl/temp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/temp.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/src/impl/temp.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/src/impl/temp.cpp.i
+.PHONY : src/impl/temp.cpp.i
+
+src/impl/temp.s: src/impl/temp.cpp.s
+.PHONY : src/impl/temp.s
+
+# target to generate assembly for a file
+src/impl/temp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/temp.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/src/impl/temp.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/consumer.dir/build.make CMakeFiles/consumer.dir/src/impl/temp.cpp.s
+.PHONY : src/impl/temp.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -153,6 +293,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/producer.o: src/producer.cpp.o
+.PHONY : src/producer.o
+
+# target to build an object file
+src/producer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/src/producer.cpp.o
+.PHONY : src/producer.cpp.o
+
+src/producer.i: src/producer.cpp.i
+.PHONY : src/producer.i
+
+# target to preprocess a source file
+src/producer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/src/producer.cpp.i
+.PHONY : src/producer.cpp.i
+
+src/producer.s: src/producer.cpp.s
+.PHONY : src/producer.s
+
+# target to generate assembly for a file
+src/producer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/producer.dir/build.make CMakeFiles/producer.dir/src/producer.cpp.s
+.PHONY : src/producer.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -161,10 +325,27 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... consumer"
 	@echo "... main"
+	@echo "... producer"
+	@echo "... src/consumer.o"
+	@echo "... src/consumer.i"
+	@echo "... src/consumer.s"
+	@echo "... src/impl/myerror.o"
+	@echo "... src/impl/myerror.i"
+	@echo "... src/impl/myerror.s"
+	@echo "... src/impl/semaphore.o"
+	@echo "... src/impl/semaphore.i"
+	@echo "... src/impl/semaphore.s"
+	@echo "... src/impl/temp.o"
+	@echo "... src/impl/temp.i"
+	@echo "... src/impl/temp.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/producer.o"
+	@echo "... src/producer.i"
+	@echo "... src/producer.s"
 .PHONY : help
 
 

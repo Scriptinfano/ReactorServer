@@ -83,17 +83,65 @@ CMakeFiles/main.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/main.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mavrick/develop/reactor/src/main.cpp -o CMakeFiles/main.dir/src/main.cpp.s
 
+CMakeFiles/main.dir/src/impl/myerror.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/src/impl/myerror.cpp.o: /Users/mavrick/develop/reactor/src/impl/myerror.cpp
+CMakeFiles/main.dir/src/impl/myerror.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/mavrick/develop/reactor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/src/impl/myerror.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/myerror.cpp.o -MF CMakeFiles/main.dir/src/impl/myerror.cpp.o.d -o CMakeFiles/main.dir/src/impl/myerror.cpp.o -c /Users/mavrick/develop/reactor/src/impl/myerror.cpp
+
+CMakeFiles/main.dir/src/impl/myerror.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/myerror.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mavrick/develop/reactor/src/impl/myerror.cpp > CMakeFiles/main.dir/src/impl/myerror.cpp.i
+
+CMakeFiles/main.dir/src/impl/myerror.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/myerror.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mavrick/develop/reactor/src/impl/myerror.cpp -o CMakeFiles/main.dir/src/impl/myerror.cpp.s
+
+CMakeFiles/main.dir/src/impl/semaphore.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/src/impl/semaphore.cpp.o: /Users/mavrick/develop/reactor/src/impl/semaphore.cpp
+CMakeFiles/main.dir/src/impl/semaphore.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/mavrick/develop/reactor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/src/impl/semaphore.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/semaphore.cpp.o -MF CMakeFiles/main.dir/src/impl/semaphore.cpp.o.d -o CMakeFiles/main.dir/src/impl/semaphore.cpp.o -c /Users/mavrick/develop/reactor/src/impl/semaphore.cpp
+
+CMakeFiles/main.dir/src/impl/semaphore.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/semaphore.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mavrick/develop/reactor/src/impl/semaphore.cpp > CMakeFiles/main.dir/src/impl/semaphore.cpp.i
+
+CMakeFiles/main.dir/src/impl/semaphore.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/semaphore.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mavrick/develop/reactor/src/impl/semaphore.cpp -o CMakeFiles/main.dir/src/impl/semaphore.cpp.s
+
+CMakeFiles/main.dir/src/impl/temp.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/src/impl/temp.cpp.o: /Users/mavrick/develop/reactor/src/impl/temp.cpp
+CMakeFiles/main.dir/src/impl/temp.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/mavrick/develop/reactor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/src/impl/temp.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/temp.cpp.o -MF CMakeFiles/main.dir/src/impl/temp.cpp.o.d -o CMakeFiles/main.dir/src/impl/temp.cpp.o -c /Users/mavrick/develop/reactor/src/impl/temp.cpp
+
+CMakeFiles/main.dir/src/impl/temp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/temp.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mavrick/develop/reactor/src/impl/temp.cpp > CMakeFiles/main.dir/src/impl/temp.cpp.i
+
+CMakeFiles/main.dir/src/impl/temp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/temp.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mavrick/develop/reactor/src/impl/temp.cpp -o CMakeFiles/main.dir/src/impl/temp.cpp.s
+
 # Object files for target main
 main_OBJECTS = \
-"CMakeFiles/main.dir/src/main.cpp.o"
+"CMakeFiles/main.dir/src/main.cpp.o" \
+"CMakeFiles/main.dir/src/impl/myerror.cpp.o" \
+"CMakeFiles/main.dir/src/impl/semaphore.cpp.o" \
+"CMakeFiles/main.dir/src/impl/temp.cpp.o"
 
 # External object files for target main
 main_EXTERNAL_OBJECTS =
 
 /Users/mavrick/develop/reactor/bin/main: CMakeFiles/main.dir/src/main.cpp.o
+/Users/mavrick/develop/reactor/bin/main: CMakeFiles/main.dir/src/impl/myerror.cpp.o
+/Users/mavrick/develop/reactor/bin/main: CMakeFiles/main.dir/src/impl/semaphore.cpp.o
+/Users/mavrick/develop/reactor/bin/main: CMakeFiles/main.dir/src/impl/temp.cpp.o
 /Users/mavrick/develop/reactor/bin/main: CMakeFiles/main.dir/build.make
 /Users/mavrick/develop/reactor/bin/main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/mavrick/develop/reactor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /Users/mavrick/develop/reactor/bin/main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/mavrick/develop/reactor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable /Users/mavrick/develop/reactor/bin/main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

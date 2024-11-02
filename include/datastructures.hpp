@@ -19,10 +19,10 @@ private:
     CircularQueue(const CircularQueue &) = delete;//禁用拷贝构造函数
     CircularQueue &operator=(const CircularQueue &) = delete;//禁用赋值运算符
 
-    void init();
+    
 public:
     CircularQueue();
-
+    void init();
     /*
     从队尾加入一个元素，如果已经满了，则会返回false
     */
@@ -39,6 +39,7 @@ public:
     void print();
 
 };
+
 template <class T, int MAXLENGTH>
 void CircularQueue<T, MAXLENGTH>::init()
 {
@@ -64,7 +65,7 @@ bool CircularQueue<T, MAXLENGTH>::push(const T &elem)
 {
     if (isFull())
     {
-        cout << "循环队列已满,"<<elem<<"入队失败" << endl;
+        cout << "循环队列已满, 入队失败" << endl;
         return false;
     }
     data[tail] = elem;

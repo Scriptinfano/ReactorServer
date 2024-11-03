@@ -236,6 +236,39 @@ src/impl/inetaddress.cpp.s:
 	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.s
 .PHONY : src/impl/inetaddress.cpp.s
 
+src/impl/log.o: src/impl/log.cpp.o
+
+.PHONY : src/impl/log.o
+
+# target to build an object file
+src/impl/log.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/log.cpp.o
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/log.cpp.o
+	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/log.cpp.o
+.PHONY : src/impl/log.cpp.o
+
+src/impl/log.i: src/impl/log.cpp.i
+
+.PHONY : src/impl/log.i
+
+# target to preprocess a source file
+src/impl/log.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/log.cpp.i
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/log.cpp.i
+	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/log.cpp.i
+.PHONY : src/impl/log.cpp.i
+
+src/impl/log.s: src/impl/log.cpp.s
+
+.PHONY : src/impl/log.s
+
+# target to generate assembly for a file
+src/impl/log.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/log.cpp.s
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/log.cpp.s
+	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/log.cpp.s
+.PHONY : src/impl/log.cpp.s
+
 src/impl/myerror.o: src/impl/myerror.cpp.o
 
 .PHONY : src/impl/myerror.o
@@ -268,6 +301,39 @@ src/impl/myerror.cpp.s:
 	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/myerror.cpp.s
 	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/myerror.cpp.s
 .PHONY : src/impl/myerror.cpp.s
+
+src/impl/mysocket.o: src/impl/mysocket.cpp.o
+
+.PHONY : src/impl/mysocket.o
+
+# target to build an object file
+src/impl/mysocket.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/mysocket.cpp.o
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/mysocket.cpp.o
+	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o
+.PHONY : src/impl/mysocket.cpp.o
+
+src/impl/mysocket.i: src/impl/mysocket.cpp.i
+
+.PHONY : src/impl/mysocket.i
+
+# target to preprocess a source file
+src/impl/mysocket.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/mysocket.cpp.i
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/mysocket.cpp.i
+	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.i
+.PHONY : src/impl/mysocket.cpp.i
+
+src/impl/mysocket.s: src/impl/mysocket.cpp.s
+
+.PHONY : src/impl/mysocket.s
+
+# target to generate assembly for a file
+src/impl/mysocket.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/mysocket.cpp.s
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/mysocket.cpp.s
+	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.s
+.PHONY : src/impl/mysocket.cpp.s
 
 src/impl/semaphore.o: src/impl/semaphore.cpp.o
 
@@ -349,9 +415,15 @@ help:
 	@echo "... src/impl/inetaddress.o"
 	@echo "... src/impl/inetaddress.i"
 	@echo "... src/impl/inetaddress.s"
+	@echo "... src/impl/log.o"
+	@echo "... src/impl/log.i"
+	@echo "... src/impl/log.s"
 	@echo "... src/impl/myerror.o"
 	@echo "... src/impl/myerror.i"
 	@echo "... src/impl/myerror.s"
+	@echo "... src/impl/mysocket.o"
+	@echo "... src/impl/mysocket.i"
+	@echo "... src/impl/mysocket.s"
 	@echo "... src/impl/semaphore.o"
 	@echo "... src/impl/semaphore.i"
 	@echo "... src/impl/semaphore.s"

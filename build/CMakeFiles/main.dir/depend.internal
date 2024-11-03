@@ -4,9 +4,17 @@
 CMakeFiles/main.dir/src/impl/inetaddress.cpp.o
  ../include/inetaddress.hpp
  /root/develop/ReactorServer/src/impl/inetaddress.cpp
+CMakeFiles/main.dir/src/impl/log.cpp.o
+ ../include/log.hpp
+ /root/develop/ReactorServer/src/impl/log.cpp
 CMakeFiles/main.dir/src/impl/myerror.cpp.o
  ../include/myerror.hpp
  /root/develop/ReactorServer/src/impl/myerror.cpp
+CMakeFiles/main.dir/src/impl/mysocket.cpp.o
+ ../include/inetaddress.hpp
+ ../include/log.hpp
+ ../include/mysocket.hpp
+ /root/develop/ReactorServer/src/impl/mysocket.cpp
 CMakeFiles/main.dir/src/impl/semaphore.cpp.o
  ../include/myerror.hpp
  ../include/semaphore.hpp

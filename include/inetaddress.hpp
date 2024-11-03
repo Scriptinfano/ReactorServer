@@ -7,6 +7,7 @@ private:
     sockaddr_in addr_;
 
 public:
+    InetAddress();
     /*
     @brief 此构造函数用于构造监听套接字的地址结构
     */
@@ -27,4 +28,8 @@ public:
     @brief 返回addr_成员的地址，转换成了sockaddr
     */
     const sockaddr *addr() const;
+    /*
+    设置addr_成员的值
+    */
+    void setaddr(sockaddr_in clientaddr);
 };

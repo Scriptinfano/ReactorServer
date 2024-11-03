@@ -12,9 +12,19 @@ netinet/in.h
 string
 -
 
+../include/log.hpp
+string
+-
+fstream
+-
+
 ../include/myerror.hpp
 string
 -
+
+../include/mysocket.hpp
+inetaddress.hpp
+../include/inetaddress.hpp
 
 ../include/semaphore.hpp
 sys/sem.h
@@ -23,14 +33,10 @@ myerror.hpp
 ../include/myerror.hpp
 
 /root/develop/ReactorServer/src/epollserver.cpp
-sys/fcntl.h
--
 iostream
 -
-sys/socket.h
--
-netinet/tcp.h
--
+mysocket.hpp
+/root/develop/ReactorServer/src/mysocket.hpp
 unistd.h
 -
 string.h
@@ -58,6 +64,22 @@ cerrno
 cstring
 -
 
+/root/develop/ReactorServer/src/impl/log.cpp
+log.hpp
+/root/develop/ReactorServer/src/impl/log.hpp
+cstring
+-
+cerrno
+-
+ctime
+-
+cstdarg
+-
+iostream
+-
+sstream
+-
+
 /root/develop/ReactorServer/src/impl/myerror.cpp
 iostream
 -
@@ -67,6 +89,20 @@ string.h
 -
 myerror.hpp
 /root/develop/ReactorServer/src/impl/myerror.hpp
+
+/root/develop/ReactorServer/src/impl/mysocket.cpp
+mysocket.hpp
+/root/develop/ReactorServer/src/impl/mysocket.hpp
+sys/socket.h
+-
+unistd.h
+-
+netinet/tcp.h
+-
+iostream
+-
+log.hpp
+/root/develop/ReactorServer/src/impl/log.hpp
 
 /root/develop/ReactorServer/src/impl/semaphore.cpp
 semaphore.hpp

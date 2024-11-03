@@ -6,8 +6,16 @@ CMakeFiles/epollclient.dir/src/epollclient.cpp.o: ../src/epollclient.cpp
 CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o: ../include/inetaddress.hpp
 CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o: ../src/impl/inetaddress.cpp
 
+CMakeFiles/epollclient.dir/src/impl/log.cpp.o: ../include/log.hpp
+CMakeFiles/epollclient.dir/src/impl/log.cpp.o: ../src/impl/log.cpp
+
 CMakeFiles/epollclient.dir/src/impl/myerror.cpp.o: ../include/myerror.hpp
 CMakeFiles/epollclient.dir/src/impl/myerror.cpp.o: ../src/impl/myerror.cpp
+
+CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o: ../include/inetaddress.hpp
+CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o: ../include/log.hpp
+CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o: ../include/mysocket.hpp
+CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o: ../src/impl/mysocket.cpp
 
 CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: ../include/myerror.hpp
 CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: ../include/semaphore.hpp

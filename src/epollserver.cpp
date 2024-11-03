@@ -1,8 +1,8 @@
-#include <sys/fcntl.h>
-#include <iostream>
-#include <sys/socket.h>
-#include <netinet/tcp.h>
 
+#include <iostream>
+
+
+#include "mysocket.hpp"
 #include <unistd.h>
 #include <string.h>
 #include <sys/epoll.h>
@@ -33,55 +33,30 @@ int main(int argc, char **argv)
         cout << "usage: epollserver ip port" << endl;
         cout << "example, epollserver 192.168.150.128 8080" << endl;
         return -1;
-    }
+    } 
     ///////////////
 
-    // 创建监听套接字
-    int listenfd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, 0);
-    if (listenfd < 0)
-    {
-        cerr << "socket() failed: " << std::strerror(errno) << endl;
-        return -1;
-    }
+    // 创建监听套接字，设置套接字选项，然后绑定监听地址
+    Socket servsock(createNonBlockingSocket());
+    InetAddress servaddr(argv[1], atoi(argv[2]));
+    servsock.setKeepAlive(true);
+    servsock.setReuseAddr(true);
+    servsock.setReusePort(true);
+    servsock.setTcpNoDelay(true);
+    servsock.bind(servaddr);
     /////////////
 
-    // 为监听套接字设置套接字选项选项
-    int opt = 1;
-    setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &opt, static_cast<socklen_t>(sizeof opt));
-    setsockopt(listenfd, SOL_SOCKET, TCP_NODELAY, &opt, static_cast<socklen_t>(sizeof opt));
-    setsockopt(listenfd, SOL_SOCKET, SO_REUSEPORT, &opt, static_cast<socklen_t>(sizeof opt));
-    setsockopt(listenfd, SOL_SOCKET, SO_KEEPALIVE, &opt, static_cast<socklen_t>(sizeof opt));
-    //////////////////////////
-
-    // 从参数中读取ip地址，准备在指定的ip地址和端口上调用bind函数
-    InetAddress servaddr(argv[1], atoi(argv[2]));
-    /////////////////////////////////////////////////////
-
-    // 调用bind函数和listen函数正式开始监听
-    if (bind(listenfd, servaddr.addr(), sizeof(sockaddr)) < 0)
-    {
-        cerr << "bind() failed: " << std::strerror(errno) << endl;
-        close(listenfd);
-        return -1;
-    }
-    if (listen(listenfd, 128) < 0)
-    {
-        cerr << "listen() failed: " << std::strerror(errno) << endl;
-        close(listenfd);
-        return -1;
-    }
-    //////////////////////////////////
 
     // 创建epoll实例，得到它的文件描述符
     int epollfd = epoll_create1(EPOLL_CLOEXEC);
-    Channel *servchannel = new Channel(listenfd, true);
+    Channel *servchannel = new Channel(servsock.fd(), true);
     ///////////////////////////////
 
     // 在epoll模型中添加对epfd的可读事件的监听
     struct epoll_event ev;
     ev.data.ptr = servchannel;
     ev.events = EPOLLIN;
-    epoll_ctl(epollfd, EPOLL_CTL_ADD, listenfd, &ev);
+    epoll_ctl(epollfd, EPOLL_CTL_ADD, servsock.fd(), &ev);
     ////////////////////////////////////
 
     // 创建epoll_wait所需要的epoll_event数组，存放就绪的epoll_event
@@ -112,17 +87,14 @@ int main(int argc, char **argv)
             if (ch->islisten() == true)
             {
                 // 遇到监听套接字的情况
-                struct sockaddr_in peeraddr;
-                socklen_t len = sizeof(peeraddr);
-                // accept4函数支持给新接受的套接字设置一个选项
-                int clientfd = accept4(listenfd, (struct sockaddr *)&peeraddr, &len, SOCK_NONBLOCK);
-                InetAddress clientaddr(peeraddr);
-                cout << "accept client(fd=" << clientfd << ", ip=" << clientaddr.ip()<< ", port=" << clientaddr.port() << " ok." << endl;
-
-                Channel *clientchannel = new Channel(clientfd);
+                InetAddress clientaddr;
+                //clientsock只能new出来，放到堆中以避免被调用析构函数关闭fd
+                Socket *clientsock = new Socket(servsock.accept(clientaddr));
+                /////////////////////
+                Channel *clientchannel = new Channel(clientsock->fd());
                 ev.data.ptr = clientchannel;
                 ev.events = EPOLLIN | EPOLLET; // 监视客户端的读事件，并采用边缘触发的方式
-                epoll_ctl(epollfd, EPOLL_CTL_ADD, clientfd, &ev);
+                epoll_ctl(epollfd, EPOLL_CTL_ADD, clientsock->fd(), &ev);
             }
             else
             {
@@ -149,14 +121,17 @@ int main(int argc, char **argv)
                         }
                         else if (nread == -1 && errno == EINTR)
                         {
+                            // 读取数据的时候被信号中断，继续读取。
                             continue;
                         }
                         else if (nread == -1 && ((errno == EAGAIN) || (errno == EWOULDBLOCK)))
                         {
+                            // 全部的数据已读取完毕
                             break;
                         }
                         else if (nread == 0)
                         {
+                            // 客户端连接已断开
                             cout << "client(eventfd=" << ch->fd() << ") disconnected." << endl;
                             close(ch->fd());
                             break;

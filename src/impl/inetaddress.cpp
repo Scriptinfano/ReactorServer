@@ -3,6 +3,10 @@
 #include <iostream>
 #include <cerrno>
 #include <cstring>
+InetAddress::InetAddress(){
+    //TODO 缺省的构造函数
+}
+
 /*
 @brief 此构造函数用于构造监听套接字的地址结构
 */
@@ -50,3 +54,6 @@ const sockaddr *InetAddress::addr() const
 {
     return (sockaddr *)&addr_;
 }
+void InetAddress::setaddr(sockaddr_in clientaddr){
+    addr_ = clientaddr;
+} 

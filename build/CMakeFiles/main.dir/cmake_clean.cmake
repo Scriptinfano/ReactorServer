@@ -1,8 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/main.dir/src/main.cpp.o"
+  "CMakeFiles/main.dir/src/impl/log.cpp.o"
   "CMakeFiles/main.dir/src/impl/inetaddress.cpp.o"
   "CMakeFiles/main.dir/src/impl/semaphore.cpp.o"
   "CMakeFiles/main.dir/src/impl/myerror.cpp.o"
+  "CMakeFiles/main.dir/src/impl/mysocket.cpp.o"
   "../bin/main.pdb"
   "../bin/main"
 )

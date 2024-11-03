@@ -1,72 +1,82 @@
-// 网络通讯的客户端程序。
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include <string>
 #include <unistd.h>
-#include <errno.h>
-#include <string.h>
+#include <cstring>
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include <time.h>
+#include <chrono>
+
+using namespace std;
 
 int main(int argc, char *argv[])
 {
     if (argc != 3)
     {
-        printf("usage:./client ip port\n");
-        printf("example:./client 192.168.150.128 5085\n\n");
+        cout << "Usage: ./client <IP> <port>" << endl;
+        cout << "Example: ./client 192.168.150.128 5085" << endl;
         return -1;
     }
 
     int sockfd;
     struct sockaddr_in servaddr;
-    char buf[1024];
+    string buf;
 
-    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd < 0)
     {
-        printf("socket() failed.\n");
+        cerr << "socket() failed: " << strerror(errno) << endl;
         return -1;
     }
 
     memset(&servaddr, 0, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(atoi(argv[2]));
-    servaddr.sin_addr.s_addr = inet_addr(argv[1]);
-
-    if (connect(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr)) != 0)
+    if (inet_pton(AF_INET, argv[1], &servaddr.sin_addr) <= 0)
     {
-        printf("connect(%s:%s) failed.\n", argv[1], argv[2]);
+        cerr << "Invalid IP address: " << argv[1] << endl;
         close(sockfd);
         return -1;
     }
 
-    printf("connect ok.\n");
-    // printf("开始时间：%d",time(0));
+    if (connect(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr)) != 0)
+    {
+        cerr << "connect(" << argv[1] << ":" << argv[2] << ") failed: " << strerror(errno) << endl;
+        close(sockfd);
+        return -1;
+    }
+
+    cout << "Connect successful." << endl;
+
+    auto start = chrono::system_clock::now();
 
     for (int ii = 0; ii < 200000; ii++)
     {
-        // 从命令行输入内容。
-        memset(buf, 0, sizeof(buf));
-        printf("please input:");
-        scanf("%s", buf);
+        cout << "Please input: ";
+        getline(cin, buf);
 
-        if (send(sockfd, buf, strlen(buf), 0) <= 0) // 把命令行输入的内容发送给服务端。
+        if (send(sockfd, buf.c_str(), buf.length(), 0) <= 0)
         {
-            printf("write() failed.\n");
+            cerr << "send() failed: " << strerror(errno) << endl;
             close(sockfd);
             return -1;
         }
 
-        memset(buf, 0, sizeof(buf));
-        if (recv(sockfd, buf, sizeof(buf), 0) <= 0) // 接收服务端的回应。
+        char recv_buf[1024] = {0};
+        if (recv(sockfd, recv_buf, sizeof(recv_buf) - 1, 0) <= 0)
         {
-            printf("read() failed.\n");
+            cerr << "recv() failed: " << strerror(errno) << endl;
             close(sockfd);
             return -1;
         }
 
-        printf("recv:%s\n", buf);
+        cout << "Received: " << recv_buf << endl;
     }
 
-    // printf("结束时间：%d",time(0));
+    auto end = chrono::system_clock::now();
+    chrono::duration<double> elapsed_seconds = end - start;
+    cout << "Elapsed time: " << elapsed_seconds.count() << "s\n";
+
+    close(sockfd);
+    return 0;
 }

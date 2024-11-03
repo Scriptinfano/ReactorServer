@@ -1,5 +1,6 @@
 #include "semaphore.hpp"
-#include<iostream>
+#include <cerrno>
+#include <iostream>
 bool Semaphore::init(key_t key, unsigned short value, short the_semflg)
 {
     if (semid != -1)

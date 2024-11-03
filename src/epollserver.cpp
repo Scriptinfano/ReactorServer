@@ -4,8 +4,14 @@
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-#include<sys/epoll.h>
+#include <string.h>
+#include <sys/epoll.h>
+#include <cstring>
+#include <string>
+#include "errno.h"
+
 using namespace std;
+
 class Channel
 {
 private:
@@ -18,10 +24,12 @@ public:
     bool islisten() { return islisten_; }
     // ......更多的成员函数。
 };
+
 void set_non_blocking(int fd)
 {
     fcntl(fd, F_SETFD, fcntl(fd, F_GETFL) | O_NONBLOCK);
 }
+
 int main(int argc, char **argv)
 {
     if (argc != 3)
@@ -30,19 +38,22 @@ int main(int argc, char **argv)
         cout << "example, epollserver 192.168.150.128 8080" << endl;
         return -1;
     }
+
     int listenfd = socket(AF_INET, SOCK_STREAM, 0);
     if (listenfd < 0)
     {
-        perror("socket() failed");
+        cerr << "socket() failed: " << std::strerror(errno) << endl;
         return -1;
     }
+
     int opt = 1;
-    setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &opt, static_cast<socklen_t>(sizeof opt)); // 即使端口处于TIME_WAIT状态，新的socket也可以立刻绑定到该端口，绕过等待时间，加快服务器重启
-    setsockopt(listenfd, SOL_SOCKET, TCP_NODELAY, &opt, static_cast<socklen_t>(sizeof opt));  // 使得数据在没有缓冲的情况下立即传输，对于一些需要低延迟的应用场景很重要
-    setsockopt(listenfd, SOL_SOCKET, SO_REUSEPORT, &opt, static_cast<socklen_t>(sizeof opt)); // 作用和SO_REUSEADDR差不多
-    setsockopt(listenfd, SOL_SOCKET, SO_KEEPALIVE, &opt, static_cast<socklen_t>(sizeof opt)); // 在长时间没有数据传输的情况下保持链接的有效性，操作系统会定期发送keepalive探测数据包来检查链接是否有效
+    setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &opt, static_cast<socklen_t>(sizeof opt));
+    setsockopt(listenfd, SOL_SOCKET, TCP_NODELAY, &opt, static_cast<socklen_t>(sizeof opt));
+    setsockopt(listenfd, SOL_SOCKET, SO_REUSEPORT, &opt, static_cast<socklen_t>(sizeof opt));
+    setsockopt(listenfd, SOL_SOCKET, SO_KEEPALIVE, &opt, static_cast<socklen_t>(sizeof opt));
 
     set_non_blocking(listenfd);
+
     struct sockaddr_in servaddr;
     servaddr.sin_family = AF_INET;
     int ret = inet_pton(AF_INET, argv[1], &servaddr.sin_addr);
@@ -54,124 +65,116 @@ int main(int argc, char **argv)
     }
     else if (ret == -1)
     {
-        perror("inet_pton() failed ");
+        cerr << "inet_pton() failed: " << std::strerror(errno) << endl;
         return -1;
     }
 
     servaddr.sin_port = htons(atoi(argv[2]));
-    int ret;
     if (bind(listenfd, (struct sockaddr *)&servaddr, sizeof(servaddr)) < 0)
     {
-        perror("bind() failed");
+        cerr << "bind() failed: " << std::strerror(errno) << endl;
         close(listenfd);
         return -1;
     }
 
-    if (listen(listenfd, 128) < 0) // 在高并发的网络服务器中，第二个参数要大一些。
+    if (listen(listenfd, 128) < 0)
     {
-        perror("listen() failed");
+        cerr << "listen() failed: " << std::strerror(errno) << endl;
         close(listenfd);
         return -1;
     }
-    int epollfd = epoll_create1(EPOLL_CLOSEC);
+
+    int epollfd = epoll_create1(EPOLL_CLOEXEC);
     Channel *servchannel = new Channel(listenfd, true);
 
-    // 为服务端的listenfd准备读事件。
-    struct epoll_event ev; // 声明事件的数据结构。
-    // ev.data.fd=listenfd;                 // 指定事件的自定义数据，会随着epoll_wait()返回的事件一并返回。
-    ev.data.ptr = servchannel; // 指定事件的自定义数据，会随着epoll_wait()返回的事件一并返回。
-    ev.events = EPOLLIN;       // 让epoll监视listenfd的读事件，采用水平触发。
+    struct epoll_event ev;
+    ev.data.ptr = servchannel;
+    ev.events = EPOLLIN;
 
-    epoll_ctl(epollfd, EPOLL_CTL_ADD, listenfd, &ev); // 把需要监视的listenfd和它的事件加入epollfd中。
+    epoll_ctl(epollfd, EPOLL_CTL_ADD, listenfd, &ev);
 
-    struct epoll_event evs[10]; // 存放epoll_wait()返回事件的数组。
+    struct epoll_event evs[10];
 
-    while (true) // 事件循环。
+    while (true)
     {
-        int infds = epoll_wait(epollfd, evs, 10, -1); // 等待监视的fd有事件发生。
+        int infds = epoll_wait(epollfd, evs, 10, -1);
 
-        // 返回失败。
         if (infds < 0)
         {
-            perror("epoll_wait() failed");
+            cerr << "epoll_wait() failed: " << std::strerror(errno) << endl;
             break;
         }
 
-        // 超时。
         if (infds == 0)
         {
-            printf("epoll_wait() timeout.\n");
+            cout << "epoll_wait() timeout" << endl;
             continue;
         }
 
-        // 如果infds>0，表示有事件发生的fd的数量。
-        for (int ii = 0; ii < infds; ii++) // 遍历epoll返回的数组evs。
+        for (int ii = 0; ii < infds; ii++)
         {
-            Channel *ch = (Channel *)evs[ii].data.ptr;
-            // if (evs[ii].data.fd==listenfd)   // 如果是listenfd有事件，表示有新的客户端连上来。
-            if (ch->islisten() == true) // 如果是listenfd有事件，表示有新的客户端连上来。
+            Channel *ch = static_cast<Channel *>(evs[ii].data.ptr);
+
+            if (ch->islisten() == true)
             {
-                ////////////////////////////////////////////////////////////////////////
                 struct sockaddr_in clientaddr;
                 socklen_t len = sizeof(clientaddr);
                 int clientfd = accept(listenfd, (struct sockaddr *)&clientaddr, &len);
-                setnonblocking(clientfd); // 客户端连接的fd必须设置为非阻塞的。
+                set_non_blocking(clientfd);
 
-                printf("accept client(fd=%d,ip=%s,port=%d) ok.\n", clientfd, inet_ntoa(clientaddr.sin_addr), ntohs(clientaddr.sin_port));
+                cout << "accept client(fd=" << clientfd << ", ip=" << inet_ntoa(clientaddr.sin_addr)
+                     << ", port=" << ntohs(clientaddr.sin_port) << ") ok." << endl;
 
-                // 为新客户端连接准备读事件，并添加到epoll中。
                 Channel *clientchannel = new Channel(clientfd);
                 ev.data.ptr = clientchannel;
-                ev.events = EPOLLIN | EPOLLET; // 边缘触发。
+                ev.events = EPOLLIN | EPOLLET;
                 epoll_ctl(epollfd, EPOLL_CTL_ADD, clientfd, &ev);
-                ////////////////////////////////////////////////////////////////////////
             }
-            else // 如果是客户端连接的fd有事件。
+            else
             {
-                ////////////////////////////////////////////////////////////////////////
-                if (evs[ii].events & EPOLLRDHUP) // 对方已关闭，有些系统检测不到，可以使用EPOLLIN，recv()返回0。
+                if (evs[ii].events & EPOLLRDHUP)
                 {
-                    printf("1client(eventfd=%d) disconnected.\n", ch->fd());
-                    close(ch->fd()); // 关闭客户端的fd。
-                } //  普通数据  带外数据
-                else if (evs[ii].events & (EPOLLIN | EPOLLPRI)) // 接收缓冲区中有数据可以读。
+                    cout << "1client(eventfd=" << ch->fd() << ") disconnected." << endl;
+                    close(ch->fd());
+                }
+                else if (evs[ii].events & (EPOLLIN | EPOLLPRI))
                 {
-                    char buffer[1024];
-                    while (true) // 由于使用非阻塞IO，一次读取buffer大小数据，直到全部的数据读取完毕。
+                    string buffer;
+                    buffer.resize(1024);
+                    while (true)
                     {
-                        bzero(&buffer, sizeof(buffer));
-                        ssize_t nread = read(ch->fd(), buffer, sizeof(buffer));
-                        if (nread > 0) // 成功的读取到了数据。
+                        ssize_t nread = read(ch->fd(), &buffer[0], buffer.size() - 1);
+                        if (nread > 0)
                         {
-                            // 把接收到的报文内容原封不动的发回去。
-                            printf("recv(eventfd=%d):%s\n", ch->fd(), buffer);
-                            send(ch->fd(), buffer, strlen(buffer), 0);
+                            buffer[nread] = '\0'; // Null-terminate the string
+                            cout << "recv(eventfd=" << ch->fd() << "): " << buffer << endl;
+                            send(ch->fd(), buffer.c_str(), buffer.size(), 0);
                         }
-                        else if (nread == -1 && errno == EINTR) // 读取数据的时候被信号中断，继续读取。
+                        else if (nread == -1 && errno == EINTR)
                         {
                             continue;
                         }
-                        else if (nread == -1 && ((errno == EAGAIN) || (errno == EWOULDBLOCK))) // 全部的数据已读取完毕。
+                        else if (nread == -1 && ((errno == EAGAIN) || (errno == EWOULDBLOCK)))
                         {
                             break;
                         }
-                        else if (nread == 0) // 客户端连接已断开。
+                        else if (nread == 0)
                         {
-                            printf("2client(eventfd=%d) disconnected.\n", ch->fd());
-                            close(ch->fd()); // 关闭客户端的fd。
+                            cout << "2client(eventfd=" << ch->fd() << ") disconnected." << endl;
+                            close(ch->fd());
                             break;
                         }
                     }
                 }
-                else if (evs[ii].events & EPOLLOUT) // 有数据需要写，暂时没有代码，以后再说。
+                else if (evs[ii].events & EPOLLOUT)
                 {
+                    // 暂时没有代码
                 }
-                else // 其它事件，都视为错误。
+                else
                 {
-                    printf("3client(eventfd=%d) error.\n", ch->fd());
-                    close(ch->fd()); // 关闭客户端的fd。
+                    cout << "3client(eventfd=" << ch->fd() << ") error." << endl;
+                    close(ch->fd());
                 }
-                ////////////////////////////////////////////////////////////////////////
             }
         }
     }

@@ -1,5 +1,5 @@
-/Users/mavrick/develop/reactor/build/CMakeFiles/main.dir
-/Users/mavrick/develop/reactor/build/CMakeFiles/producer.dir
-/Users/mavrick/develop/reactor/build/CMakeFiles/consumer.dir
-/Users/mavrick/develop/reactor/build/CMakeFiles/edit_cache.dir
-/Users/mavrick/develop/reactor/build/CMakeFiles/rebuild_cache.dir
+/root/develop/ReactorServer/build/CMakeFiles/edit_cache.dir
+/root/develop/ReactorServer/build/CMakeFiles/main.dir
+/root/develop/ReactorServer/build/CMakeFiles/epollserver.dir
+/root/develop/ReactorServer/build/CMakeFiles/epollclient.dir
+/root/develop/ReactorServer/build/CMakeFiles/rebuild_cache.dir

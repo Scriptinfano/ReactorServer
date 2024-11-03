@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/root/develop/ReactorServer/src/impl/myerror.cpp" "/root/develop/ReactorServer/build/CMakeFiles/main.dir/src/impl/myerror.cpp.o"
-  "/root/develop/ReactorServer/src/impl/semaphore.cpp" "/root/develop/ReactorServer/build/CMakeFiles/main.dir/src/impl/semaphore.cpp.o"
-  "/root/develop/ReactorServer/src/main.cpp" "/root/develop/ReactorServer/build/CMakeFiles/main.dir/src/main.cpp.o"
+  "/root/develop/ReactorServer/src/epollserver.cpp" "/root/develop/ReactorServer/build/CMakeFiles/epollserver.dir/src/epollserver.cpp.o"
+  "/root/develop/ReactorServer/src/impl/myerror.cpp" "/root/develop/ReactorServer/build/CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o"
+  "/root/develop/ReactorServer/src/impl/semaphore.cpp" "/root/develop/ReactorServer/build/CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

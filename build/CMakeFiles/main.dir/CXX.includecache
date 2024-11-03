@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/myerror.hpp
+string
+-
+
+../include/semaphore.hpp
+sys/sem.h
+-
+myerror.hpp
+../include/myerror.hpp
+
+/root/develop/ReactorServer/src/impl/myerror.cpp
+iostream
+-
+cerrno
+-
+string.h
+-
+myerror.hpp
+/root/develop/ReactorServer/src/impl/myerror.hpp
+
+/root/develop/ReactorServer/src/impl/semaphore.cpp
+semaphore.hpp
+/root/develop/ReactorServer/src/impl/semaphore.hpp
+cerrno
+-
+iostream
+-
+
+/root/develop/ReactorServer/src/main.cpp
+iostream
+-
+

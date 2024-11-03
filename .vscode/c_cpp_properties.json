@@ -1,19 +1,16 @@
 {
     "configurations": [
         {
-            "name": "Mac",
+            "name": "ubuntu",
             "includePath": [
-                "${default}",
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include/",
+                "/usr/include/",
+                "/usr/include/c++/5"
             ],
             "defines": [],
-            "macFrameworkPath": [
-                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
-            ],
-            "compilerPath": "/usr/bin/clang",
+            "compilerPath": "/usr/bin/g++",
             "cStandard": "c17",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "macos-clang-arm64"
+            "cppStandard": "c++17"
         }
     ],
     "version": 4

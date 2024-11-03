@@ -3,6 +3,9 @@
 
 CMakeFiles/epollclient.dir/src/epollclient.cpp.o: ../src/epollclient.cpp
 
+CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o: ../include/inetaddress.hpp
+CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o: ../src/impl/inetaddress.cpp
+
 CMakeFiles/epollclient.dir/src/impl/myerror.cpp.o: ../include/myerror.hpp
 CMakeFiles/epollclient.dir/src/impl/myerror.cpp.o: ../src/impl/myerror.cpp
 

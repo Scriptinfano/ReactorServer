@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+../include/inetaddress.hpp
+netinet/in.h
+-
+string
+-
+
 ../include/myerror.hpp
 string
 -
@@ -25,8 +31,6 @@ sys/socket.h
 -
 netinet/tcp.h
 -
-arpa/inet.h
--
 unistd.h
 -
 string.h
@@ -39,6 +43,20 @@ string
 -
 errno.h
 /root/develop/ReactorServer/src/errno.h
+inetaddress.hpp
+/root/develop/ReactorServer/src/inetaddress.hpp
+
+/root/develop/ReactorServer/src/impl/inetaddress.cpp
+inetaddress.hpp
+/root/develop/ReactorServer/src/impl/inetaddress.hpp
+arpa/inet.h
+-
+iostream
+-
+cerrno
+-
+cstring
+-
 
 /root/develop/ReactorServer/src/impl/myerror.cpp
 iostream

@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+../include/inetaddress.hpp
+netinet/in.h
+-
+string
+-
+
 ../include/myerror.hpp
 string
 -
@@ -15,6 +21,18 @@ sys/sem.h
 -
 myerror.hpp
 ../include/myerror.hpp
+
+/root/develop/ReactorServer/src/impl/inetaddress.cpp
+inetaddress.hpp
+/root/develop/ReactorServer/src/impl/inetaddress.hpp
+arpa/inet.h
+-
+iostream
+-
+cerrno
+-
+cstring
+-
 
 /root/develop/ReactorServer/src/impl/myerror.cpp
 iostream

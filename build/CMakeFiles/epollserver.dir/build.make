@@ -81,9 +81,33 @@ CMakeFiles/epollserver.dir/src/epollserver.cpp.o.provides: CMakeFiles/epollserve
 CMakeFiles/epollserver.dir/src/epollserver.cpp.o.provides.build: CMakeFiles/epollserver.dir/src/epollserver.cpp.o
 
 
+CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o: CMakeFiles/epollserver.dir/flags.make
+CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o: ../src/impl/inetaddress.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o -c /root/develop/ReactorServer/src/impl/inetaddress.cpp
+
+CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/inetaddress.cpp > CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.i
+
+CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/inetaddress.cpp -o CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.s
+
+CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o.requires:
+
+.PHONY : CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o.requires
+
+CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o.provides: CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o.requires
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o.provides.build
+.PHONY : CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o.provides
+
+CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o.provides.build: CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o
+
+
 CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o: CMakeFiles/epollserver.dir/flags.make
 CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o: ../src/impl/semaphore.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o -c /root/develop/ReactorServer/src/impl/semaphore.cpp
 
 CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.i: cmake_force
@@ -107,7 +131,7 @@ CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o.provides.build: CMakeFiles/e
 
 CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o: CMakeFiles/epollserver.dir/flags.make
 CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o: ../src/impl/myerror.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o -c /root/develop/ReactorServer/src/impl/myerror.cpp
 
 CMakeFiles/epollserver.dir/src/impl/myerror.cpp.i: cmake_force
@@ -132,6 +156,7 @@ CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o.provides.build: CMakeFiles/epo
 # Object files for target epollserver
 epollserver_OBJECTS = \
 "CMakeFiles/epollserver.dir/src/epollserver.cpp.o" \
+"CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o" \
 "CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o" \
 "CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o"
 
@@ -139,11 +164,12 @@ epollserver_OBJECTS = \
 epollserver_EXTERNAL_OBJECTS =
 
 ../bin/epollserver: CMakeFiles/epollserver.dir/src/epollserver.cpp.o
+../bin/epollserver: CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o
 ../bin/epollserver: CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o
 ../bin/epollserver: CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o
 ../bin/epollserver: CMakeFiles/epollserver.dir/build.make
 ../bin/epollserver: CMakeFiles/epollserver.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable ../bin/epollserver"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable ../bin/epollserver"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/epollserver.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -152,6 +178,7 @@ CMakeFiles/epollserver.dir/build: ../bin/epollserver
 .PHONY : CMakeFiles/epollserver.dir/build
 
 CMakeFiles/epollserver.dir/requires: CMakeFiles/epollserver.dir/src/epollserver.cpp.o.requires
+CMakeFiles/epollserver.dir/requires: CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o.requires
 CMakeFiles/epollserver.dir/requires: CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o.requires
 CMakeFiles/epollserver.dir/requires: CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o.requires
 

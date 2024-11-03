@@ -203,6 +203,39 @@ src/epollserver.cpp.s:
 	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/epollserver.cpp.s
 .PHONY : src/epollserver.cpp.s
 
+src/impl/inetaddress.o: src/impl/inetaddress.cpp.o
+
+.PHONY : src/impl/inetaddress.o
+
+# target to build an object file
+src/impl/inetaddress.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/inetaddress.cpp.o
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o
+	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o
+.PHONY : src/impl/inetaddress.cpp.o
+
+src/impl/inetaddress.i: src/impl/inetaddress.cpp.i
+
+.PHONY : src/impl/inetaddress.i
+
+# target to preprocess a source file
+src/impl/inetaddress.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/inetaddress.cpp.i
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.i
+	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.i
+.PHONY : src/impl/inetaddress.cpp.i
+
+src/impl/inetaddress.s: src/impl/inetaddress.cpp.s
+
+.PHONY : src/impl/inetaddress.s
+
+# target to generate assembly for a file
+src/impl/inetaddress.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/inetaddress.cpp.s
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.s
+	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.s
+.PHONY : src/impl/inetaddress.cpp.s
+
 src/impl/myerror.o: src/impl/myerror.cpp.o
 
 .PHONY : src/impl/myerror.o
@@ -313,6 +346,9 @@ help:
 	@echo "... src/epollserver.o"
 	@echo "... src/epollserver.i"
 	@echo "... src/epollserver.s"
+	@echo "... src/impl/inetaddress.o"
+	@echo "... src/impl/inetaddress.i"
+	@echo "... src/impl/inetaddress.s"
 	@echo "... src/impl/myerror.o"
 	@echo "... src/impl/myerror.i"
 	@echo "... src/impl/myerror.s"

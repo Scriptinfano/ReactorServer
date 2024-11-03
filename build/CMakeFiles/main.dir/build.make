@@ -81,9 +81,33 @@ CMakeFiles/main.dir/src/main.cpp.o.provides: CMakeFiles/main.dir/src/main.cpp.o.
 CMakeFiles/main.dir/src/main.cpp.o.provides.build: CMakeFiles/main.dir/src/main.cpp.o
 
 
+CMakeFiles/main.dir/src/impl/inetaddress.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/src/impl/inetaddress.cpp.o: ../src/impl/inetaddress.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/src/impl/inetaddress.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/impl/inetaddress.cpp.o -c /root/develop/ReactorServer/src/impl/inetaddress.cpp
+
+CMakeFiles/main.dir/src/impl/inetaddress.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/inetaddress.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/inetaddress.cpp > CMakeFiles/main.dir/src/impl/inetaddress.cpp.i
+
+CMakeFiles/main.dir/src/impl/inetaddress.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/inetaddress.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/inetaddress.cpp -o CMakeFiles/main.dir/src/impl/inetaddress.cpp.s
+
+CMakeFiles/main.dir/src/impl/inetaddress.cpp.o.requires:
+
+.PHONY : CMakeFiles/main.dir/src/impl/inetaddress.cpp.o.requires
+
+CMakeFiles/main.dir/src/impl/inetaddress.cpp.o.provides: CMakeFiles/main.dir/src/impl/inetaddress.cpp.o.requires
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/inetaddress.cpp.o.provides.build
+.PHONY : CMakeFiles/main.dir/src/impl/inetaddress.cpp.o.provides
+
+CMakeFiles/main.dir/src/impl/inetaddress.cpp.o.provides.build: CMakeFiles/main.dir/src/impl/inetaddress.cpp.o
+
+
 CMakeFiles/main.dir/src/impl/semaphore.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/semaphore.cpp.o: ../src/impl/semaphore.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/src/impl/semaphore.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/src/impl/semaphore.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/impl/semaphore.cpp.o -c /root/develop/ReactorServer/src/impl/semaphore.cpp
 
 CMakeFiles/main.dir/src/impl/semaphore.cpp.i: cmake_force
@@ -107,7 +131,7 @@ CMakeFiles/main.dir/src/impl/semaphore.cpp.o.provides.build: CMakeFiles/main.dir
 
 CMakeFiles/main.dir/src/impl/myerror.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/myerror.cpp.o: ../src/impl/myerror.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/src/impl/myerror.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/src/impl/myerror.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/src/impl/myerror.cpp.o -c /root/develop/ReactorServer/src/impl/myerror.cpp
 
 CMakeFiles/main.dir/src/impl/myerror.cpp.i: cmake_force
@@ -132,6 +156,7 @@ CMakeFiles/main.dir/src/impl/myerror.cpp.o.provides.build: CMakeFiles/main.dir/s
 # Object files for target main
 main_OBJECTS = \
 "CMakeFiles/main.dir/src/main.cpp.o" \
+"CMakeFiles/main.dir/src/impl/inetaddress.cpp.o" \
 "CMakeFiles/main.dir/src/impl/semaphore.cpp.o" \
 "CMakeFiles/main.dir/src/impl/myerror.cpp.o"
 
@@ -139,11 +164,12 @@ main_OBJECTS = \
 main_EXTERNAL_OBJECTS =
 
 ../bin/main: CMakeFiles/main.dir/src/main.cpp.o
+../bin/main: CMakeFiles/main.dir/src/impl/inetaddress.cpp.o
 ../bin/main: CMakeFiles/main.dir/src/impl/semaphore.cpp.o
 ../bin/main: CMakeFiles/main.dir/src/impl/myerror.cpp.o
 ../bin/main: CMakeFiles/main.dir/build.make
 ../bin/main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable ../bin/main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable ../bin/main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -152,6 +178,7 @@ CMakeFiles/main.dir/build: ../bin/main
 .PHONY : CMakeFiles/main.dir/build
 
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/src/main.cpp.o.requires
+CMakeFiles/main.dir/requires: CMakeFiles/main.dir/src/impl/inetaddress.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/src/impl/semaphore.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/src/impl/myerror.cpp.o.requires
 

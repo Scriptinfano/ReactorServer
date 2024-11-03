@@ -1,3 +1,4 @@
+#pragma once
 #include <sys/sem.h>
 #include "myerror.hpp"
 

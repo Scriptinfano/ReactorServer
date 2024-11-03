@@ -1,6 +1,7 @@
 /*
 自定义数据结构的定义文件
 */
+#pragma once
 #include <iostream>
 using namespace std;
 /*

@@ -19,7 +19,7 @@ public:
     /*
     @brief 返回地址表示的ip地址
     */
-    const char *ip() const;
+    std::string ip() const;
     /*
     返回地址中的port
     */

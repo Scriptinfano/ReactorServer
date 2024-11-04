@@ -203,6 +203,39 @@ src/epollserver.cpp.s:
 	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/epollserver.cpp.s
 .PHONY : src/epollserver.cpp.s
 
+src/impl/epoll.o: src/impl/epoll.cpp.o
+
+.PHONY : src/impl/epoll.o
+
+# target to build an object file
+src/impl/epoll.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/epoll.cpp.o
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/epoll.cpp.o
+	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o
+.PHONY : src/impl/epoll.cpp.o
+
+src/impl/epoll.i: src/impl/epoll.cpp.i
+
+.PHONY : src/impl/epoll.i
+
+# target to preprocess a source file
+src/impl/epoll.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/epoll.cpp.i
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/epoll.cpp.i
+	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/epoll.cpp.i
+.PHONY : src/impl/epoll.cpp.i
+
+src/impl/epoll.s: src/impl/epoll.cpp.s
+
+.PHONY : src/impl/epoll.s
+
+# target to generate assembly for a file
+src/impl/epoll.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/epoll.cpp.s
+	$(MAKE) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/epoll.cpp.s
+	$(MAKE) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/epoll.cpp.s
+.PHONY : src/impl/epoll.cpp.s
+
 src/impl/inetaddress.o: src/impl/inetaddress.cpp.o
 
 .PHONY : src/impl/inetaddress.o
@@ -412,6 +445,9 @@ help:
 	@echo "... src/epollserver.o"
 	@echo "... src/epollserver.i"
 	@echo "... src/epollserver.s"
+	@echo "... src/impl/epoll.o"
+	@echo "... src/impl/epoll.i"
+	@echo "... src/impl/epoll.s"
 	@echo "... src/impl/inetaddress.o"
 	@echo "... src/impl/inetaddress.i"
 	@echo "... src/impl/inetaddress.s"

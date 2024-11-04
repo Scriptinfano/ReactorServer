@@ -1,3 +1,4 @@
+#pragma once
 #include "inetaddress.hpp"
 class Socket
 {

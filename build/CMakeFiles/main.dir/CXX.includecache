@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+../include/epoll.hpp
+sys/epoll.h
+-
+vector
+-
+
 ../include/inetaddress.hpp
 netinet/in.h
 -
@@ -32,9 +38,19 @@ sys/sem.h
 myerror.hpp
 ../include/myerror.hpp
 
+/root/develop/ReactorServer/src/impl/epoll.cpp
+epoll.hpp
+/root/develop/ReactorServer/src/impl/epoll.hpp
+log.hpp
+/root/develop/ReactorServer/src/impl/log.hpp
+stdexcept
+-
+
 /root/develop/ReactorServer/src/impl/inetaddress.cpp
 inetaddress.hpp
 /root/develop/ReactorServer/src/impl/inetaddress.hpp
+log.hpp
+/root/develop/ReactorServer/src/impl/log.hpp
 arpa/inet.h
 -
 iostream
@@ -80,6 +96,8 @@ unistd.h
 netinet/tcp.h
 -
 iostream
+-
+strings.h
 -
 log.hpp
 /root/develop/ReactorServer/src/impl/log.hpp

@@ -3,8 +3,9 @@
 #include <unistd.h>
 #include <netinet/tcp.h>
 #include <iostream>
-
+#include <strings.h>
 #include "log.hpp"
+using namespace std;
 int createNonBlockingSocket()
 {
     int listenfd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, 0);
@@ -69,8 +70,14 @@ int Socket::accept(InetAddress &clientaddr)
 {
     struct sockaddr_in peeraddr;
     socklen_t len = sizeof(peeraddr);
+    bzero(&peeraddr, sizeof(peeraddr));
     // accept4函数支持给新接受的套接字设置一个选项
-    int clientfd = accept4(fd_, (struct sockaddr *)&peeraddr, &len, SOCK_NONBLOCK);
+    int clientfd = ::accept(fd_, (struct sockaddr *)&peeraddr, &len);
+    if(clientfd<0){
+        logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("accept failed").c_str());
+        
+        exit(-1);
+    }
     clientaddr.setaddr(peeraddr);
     logger.logMessage(DEBUG, __FILE__, __LINE__, "accept client(fd=%d,ip=%s,port=%d) ok", clientfd, clientaddr.ip(), clientaddr.port());
     return clientfd;

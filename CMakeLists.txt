@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5.1)
 project(REACTOR VERSION 0.1.0 LANGUAGES CXX)
 
-add_compile_options(-std=c++17)  # 添加编译选项
+add_compile_options(-std=c++11)  # 添加编译选项
 
 set(CMAKE_BUILD_TYPE Debug)
 include_directories(${CMAKE_SOURCE_DIR}/include)

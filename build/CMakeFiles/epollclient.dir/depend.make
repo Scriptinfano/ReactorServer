@@ -3,7 +3,12 @@
 
 CMakeFiles/epollclient.dir/src/epollclient.cpp.o: ../src/epollclient.cpp
 
+CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o: ../include/epoll.hpp
+CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o: ../include/log.hpp
+CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o: ../src/impl/epoll.cpp
+
 CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o: ../include/inetaddress.hpp
+CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o: ../include/log.hpp
 CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o: ../src/impl/inetaddress.cpp
 
 CMakeFiles/epollclient.dir/src/impl/log.cpp.o: ../include/log.hpp

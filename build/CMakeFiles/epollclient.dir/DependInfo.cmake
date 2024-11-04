@@ -1,26 +1,26 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "CXX"
-  )
-# The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_CXX
-  "/root/develop/ReactorServer/src/epollclient.cpp" "/root/develop/ReactorServer/build/CMakeFiles/epollclient.dir/src/epollclient.cpp.o"
-  "/root/develop/ReactorServer/src/impl/epoll.cpp" "/root/develop/ReactorServer/build/CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o"
-  "/root/develop/ReactorServer/src/impl/inetaddress.cpp" "/root/develop/ReactorServer/build/CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o"
-  "/root/develop/ReactorServer/src/impl/log.cpp" "/root/develop/ReactorServer/build/CMakeFiles/epollclient.dir/src/impl/log.cpp.o"
-  "/root/develop/ReactorServer/src/impl/myerror.cpp" "/root/develop/ReactorServer/build/CMakeFiles/epollclient.dir/src/impl/myerror.cpp.o"
-  "/root/develop/ReactorServer/src/impl/mysocket.cpp" "/root/develop/ReactorServer/build/CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o"
-  "/root/develop/ReactorServer/src/impl/semaphore.cpp" "/root/develop/ReactorServer/build/CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o"
-  )
-set(CMAKE_CXX_COMPILER_ID "GNU")
-
-# The include file search paths:
-set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "../include"
   )
 
-# Targets to which this target links.
-set(CMAKE_TARGET_LINKED_INFO_FILES
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/root/develop/ReactorServer/src/epollclient.cpp" "CMakeFiles/epollclient.dir/src/epollclient.cpp.o" "gcc" "CMakeFiles/epollclient.dir/src/epollclient.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/channel.cpp" "CMakeFiles/epollclient.dir/src/impl/channel.cpp.o" "gcc" "CMakeFiles/epollclient.dir/src/impl/channel.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/epoll.cpp" "CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o" "gcc" "CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/inetaddress.cpp" "CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o" "gcc" "CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/log.cpp" "CMakeFiles/epollclient.dir/src/impl/log.cpp.o" "gcc" "CMakeFiles/epollclient.dir/src/impl/log.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/myerror.cpp" "CMakeFiles/epollclient.dir/src/impl/myerror.cpp.o" "gcc" "CMakeFiles/epollclient.dir/src/impl/myerror.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/mysocket.cpp" "CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o" "gcc" "CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/public.cpp" "CMakeFiles/epollclient.dir/src/impl/public.cpp.o" "gcc" "CMakeFiles/epollclient.dir/src/impl/public.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/semaphore.cpp" "CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o" "gcc" "CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o.d"
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

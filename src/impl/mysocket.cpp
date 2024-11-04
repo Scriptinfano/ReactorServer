@@ -4,6 +4,7 @@
 #include <netinet/tcp.h>
 #include <iostream>
 #include <strings.h>
+#include <fcntl.h>
 #include "log.hpp"
 using namespace std;
 int createNonBlockingSocket()
@@ -29,7 +30,35 @@ int Socket::fd() const
 {
     return fd_;
 }
+void Socket::setNonBlocking(bool on)
+{
+    int flags;
+    // 获取当前的文件描述符标志
+    if ((flags = fcntl(fd_, F_GETFL, 0)) == -1)
+    {
+        logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("fcntl()获取文件描述符状态时出错").c_str());
+        exit(-1);
+    }
 
+    if (on)
+    {
+        // 设置非阻塞模式
+        if (fcntl(fd_, F_SETFL, flags | O_NONBLOCK) == -1)
+        {
+            logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("fcntl()设置文件描述符阻塞状态时出错").c_str());
+            exit(-1);
+        }
+    }
+    else
+    {
+        // 清除非阻塞模式
+        if (fcntl(fd_, F_SETFL, flags & ~O_NONBLOCK) == -1)
+        {
+            logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("fcntl()清除文件描述符非阻塞状态时出错").c_str());
+            exit(-1);
+        }
+    }
+}
 void Socket::setReuseAddr(bool on)
 {
     int optval = on ? 1 : 0;
@@ -73,9 +102,10 @@ int Socket::accept(InetAddress &clientaddr)
     bzero(&peeraddr, sizeof(peeraddr));
     // accept4函数支持给新接受的套接字设置一个选项
     int clientfd = ::accept(fd_, (struct sockaddr *)&peeraddr, &len);
-    if(clientfd<0){
+    if (clientfd < 0)
+    {
         logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("accept failed").c_str());
-        
+
         exit(-1);
     }
     clientaddr.setaddr(peeraddr);

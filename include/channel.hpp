@@ -1,4 +1,6 @@
+#pragma once
 #include "epoll.hpp"
+class Epoll;//如果两个头文件互相包含，互相需要对方的数据结构，那么需要在两个文件做对方的前向声明，而且要在头文件的首部加入#pragme once
 class Channel
 {
 private:
@@ -20,19 +22,19 @@ public:
     */
     void set_ET();
     /*
-    @brief 让epoll_wait()监视fd_的可读事件
+    @brief 函数内部会调用已绑定epoll实例，将读就绪事件添加到epoll的红黑树中，如果已经有了，则会修改红黑树
     */
-    void enable_read();
+    void start_monitor_read();
     /*
     @brief 将inepoll的值设为true
     */
     void set_inepoll();
     /*
-    @brief 设置revents成员的值为true
+    @brief 设置内部revents，承载epoll_wait返回的事件
     */
     void set_revents(uint32_t revs);
     /*
-    @brief 返回inepoll_成员的值
+    @brief 将inepoll的值设为true，表示添加到了树上
     */
     bool inepoll();
     /*

@@ -1,58 +1,50 @@
 #include "channel.hpp"
 
-Channel::Channel(Epoll *ep, int fd):ep_(ep),fd_(fd){
-
+Channel::Channel(Epoll *ep, int fd) : ep_(ep), fd_(fd)
+{
 }
-Channel::~Channel(){
-    //注意在析构函数中不要销毁ep_，也不能关闭fd_，因为他们不属于Channel类，Channel类只是需要他们，使用他们而已
-    
+Channel::~Channel()
+{
+    // 注意在析构函数中不要销毁ep_，也不能关闭fd_，因为他们不属于Channel类，Channel类只是需要他们，使用他们而已
 }
 
-/*
-@brief 取得fd成员
-*/
-int Channel::fd(){
-
+int Channel::fd()
+{
+    return fd_;
 }
-/*
-@brief 设置采用边缘触发模式
-*/
-void Channel::set_ET(){
 
+void Channel::set_ET()
+{
+    events_ = events_ | EPOLLET;
 }
-/*
-@brief 让epoll_wait()监视fd_的可读事件
-*/
-void Channel::enable_read(){
 
+void Channel::start_monitor_read()
+{
+    events_ = events_ | EPOLLIN;
+    ep_->updateChannel(this);
 }
-/*
-@brief 将inepoll的值设为true
-*/
-void Channel::set_inepoll(){
 
+void Channel::set_inepoll()
+{
+    inepoll_ = true;
 }
-/*
-@brief 设置revents成员的值为true
-*/
-void Channel::set_revents(uint32_t revs){
 
+void Channel::set_revents(uint32_t revs)
+{
+    revents_ = revs;
 }
-/*
-@brief 返回inepoll_成员的值
-*/
-bool Channel::inepoll(){
 
+bool Channel::inepoll()
+{
+    return inepoll_;
 }
-/*
-@brief 返回events成员
-*/
-uint32_t Channel::events(){
 
+uint32_t Channel::events()
+{
+    return events_;
 }
-/*
-@brief 返回revents成员
-*/
-uint16_t Channel::revents(){
-    
+
+uint16_t Channel::revents()
+{
+    return revents_;
 }

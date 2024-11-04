@@ -1,26 +1,26 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "CXX"
-  )
-# The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_CXX
-  "/root/develop/ReactorServer/src/impl/epoll.cpp" "/root/develop/ReactorServer/build/CMakeFiles/main.dir/src/impl/epoll.cpp.o"
-  "/root/develop/ReactorServer/src/impl/inetaddress.cpp" "/root/develop/ReactorServer/build/CMakeFiles/main.dir/src/impl/inetaddress.cpp.o"
-  "/root/develop/ReactorServer/src/impl/log.cpp" "/root/develop/ReactorServer/build/CMakeFiles/main.dir/src/impl/log.cpp.o"
-  "/root/develop/ReactorServer/src/impl/myerror.cpp" "/root/develop/ReactorServer/build/CMakeFiles/main.dir/src/impl/myerror.cpp.o"
-  "/root/develop/ReactorServer/src/impl/mysocket.cpp" "/root/develop/ReactorServer/build/CMakeFiles/main.dir/src/impl/mysocket.cpp.o"
-  "/root/develop/ReactorServer/src/impl/semaphore.cpp" "/root/develop/ReactorServer/build/CMakeFiles/main.dir/src/impl/semaphore.cpp.o"
-  "/root/develop/ReactorServer/src/main.cpp" "/root/develop/ReactorServer/build/CMakeFiles/main.dir/src/main.cpp.o"
-  )
-set(CMAKE_CXX_COMPILER_ID "GNU")
-
-# The include file search paths:
-set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "../include"
   )
 
-# Targets to which this target links.
-set(CMAKE_TARGET_LINKED_INFO_FILES
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/root/develop/ReactorServer/src/impl/channel.cpp" "CMakeFiles/main.dir/src/impl/channel.cpp.o" "gcc" "CMakeFiles/main.dir/src/impl/channel.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/epoll.cpp" "CMakeFiles/main.dir/src/impl/epoll.cpp.o" "gcc" "CMakeFiles/main.dir/src/impl/epoll.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/inetaddress.cpp" "CMakeFiles/main.dir/src/impl/inetaddress.cpp.o" "gcc" "CMakeFiles/main.dir/src/impl/inetaddress.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/log.cpp" "CMakeFiles/main.dir/src/impl/log.cpp.o" "gcc" "CMakeFiles/main.dir/src/impl/log.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/myerror.cpp" "CMakeFiles/main.dir/src/impl/myerror.cpp.o" "gcc" "CMakeFiles/main.dir/src/impl/myerror.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/mysocket.cpp" "CMakeFiles/main.dir/src/impl/mysocket.cpp.o" "gcc" "CMakeFiles/main.dir/src/impl/mysocket.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/public.cpp" "CMakeFiles/main.dir/src/impl/public.cpp.o" "gcc" "CMakeFiles/main.dir/src/impl/public.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/semaphore.cpp" "CMakeFiles/main.dir/src/impl/semaphore.cpp.o" "gcc" "CMakeFiles/main.dir/src/impl/semaphore.cpp.o.d"
+  "/root/develop/ReactorServer/src/main.cpp" "CMakeFiles/main.dir/src/main.cpp.o" "gcc" "CMakeFiles/main.dir/src/main.cpp.o.d"
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

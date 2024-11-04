@@ -1,16 +1,16 @@
 {
     "configurations": [
         {
-            "name": "ubuntu",
+            "name": "rockylinux",
             "includePath": [
                 "${workspaceFolder}/include/",
-                "/usr/include/",
-                "/usr/include/c++/5"
+                "/usr/include/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",
             "cStandard": "c11",
-            "cppStandard": "c++11"
+            "cppStandard": "c++11",
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4

@@ -10,9 +10,7 @@ InetAddress::InetAddress()
     memset(&addr_, 0, sizeof(addr_));
 }
 
-/*
-@brief 此构造函数用于构造监听套接字的地址结构
-*/
+
 InetAddress::InetAddress(const std::string &ip, in_port_t port)
 {
     addr_.sin_family = AF_INET;
@@ -30,15 +28,11 @@ InetAddress::InetAddress(const std::string &ip, in_port_t port)
 
     addr_.sin_port = htons(port);
 }
-/*
-@brief 此构造函数用于构造客户端连接套接字的地址结构
-*/
+
 InetAddress::InetAddress(const sockaddr_in addr) : addr_(addr)
 {
 }
-/*
-@brief 返回地址表示的ip地址
-*/
+
 std::string InetAddress::ip() const
 {
     char str[INET_ADDRSTRLEN]; // 使用栈分配的数组
@@ -51,16 +45,11 @@ std::string InetAddress::ip() const
     }
     return std::string(str); // 返回 std::string 类型
 }
-/*
-返回地址中的port
-*/
+
 in_port_t InetAddress::port() const
 {
     return ntohs(addr_.sin_port);
 }
-/*
-@brief 返回addr_成员的地址，转换成了sockaddr
-*/
 const sockaddr *InetAddress::addr() const
 {
     return (sockaddr *)&addr_;

@@ -1,5 +1,6 @@
 #include "epoll.hpp"
 #include "log.hpp"
+#include "channel.hpp"
 #include <stdexcept>
 Epoll::Epoll()
 {
@@ -12,6 +13,33 @@ Epoll::Epoll()
 Epoll::~Epoll()
 {
 }
+
+void Epoll::updateChannel(Channel *ch)
+{
+    epoll_event ev;
+    ev.data.ptr = ch;
+    ev.events = ch->events();
+    if (ch->inepoll())
+    {
+        // 如果已经在树上则更新
+        if (epoll_ctl(epollfd_, EPOLL_CTL_MOD, ch->fd(), &ev) == -1)
+        {
+            logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("epoll_ctl() failed").c_str());
+            exit(-1);
+        }
+    }
+    else
+    {
+        // 如果不在树上则添加
+        if (epoll_ctl(epollfd_, EPOLL_CTL_ADD, ch->fd(), &ev) == -1)
+        {
+            logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("epoll_ctl() failed").c_str());
+            exit(-1);
+        }
+        ch->set_inepoll();
+    }
+}
+
 void Epoll::addfd(int fd, uint32_t op)
 {
     epoll_event ev;
@@ -23,15 +51,15 @@ void Epoll::addfd(int fd, uint32_t op)
         exit(-1);
     }
 }
-std::vector<epoll_event> Epoll::loop(int timeout)
+std::vector<Channel *> Epoll::loop(int timeout)
 {
-    std::vector<epoll_event> evs; // 存放epoll_wait返回的事件
+    std::vector<Channel *> channels; // 存放epoll_wait返回的事件
     /*
     std::fill()函数将events数组中的每个元素初始化为0，begin()函数返回指向events数组的第一个元素的迭代器
     end(events)函数返回指向events数组的最后一个元素后一个位置的迭代器
     第三个参数epoll_event{}是用来填充的值，它是epoll_event类型的默认构造值
     */
-    std::fill(std::begin(events_), std::end(events_), epoll_event{});
+    std::fill(std::begin(channels), std::end(channels), nullptr);
     int rfdnum = epoll_wait(epollfd_, events_, MAXEVENTS, timeout);
     if (rfdnum < 0)
     {
@@ -43,11 +71,13 @@ std::vector<epoll_event> Epoll::loop(int timeout)
     {
         // 超时的情况
         logger.logMessage(DEBUG, __FILE__, __LINE__, "epoll_wait() timeout");
-        return evs;
+        return channels;
     }
     for (int i = 0; i < rfdnum; i++)
     {
-        evs.push_back(events_[i]);
+        Channel *ch = (Channel *)events_[i].data.ptr;
+        ch->set_revents(events_[i].events);
+        channels.push_back(ch);
     }
-    return evs;
+    return channels;
 }

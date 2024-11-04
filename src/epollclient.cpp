@@ -6,9 +6,9 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <chrono>
-
+#include "public.hpp"
 using namespace std;
-
+static const int BUFFERSIZE = 1024;
 int main(int argc, char *argv[])
 {
     if (argc != 3)
@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
     memset(&servaddr, 0, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(atoi(argv[2]));
+
     if (inet_pton(AF_INET, argv[1], &servaddr.sin_addr) <= 0)
     {
         cerr << "Invalid IP address: " << argv[1] << endl;
@@ -48,22 +49,21 @@ int main(int argc, char *argv[])
 
     cout << "Connect successful." << endl;
 
-    auto start = chrono::system_clock::now();
-
-    for (int ii = 0; ii < 200000; ii++)
+    while (true)
     {
+        char buffer[BUFFERSIZE] = {0};
         cout << "Please input: ";
-        getline(cin, buf);
-
-        if (send(sockfd, buf.c_str(), buf.length(), 0) <= 0)
+        cin.getline(buffer, sizeof(buffer));
+        cout<<"是否有换行符"<<hasNewlineAtEnd(buffer);
+        if (send(sockfd, buffer, sizeof(buffer), 0) <= 0)
         {
             cerr << "send() failed: " << strerror(errno) << endl;
             close(sockfd);
             return -1;
         }
 
-        char recv_buf[1024] = {0};
-        if (recv(sockfd, recv_buf, sizeof(recv_buf) - 1, 0) <= 0)
+        char recv_buf[BUFFERSIZE] = {0};
+        if (recv(sockfd, recv_buf, sizeof(recv_buf), 0) <= 0)
         {
             cerr << "recv() failed: " << strerror(errno) << endl;
             close(sockfd);
@@ -73,9 +73,6 @@ int main(int argc, char *argv[])
         cout << "Received: " << recv_buf << endl;
     }
 
-    auto end = chrono::system_clock::now();
-    chrono::duration<double> elapsed_seconds = end - start;
-    cout << "Elapsed time: " << elapsed_seconds.count() << "s\n";
 
     close(sockfd);
     return 0;

@@ -7,11 +7,21 @@
 #include "epoll.hpp"
 #include "inetaddress.hpp"
 #include "log.hpp"
-
 #include "mysocket.hpp"
 
 using namespace std;
 
+class Channel
+{
+private:
+    int fd_;
+    bool islisten_;
+
+public:
+    Channel(int fd, bool islisten) : fd_(fd), islisten_(listen) {}
+    int fd() { return fd_; }
+    bool islisten() { return islisten_; }
+};
 int main(int argc, char **argv)
 {
     // 检查参数的合法性
@@ -37,6 +47,8 @@ int main(int argc, char **argv)
     Epoll epoll; // 这里会调用默认的构造函数
     epoll.addfd(servsock.fd(), EPOLLIN);
     std::vector<epoll_event> evs;
+
+    
 
     while (true)
     {

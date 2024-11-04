@@ -1,5 +1,6 @@
 #pragma once
 #include "epoll.hpp"
+#include "mysocket.hpp"
 class Epoll;//如果两个头文件互相包含，互相需要对方的数据结构，那么需要在两个文件做对方的前向声明，而且要在头文件的首部加入#pragme once
 class Channel
 {
@@ -9,8 +10,17 @@ private:
     bool inepoll_ = false; // 标记Channel是否已添加到epoll的红黑树上，如果没有添加，则调用epoll_ct的时候添加，否则用EPOLL_CTL_MOD
     uint32_t events_ = 0;  // fd_需要监视的事件，listenfd和clientfd需要监视EPOLLIN，clientfd可能还需要监视EPOLLOUT
     uint32_t revents_ = 0; // fd_已经发生的事件
+    bool islistenfd_=false;
+    Socket *sock_=nullptr;
+
 public:
-    Channel(Epoll *ep, int fd);
+    /*
+    @param ep 这条Channel依赖哪一个epoll实例监视
+    @param fd 可以是监听套接字也可以是客户端连接套接字的文件描述符
+    @oaram sock 本项目封装的套接字对象指针，fd和sock关联
+    @param islistenfd 是否是监听套接字关联的Channel
+    */
+    Channel(Epoll *ep, int fd,Socket *sock,bool islistenfd=false);
     ~Channel();
 
     /*
@@ -45,4 +55,8 @@ public:
     @brief 返回revents成员
     */
     uint16_t revents();
+    /*
+    @brief 事件处理函数，epoll_wait()返回的时候执行它
+    */
+    void handleEvent();
 };

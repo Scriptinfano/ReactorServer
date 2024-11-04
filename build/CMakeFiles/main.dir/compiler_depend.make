@@ -1060,6 +1060,12 @@ CMakeFiles/main.dir/src/impl/mysocket.cpp.o: /root/develop/ReactorServer/src/imp
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   /usr/include/strings.h \
+  /usr/include/fcntl.h \
+  /usr/include/bits/fcntl.h \
+  /usr/include/bits/fcntl-linux.h \
+  /usr/include/linux/falloc.h \
+  /usr/include/bits/stat.h \
+  /usr/include/bits/struct_stat.h \
   /root/develop/ReactorServer/include/log.hpp \
   /usr/include/c++/11/fstream \
   /usr/include/c++/11/bits/codecvt.h \
@@ -1462,6 +1468,10 @@ CMakeFiles/main.dir/src/main.cpp.o: /root/develop/ReactorServer/src/main.cpp \
 
 /root/develop/ReactorServer/src/impl/public.cpp:
 
+/usr/include/linux/falloc.h:
+
+/usr/include/bits/fcntl.h:
+
 /usr/include/bits/unistd_ext.h:
 
 /usr/include/bits/getopt_core.h:
@@ -1479,6 +1489,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /root/develop/ReactorServer/src/main.cpp \
 /root/develop/ReactorServer/include/myerror.hpp:
 
 /root/develop/ReactorServer/src/impl/log.cpp:
+
+/usr/include/bits/fcntl-linux.h:
 
 /usr/include/c++/11/bits/sstream.tcc:
 
@@ -1620,6 +1632,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /root/develop/ReactorServer/src/main.cpp \
 
 /usr/include/bits/struct_rwlock.h:
 
+/usr/include/bits/struct_stat.h:
+
 /usr/include/bits/types/time_t.h:
 
 /usr/include/asm-generic/posix_types.h:
@@ -1704,6 +1718,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /root/develop/ReactorServer/src/main.cpp \
 
 /usr/include/bits/wordsize.h:
 
+/usr/include/bits/stat.h:
+
 /usr/include/c++/11/cstdlib:
 
 /usr/include/c++/11/bits/stl_iterator_base_types.h:
@@ -1741,6 +1757,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /root/develop/ReactorServer/src/main.cpp \
 /root/develop/ReactorServer/src/impl/channel.cpp:
 
 /usr/include/bits/long-double.h:
+
+/usr/include/fcntl.h:
 
 /usr/include/c++/11/x86_64-redhat-linux/bits/os_defines.h:
 

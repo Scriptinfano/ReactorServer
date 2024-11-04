@@ -1284,6 +1284,12 @@ CMakeFiles/epollserver.dir/src/impl/mysocket.cpp.o: /root/develop/ReactorServer/
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   /usr/include/strings.h \
+  /usr/include/fcntl.h \
+  /usr/include/bits/fcntl.h \
+  /usr/include/bits/fcntl-linux.h \
+  /usr/include/linux/falloc.h \
+  /usr/include/bits/stat.h \
+  /usr/include/bits/struct_stat.h \
   /root/develop/ReactorServer/include/log.hpp \
   /usr/include/c++/11/fstream \
   /usr/include/c++/11/bits/codecvt.h \
@@ -1509,6 +1515,10 @@ CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 
 /root/develop/ReactorServer/src/impl/public.cpp:
 
+/usr/include/linux/falloc.h:
+
+/usr/include/bits/fcntl.h:
+
 /root/develop/ReactorServer/include/myerror.hpp:
 
 /root/develop/ReactorServer/src/impl/log.cpp:
@@ -1572,6 +1582,8 @@ CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 /root/develop/ReactorServer/include/epoll.hpp:
 
 /usr/include/c++/11/cstring:
+
+/usr/include/bits/fcntl-linux.h:
 
 /usr/include/c++/11/bits/sstream.tcc:
 
@@ -1809,6 +1821,8 @@ CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 
 /usr/include/bits/floatn-common.h:
 
+/usr/include/fcntl.h:
+
 /usr/include/c++/11/x86_64-redhat-linux/bits/os_defines.h:
 
 /usr/include/bits/pthreadtypes-arch.h:
@@ -1885,6 +1899,8 @@ CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 
 /usr/include/bits/stdint-intn.h:
 
+/usr/include/bits/stat.h:
+
 /usr/include/c++/11/bits/stl_iterator_base_types.h:
 
 /usr/include/c++/11/cstdlib:
@@ -1920,6 +1936,8 @@ CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 /usr/include/c++/11/bits/cpp_type_traits.h:
 
 /usr/include/pthread.h:
+
+/usr/include/bits/struct_stat.h:
 
 /usr/include/bits/types/time_t.h:
 

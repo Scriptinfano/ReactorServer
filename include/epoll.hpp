@@ -3,6 +3,9 @@
 #include <vector>
 #include "channel.hpp"
 class Channel; // 如果两个头文件互相包含，互相需要对方的数据结构，那么需要在两个文件做对方的前向声明，而且要在头文件的首部加入#pragme once
+/*
+对epoll相关底层API进行封装
+*/
 class Epoll
 {
 private:

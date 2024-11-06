@@ -1,6 +1,9 @@
 #pragma once
 #include <netinet/in.h>
 #include <string>
+/*
+地址封装类
+*/
 class InetAddress
 {
 private:

@@ -1,27 +1,32 @@
 #pragma once
 #include "epoll.hpp"
 #include "mysocket.hpp"
+#include "eventloop.hpp"
 #include <functional>
 class Epoll; // 如果两个头文件互相包含，互相需要对方的数据结构，那么需要在两个文件做对方的前向声明，而且要在头文件的首部加入#pragme once
+class EventLoop;
+
+/*
+对连接抽象化的Channel类
+*/
 class Channel
 {
 private:
     int fd_ = -1;          // Channel和fd是一对一的关系
-    Epoll *ep_ = nullptr;  // Channel和Epoll是多对一的关系，一个Channel对应一个Epoll，一个Epoll可以有多个Channel
+    
     bool inepoll_ = false; // 标记Channel是否已添加到epoll的红黑树上，如果没有添加，则调用epoll_ct的时候添加，否则用EPOLL_CTL_MOD
     uint32_t events_ = 0;  // fd_需要监视的事件，listenfd和clientfd需要监视EPOLLIN，clientfd可能还需要监视EPOLLOUT
     uint32_t revents_ = 0; // fd_已经发生的事件
     Socket *sock_ = nullptr;
     std::function<void()> readcallback_; // 遇到可读事件的回调函数
-
+    EventLoop * loop_=nullptr;
 public:
     /*
-    @param ep 这条Channel依赖哪一个epoll实例监视
-    @param fd 可以是监听套接字也可以是客户端连接套接字的文件描述符
-    @oaram sock 本项目封装的套接字对象指针，fd和sock关联
-    @param islistenfd 是否是监听套接字关联的Channel
+    @param loop 该Channel属于哪一个事件循环
+    @param fd 该Channel需要关联的文件描述符是哪一个
+    @param sock 该Channel需要关联的文件描述符对应的封装套接字是哪一个
     */
-    Channel(Epoll *ep, int fd, Socket *sock);
+    Channel(EventLoop *loop, int fd, Socket *sock);
     ~Channel();
 
     /*

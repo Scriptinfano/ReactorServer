@@ -13,7 +13,9 @@ enum LogLevel
     ERROR,
     FATAL
 };
-
+/*
+日志打印类
+*/
 class Logger
 {
 public:

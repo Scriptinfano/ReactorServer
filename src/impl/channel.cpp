@@ -3,7 +3,7 @@
 #include "channel.hpp"
 #include "log.hpp"
 #include "mysocket.hpp"
-Channel::Channel(Epoll *ep, int fd, Socket *sock) : ep_(ep), fd_(fd), sock_(sock)
+Channel::Channel(EventLoop *loop, int fd, Socket *sock) : loop_(loop), fd_(fd), sock_(sock)
 {
 }
 Channel::~Channel()
@@ -24,7 +24,8 @@ void Channel::setETMode()
 void Channel::monitorReadEvent()
 {
     events_ = events_ | EPOLLIN;
-    ep_->updateChannel(this);
+
+    loop_->getEpoll()->updateChannel(this);
 }
 
 void Channel::setInEpoll()
@@ -120,7 +121,7 @@ void Channel::handleNewConnection()
     // clientsock只能new出来，放到堆中以避免被调用析构函数关闭fd
     Socket *clientsock = new Socket(sock_->accept(clientaddr));
     clientsock->setNonBlocking(true); // 在边缘触发模式下的epollsevrer必须将clintsock设为非阻塞模式
-    Channel *clien_channel = new Channel(ep_, clientsock->fd(), clientsock);
+    Channel *clien_channel = new Channel(loop_, clientsock->fd(), clientsock);
     clien_channel->setETMode(); // 一定要在start_monitor_read()之前调用设置边缘触发的方法
     clien_channel->setReadCallBack(std::bind(&Channel::handleNewMessage, clien_channel));
     clien_channel->monitorReadEvent(); // 加入epoll的监视，开始监视这个channel的可读事件

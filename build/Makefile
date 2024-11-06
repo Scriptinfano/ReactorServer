@@ -473,6 +473,36 @@ src/impl/semaphore.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.s
 .PHONY : src/impl/semaphore.cpp.s
 
+src/impl/tcpserver.o: src/impl/tcpserver.cpp.o
+.PHONY : src/impl/tcpserver.o
+
+# target to build an object file
+src/impl/tcpserver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/tcpserver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/tcpserver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/tcpserver.cpp.o
+.PHONY : src/impl/tcpserver.cpp.o
+
+src/impl/tcpserver.i: src/impl/tcpserver.cpp.i
+.PHONY : src/impl/tcpserver.i
+
+# target to preprocess a source file
+src/impl/tcpserver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/tcpserver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/tcpserver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/tcpserver.cpp.i
+.PHONY : src/impl/tcpserver.cpp.i
+
+src/impl/tcpserver.s: src/impl/tcpserver.cpp.s
+.PHONY : src/impl/tcpserver.s
+
+# target to generate assembly for a file
+src/impl/tcpserver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/tcpserver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/tcpserver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/tcpserver.cpp.s
+.PHONY : src/impl/tcpserver.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -541,6 +571,9 @@ help:
 	@echo "... src/impl/semaphore.o"
 	@echo "... src/impl/semaphore.i"
 	@echo "... src/impl/semaphore.s"
+	@echo "... src/impl/tcpserver.o"
+	@echo "... src/impl/tcpserver.i"
+	@echo "... src/impl/tcpserver.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

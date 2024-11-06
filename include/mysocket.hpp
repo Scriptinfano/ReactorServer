@@ -1,5 +1,8 @@
 #pragma once
 #include "inetaddress.hpp"
+/*
+套接字API的封装
+*/
 class Socket
 {
 private:

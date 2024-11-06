@@ -109,6 +109,6 @@ int Socket::accept(InetAddress &clientaddr)
         exit(-1);
     }
     clientaddr.setaddr(peeraddr);
-    logger.logMessage(DEBUG, __FILE__, __LINE__, "accept client(fd=%d,ip=%s,port=%d) ok", clientfd, clientaddr.ip(), clientaddr.port());
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "accept client(fd=%d,ip=%s,port=%d) ok", clientfd, clientaddr.ip().c_str(), clientaddr.port());
     return clientfd;
 }

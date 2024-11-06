@@ -21,6 +21,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/epollserver.dir/src/impl/public.cpp.o.d"
   "CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o"
   "CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o.d"
+  "CMakeFiles/epollserver.dir/src/impl/tcpserver.cpp.o"
+  "CMakeFiles/epollserver.dir/src/impl/tcpserver.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

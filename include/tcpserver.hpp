@@ -1,5 +1,6 @@
 #pragma once
 #include "eventloop.hpp"
+#include "accepter.hpp"
 /*
 顶层封装，整个服务器的抽象
 */
@@ -7,6 +8,8 @@ class TCPServer
 {
 private:
     EventLoop *loop_; // 一个TCPServer可以有多个事件循环，现在是单线程，暂时只用一个事件循环
+    Accepter *accepter_; //一个TCPServer只有一个Accepter类
+
 public:
     TCPServer(const std::string &ip, const in_port_t port);
     ~TCPServer();

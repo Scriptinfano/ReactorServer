@@ -21,7 +21,7 @@ public:
     */
     void addfd(int fd, uint32_t op);
     /*
-    将Channel添加或更新到红黑树上，Channel中有fd，也有需要监视的事件
+    根据Channel的内部成员所包含的信息，内部自行构造epoll_event然后将其添加或更新到红黑树上
     */
     void updateChannel(Channel *ch);
     std::vector<Channel *> loop(int timeout = -1);

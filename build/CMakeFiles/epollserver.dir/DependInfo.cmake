@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/root/develop/ReactorServer/src/epollserver.cpp" "CMakeFiles/epollserver.dir/src/epollserver.cpp.o" "gcc" "CMakeFiles/epollserver.dir/src/epollserver.cpp.o.d"
   "/root/develop/ReactorServer/src/impl/accepter.cpp" "CMakeFiles/epollserver.dir/src/impl/accepter.cpp.o" "gcc" "CMakeFiles/epollserver.dir/src/impl/accepter.cpp.o.d"
   "/root/develop/ReactorServer/src/impl/channel.cpp" "CMakeFiles/epollserver.dir/src/impl/channel.cpp.o" "gcc" "CMakeFiles/epollserver.dir/src/impl/channel.cpp.o.d"
+  "/root/develop/ReactorServer/src/impl/connection.cpp" "CMakeFiles/epollserver.dir/src/impl/connection.cpp.o" "gcc" "CMakeFiles/epollserver.dir/src/impl/connection.cpp.o.d"
   "/root/develop/ReactorServer/src/impl/epoll.cpp" "CMakeFiles/epollserver.dir/src/impl/epoll.cpp.o" "gcc" "CMakeFiles/epollserver.dir/src/impl/epoll.cpp.o.d"
   "/root/develop/ReactorServer/src/impl/eventloop.cpp" "CMakeFiles/epollserver.dir/src/impl/eventloop.cpp.o" "gcc" "CMakeFiles/epollserver.dir/src/impl/eventloop.cpp.o.d"
   "/root/develop/ReactorServer/src/impl/inetaddress.cpp" "CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o" "gcc" "CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o.d"

@@ -263,6 +263,36 @@ src/impl/channel.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/channel.cpp.s
 .PHONY : src/impl/channel.cpp.s
 
+src/impl/connection.o: src/impl/connection.cpp.o
+.PHONY : src/impl/connection.o
+
+# target to build an object file
+src/impl/connection.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/connection.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/connection.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/connection.cpp.o
+.PHONY : src/impl/connection.cpp.o
+
+src/impl/connection.i: src/impl/connection.cpp.i
+.PHONY : src/impl/connection.i
+
+# target to preprocess a source file
+src/impl/connection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/connection.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/connection.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/connection.cpp.i
+.PHONY : src/impl/connection.cpp.i
+
+src/impl/connection.s: src/impl/connection.cpp.s
+.PHONY : src/impl/connection.s
+
+# target to generate assembly for a file
+src/impl/connection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/connection.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/connection.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/connection.cpp.s
+.PHONY : src/impl/connection.cpp.s
+
 src/impl/epoll.o: src/impl/epoll.cpp.o
 .PHONY : src/impl/epoll.o
 
@@ -580,6 +610,9 @@ help:
 	@echo "... src/impl/channel.o"
 	@echo "... src/impl/channel.i"
 	@echo "... src/impl/channel.s"
+	@echo "... src/impl/connection.o"
+	@echo "... src/impl/connection.i"
+	@echo "... src/impl/connection.s"
 	@echo "... src/impl/epoll.o"
 	@echo "... src/impl/epoll.i"
 	@echo "... src/impl/epoll.s"

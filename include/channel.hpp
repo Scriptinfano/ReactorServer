@@ -12,14 +12,14 @@ class EventLoop;
 class Channel
 {
 private:
-    int fd_ = -1;          // Channel和fd是一对一的关系
-    
+    int fd_ = -1; // Channel和fd是一对一的关系
     bool inepoll_ = false; // 标记Channel是否已添加到epoll的红黑树上，如果没有添加，则调用epoll_ct的时候添加，否则用EPOLL_CTL_MOD
     uint32_t events_ = 0;  // fd_需要监视的事件，listenfd和clientfd需要监视EPOLLIN，clientfd可能还需要监视EPOLLOUT
     uint32_t revents_ = 0; // fd_已经发生的事件
-    Socket *sock_ = nullptr;
+    Socket *sock_ = nullptr;//可以是server socket也可以是client socket
     std::function<void()> readcallback_; // 遇到可读事件的回调函数
-    EventLoop * loop_=nullptr;
+    EventLoop *loop_ = nullptr;
+
 public:
     /*
     @param loop 该Channel属于哪一个事件循环

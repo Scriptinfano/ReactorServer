@@ -3,6 +3,8 @@
 #include "channel.hpp"
 #include "log.hpp"
 #include "mysocket.hpp"
+#include "connection.hpp"
+
 Channel::Channel(EventLoop *loop, int fd, Socket *sock) : loop_(loop), fd_(fd), sock_(sock)
 {
 }
@@ -116,15 +118,9 @@ void Channel::handleNewConnection()
         logger.logMessage(FATAL, __FILE__, __LINE__, "可能未调用listen函数使得监听套接字变为被动监听状态");
         exit(-1);
     }
-    // 遇到监听套接字的情况
     InetAddress clientaddr;
-    // clientsock只能new出来，放到堆中以避免被调用析构函数关闭fd
-    Socket *clientsock = new Socket(sock_->accept(clientaddr));
-    clientsock->setNonBlocking(true); // 在边缘触发模式下的epollsevrer必须将clintsock设为非阻塞模式
-    Channel *clien_channel = new Channel(loop_, clientsock->fd(), clientsock);
-    clien_channel->setETMode(); // 一定要在start_monitor_read()之前调用设置边缘触发的方法
-    clien_channel->setReadCallBack(std::bind(&Channel::handleNewMessage, clien_channel));
-    clien_channel->monitorReadEvent(); // 加入epoll的监视，开始监视这个channel的可读事件
+    //TODO 处理这里的内存泄漏问题
+    Connection *conn = new Connection(loop_, sock_->accept(clientaddr));
 }
 void Channel::setReadCallBack(std::function<void()> func)
 {

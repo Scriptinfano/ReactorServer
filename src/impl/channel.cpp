@@ -21,7 +21,7 @@ void Channel::setETMode()
     events_ = events_ | EPOLLET;
 }
 
-void Channel::startMonitoringReadEvent()
+void Channel::monitorReadEvent()
 {
     events_ = events_ | EPOLLIN;
     ep_->updateChannel(this);
@@ -123,7 +123,7 @@ void Channel::handleNewConnection()
     Channel *clien_channel = new Channel(ep_, clientsock->fd(), clientsock);
     clien_channel->setETMode(); // 一定要在start_monitor_read()之前调用设置边缘触发的方法
     clien_channel->setReadCallBack(std::bind(&Channel::handleNewMessage, clien_channel));
-    clien_channel->startMonitoringReadEvent(); // 加入epoll的监视，开始监视这个channel的可读事件
+    clien_channel->monitorReadEvent(); // 加入epoll的监视，开始监视这个channel的可读事件
 }
 void Channel::setReadCallBack(std::function<void()> func)
 {

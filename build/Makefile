@@ -263,6 +263,36 @@ src/impl/epoll.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/epoll.cpp.s
 .PHONY : src/impl/epoll.cpp.s
 
+src/impl/eventloop.o: src/impl/eventloop.cpp.o
+.PHONY : src/impl/eventloop.o
+
+# target to build an object file
+src/impl/eventloop.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/eventloop.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/eventloop.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/eventloop.cpp.o
+.PHONY : src/impl/eventloop.cpp.o
+
+src/impl/eventloop.i: src/impl/eventloop.cpp.i
+.PHONY : src/impl/eventloop.i
+
+# target to preprocess a source file
+src/impl/eventloop.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/eventloop.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/eventloop.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/eventloop.cpp.i
+.PHONY : src/impl/eventloop.cpp.i
+
+src/impl/eventloop.s: src/impl/eventloop.cpp.s
+.PHONY : src/impl/eventloop.s
+
+# target to generate assembly for a file
+src/impl/eventloop.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/eventloop.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/eventloop.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/eventloop.cpp.s
+.PHONY : src/impl/eventloop.cpp.s
+
 src/impl/inetaddress.o: src/impl/inetaddress.cpp.o
 .PHONY : src/impl/inetaddress.o
 
@@ -490,6 +520,9 @@ help:
 	@echo "... src/impl/epoll.o"
 	@echo "... src/impl/epoll.i"
 	@echo "... src/impl/epoll.s"
+	@echo "... src/impl/eventloop.o"
+	@echo "... src/impl/eventloop.i"
+	@echo "... src/impl/eventloop.s"
 	@echo "... src/impl/inetaddress.o"
 	@echo "... src/impl/inetaddress.i"
 	@echo "... src/impl/inetaddress.s"

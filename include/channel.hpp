@@ -35,7 +35,7 @@ public:
     /*
     @brief 函数内部会调用已绑定epoll实例，将读就绪事件添加到epoll的红黑树中，如果已经有了，则会修改红黑树
     */
-    void startMonitoringReadEvent();
+    void monitorReadEvent();
     /*
     @brief 将inepoll的值设为true
     */

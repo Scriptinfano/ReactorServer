@@ -9,6 +9,7 @@
 #include "log.hpp"
 #include "mysocket.hpp"
 #include "channel.hpp"
+#include "eventloop.hpp"
 using namespace std;
 
 int main(int argc, char **argv)
@@ -33,19 +34,9 @@ int main(int argc, char **argv)
     servsock.listen();
     /////////////
 
-    Epoll ep; // 这里会调用默认的构造函数
-    Channel *server_channel = new Channel(&ep, servsock.fd(), &servsock);
+    EventLoop loop;   
+    Channel *server_channel = new Channel(loop.getEpoll(), servsock.fd(), &servsock);
     server_channel->setReadCallBack(std::bind(&Channel::handleNewConnection, server_channel));
-    server_channel->startMonitoringReadEvent(); // 监视可读事件
-
-    while (true)
-    {
-        std::vector<Channel *> chans = ep.loop(); // 开始等待就绪事件发生
-
-        // 开始遍历epoll_event数组获得就绪的文件描述符信息
-        for (auto &ch : chans)
-        {
-            ch->handleEvent();
-        }
-    }
+    server_channel->monitorReadEvent(); // 监视可读事件
+    loop.run();
 }

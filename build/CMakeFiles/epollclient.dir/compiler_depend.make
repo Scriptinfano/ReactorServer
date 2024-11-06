@@ -400,6 +400,16 @@ CMakeFiles/epollclient.dir/src/impl/channel.cpp.o: /root/develop/ReactorServer/s
   /usr/include/bits/types/error_t.h \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/utility \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/typeinfo \
   /root/develop/ReactorServer/include/log.hpp \
   /usr/include/c++/11/fstream \
   /usr/include/c++/11/istream \
@@ -407,7 +417,6 @@ CMakeFiles/epollclient.dir/src/impl/channel.cpp.o: /root/develop/ReactorServer/s
   /usr/include/c++/11/exception \
   /usr/include/c++/11/bits/exception_ptr.h \
   /usr/include/c++/11/bits/cxxabi_init_exception.h \
-  /usr/include/c++/11/typeinfo \
   /usr/include/c++/11/bits/nested_exception.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/bits/locale_classes.h \
@@ -612,6 +621,16 @@ CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o: /root/develop/ReactorServer/src
   /usr/include/bits/types/error_t.h \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/utility \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/typeinfo \
   /root/develop/ReactorServer/include/log.hpp \
   /usr/include/c++/11/fstream \
   /usr/include/c++/11/istream \
@@ -619,7 +638,6 @@ CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o: /root/develop/ReactorServer/src
   /usr/include/c++/11/exception \
   /usr/include/c++/11/bits/exception_ptr.h \
   /usr/include/c++/11/bits/cxxabi_init_exception.h \
-  /usr/include/c++/11/typeinfo \
   /usr/include/c++/11/bits/nested_exception.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/bits/locale_classes.h \
@@ -1652,6 +1670,20 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 
 /usr/include/bits/types/struct_semid64_ds.h:
 
+/usr/include/bits/sem.h:
+
+/usr/include/bits/ipc-perm.h:
+
+/usr/include/bits/ipc.h:
+
+/usr/include/bits/ipctypes.h:
+
+/usr/include/sys/ipc.h:
+
+/usr/include/sys/sem.h:
+
+/root/develop/ReactorServer/include/semaphore.hpp:
+
 /usr/include/stdlib.h:
 
 /usr/include/c++/11/ext/alloc_traits.h:
@@ -1661,6 +1693,8 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 /usr/include/c++/11/iostream:
 
 /usr/include/c++/11/bits/allocator.h:
+
+/usr/include/c++/11/bits/std_function.h:
 
 /usr/include/c++/11/bits/locale_classes.h:
 
@@ -1675,6 +1709,10 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 /usr/include/bits/thread-shared-types.h:
 
 /usr/include/bits/pthreadtypes.h:
+
+/root/develop/ReactorServer/src/impl/semaphore.cpp:
+
+/usr/include/bits/struct_rwlock.h:
 
 /usr/include/bits/types/clock_t.h:
 
@@ -1762,7 +1800,9 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 
 /usr/include/bits/types/struct_tm.h:
 
-/usr/include/c++/11/ios:
+/usr/include/bits/types/struct_semid_ds.h:
+
+/usr/include/bits/types.h:
 
 /root/develop/ReactorServer/src/impl/epoll.cpp:
 
@@ -1820,8 +1860,6 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 
 /usr/include/c++/11/x86_64-redhat-linux/bits/atomic_word.h:
 
-/usr/include/bits/timex.h:
-
 /usr/include/c++/11/ostream:
 
 /usr/include/bits/errno.h:
@@ -1835,6 +1873,8 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 /usr/include/asm-generic/bitsperlong.h:
 
 /usr/include/c++/11/bits/concept_check.h:
+
+/usr/include/c++/11/tuple:
 
 /usr/include/c++/11/ext/numeric_traits.h:
 
@@ -1863,6 +1903,8 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 /usr/include/bits/pthread_stack_min-dynamic.h:
 
 /usr/include/c++/11/x86_64-redhat-linux/bits/c++config.h:
+
+/usr/include/c++/11/bits/refwrap.h:
 
 /usr/include/linux/stddef.h:
 
@@ -1898,10 +1940,6 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 
 /usr/include/c++/11/cwchar:
 
-/usr/include/bits/types.h:
-
-/usr/include/bits/types/struct_semid_ds.h:
-
 /usr/include/c++/11/ext/new_allocator.h:
 
 /usr/include/ctype.h:
@@ -1934,6 +1972,8 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 
 /usr/include/bits/byteswap.h:
 
+/usr/include/c++/11/array:
+
 /usr/include/bits/uintn-identity.h:
 
 /usr/include/c++/11/bits/vector.tcc:
@@ -1941,8 +1981,6 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 /usr/include/sys/select.h:
 
 /usr/include/bits/select.h:
-
-/usr/include/bits/ipctypes.h:
 
 /usr/include/bits/types/sigset_t.h:
 
@@ -1961,6 +1999,12 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 /usr/include/stdio.h:
 
 /usr/include/bits/types/__fpos64_t.h:
+
+/usr/include/c++/11/ios:
+
+/usr/include/c++/11/utility:
+
+/usr/include/c++/11/functional:
 
 /usr/include/linux/errno.h:
 
@@ -1997,8 +2041,6 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 /usr/include/c++/11/bits/stl_vector.h:
 
 /usr/include/c++/11/stdexcept:
-
-/usr/include/sys/ipc.h:
 
 /usr/include/c++/11/bits/basic_ios.h:
 
@@ -2060,6 +2102,8 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 
 /usr/include/bits/sockaddr.h:
 
+/usr/include/c++/11/bits/invoke.h:
+
 /usr/include/asm-generic/socket.h:
 
 /usr/include/bits/types/FILE.h:
@@ -2112,8 +2156,6 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 
 /root/develop/ReactorServer/include/mysocket.hpp:
 
-/usr/include/bits/ipc.h:
-
 /usr/include/sys/epoll.h:
 
 /usr/include/bits/epoll.h:
@@ -2126,15 +2168,23 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 
 /root/develop/ReactorServer/include/inetaddress.hpp:
 
-/usr/include/bits/ipc-perm.h:
+/usr/include/c++/11/bits/stl_relops.h:
+
+/usr/include/bits/timex.h:
+
+/usr/include/c++/11/bits/uses_allocator.h:
+
+/usr/include/c++/11/bits/postypes.h:
+
+/usr/include/bits/unistd_ext.h:
+
+/usr/include/linux/falloc.h:
 
 /usr/include/bits/types/struct_itimerspec.h:
 
 /root/develop/ReactorServer/include/log.hpp:
 
 /usr/include/c++/11/x86_64-redhat-linux/bits/c++io.h:
-
-/root/develop/ReactorServer/include/semaphore.hpp:
 
 /usr/include/bits/types/clockid_t.h:
 
@@ -2150,18 +2200,4 @@ CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer
 
 /usr/include/bits/fcntl.h:
 
-/usr/include/c++/11/bits/postypes.h:
-
-/usr/include/bits/unistd_ext.h:
-
-/usr/include/linux/falloc.h:
-
 /root/develop/ReactorServer/src/impl/public.cpp:
-
-/usr/include/bits/struct_rwlock.h:
-
-/root/develop/ReactorServer/src/impl/semaphore.cpp:
-
-/usr/include/sys/sem.h:
-
-/usr/include/bits/sem.h:

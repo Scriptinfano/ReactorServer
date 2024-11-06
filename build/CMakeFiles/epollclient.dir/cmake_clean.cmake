@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/epollclient.dir/src/impl/channel.cpp.o.d"
   "CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o"
   "CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o.d"
+  "CMakeFiles/epollclient.dir/src/impl/eventloop.cpp.o"
+  "CMakeFiles/epollclient.dir/src/impl/eventloop.cpp.o.d"
   "CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o"
   "CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o.d"
   "CMakeFiles/epollclient.dir/src/impl/log.cpp.o"

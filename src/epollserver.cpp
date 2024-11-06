@@ -34,8 +34,9 @@ int main(int argc, char **argv)
     /////////////
 
     Epoll ep; // 这里会调用默认的构造函数
-    Channel *server_channel = new Channel(&ep, servsock.fd(), &servsock, true);
-    server_channel->start_monitor_read(); // 监视可读事件
+    Channel *server_channel = new Channel(&ep, servsock.fd(), &servsock);
+    server_channel->setReadCallBack(std::bind(&Channel::handleNewConnection, server_channel));
+    server_channel->startMonitoringReadEvent(); // 监视可读事件
 
     while (true)
     {

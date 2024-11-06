@@ -54,7 +54,6 @@ int main(int argc, char *argv[])
         char buffer[BUFFERSIZE] = {0};
         cout << "Please input: ";
         cin.getline(buffer, sizeof(buffer));
-        cout<<"是否有换行符"<<hasNewlineAtEnd(buffer);
         if (send(sockfd, buffer, sizeof(buffer), 0) <= 0)
         {
             cerr << "send() failed: " << strerror(errno) << endl;

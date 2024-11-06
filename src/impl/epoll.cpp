@@ -18,8 +18,8 @@ void Epoll::updateChannel(Channel *ch)
 {
     epoll_event ev;
     ev.data.ptr = ch;
-    ev.events = ch->events();
-    if (ch->inepoll())
+    ev.events = ch->getEvents();
+    if (ch->getInEpoll())
     {
         // 如果已经在树上则更新
         if (epoll_ctl(epollfd_, EPOLL_CTL_MOD, ch->fd(), &ev) == -1)
@@ -36,7 +36,7 @@ void Epoll::updateChannel(Channel *ch)
             logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("epoll_ctl() failed").c_str());
             exit(-1);
         }
-        ch->set_inepoll();
+        ch->setInEpoll();
     }
 }
 
@@ -76,7 +76,7 @@ std::vector<Channel *> Epoll::loop(int timeout)
     for (int i = 0; i < rfdnum; i++)
     {
         Channel *ch = (Channel *)events_[i].data.ptr;
-        ch->set_revents(events_[i].events);
+        ch->setRevents(events_[i].events);
         channels.push_back(ch);
     }
     return channels;

@@ -7,18 +7,18 @@ class Epoll; // 如果两个头文件互相包含，互相需要对方的数据�
 class EventLoop;
 
 /*
-对连接抽象化的Channel类
+对连接抽象化的Channel类，Channel类是Accepter和Connection的下层类
 */
 class Channel
 {
 private:
-    int fd_ = -1; // Channel和fd是一对一的关系
+    int fd_ = -1;          // Channel和fd是一对一的关系
     bool inepoll_ = false; // 标记Channel是否已添加到epoll的红黑树上，如果没有添加，则调用epoll_ct的时候添加，否则用EPOLL_CTL_MOD
     uint32_t events_ = 0;  // fd_需要监视的事件，listenfd和clientfd需要监视EPOLLIN，clientfd可能还需要监视EPOLLOUT
     uint32_t revents_ = 0; // fd_已经发生的事件
-    Socket *sock_ = nullptr;//可以是server socket也可以是client socket
+    // Socket *sock_ = nullptr;//可以是server socket也可以是client socket
     std::function<void()> readcallback_; // 遇到可读事件的回调函数
-    EventLoop *loop_ = nullptr;
+    EventLoop *loop_ = nullptr;          // channel需要通知事件循环对象根据自己承载的信息更新epoll树
 
 public:
     /*
@@ -26,7 +26,7 @@ public:
     @param fd 该Channel需要关联的文件描述符是哪一个
     @param sock 该Channel需要关联的文件描述符对应的封装套接字是哪一个
     */
-    Channel(EventLoop *loop, int fd, Socket *sock);
+    Channel(EventLoop *loop, int fd);
     ~Channel();
 
     /*
@@ -65,11 +65,6 @@ public:
     @brief 事件处理函数，epoll_wait()返回的时候执行它
     */
     void handleEvent();
-
-    /*
-    处理新客户端的连接请求
-    */
-    void handleNewConnection();
 
     /*
     处理对端发送过来的消息

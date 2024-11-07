@@ -7,6 +7,8 @@ class Socket
 {
 private:
     const int fd_;
+    std::string ip_;
+    in_port_t port_;
 
 public:
     /*
@@ -20,7 +22,15 @@ public:
     /*
     返回文件描述符
     */
-    int fd() const;
+    int getFd() const;
+    /*
+    返回套接字的ip地址
+    */
+    std::string getIP() const;
+    /*
+    返回套接字的端口号
+    */
+    in_port_t getPort() const;
     /*
     设置SO_REUSEADDR选项
     */

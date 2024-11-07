@@ -11,15 +11,11 @@ class Epoll
 private:
     static const int MAXEVENTS = 100;
     int epollfd_ = -1;
-    epoll_event events_[MAXEVENTS];
+    epoll_event events_[MAXEVENTS] = {};
 
 public:
     Epoll();
     ~Epoll();
-    /*
-    将fd和它需要监视的事件添加到红黑树上
-    */
-    void addfd(int fd, uint32_t op);
     /*
     根据Channel的内部成员所包含的信息，内部自行构造epoll_event然后将其添加或更新到红黑树上
     */

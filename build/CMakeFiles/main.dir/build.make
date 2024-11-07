@@ -73,183 +73,183 @@ CMakeFiles/main.dir/src/main.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main.cpp.o: /root/develop/ReactorServer/src/main.cpp
 CMakeFiles/main.dir/src/main.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/main.cpp.o -MF CMakeFiles/main.dir/src/main.cpp.o.d -o CMakeFiles/main.dir/src/main.cpp.o -c /root/develop/ReactorServer/src/main.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/main.cpp.o -MF CMakeFiles/main.dir/src/main.cpp.o.d -o CMakeFiles/main.dir/src/main.cpp.o -c /root/develop/ReactorServer/src/main.cpp
 
 CMakeFiles/main.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/main.cpp > CMakeFiles/main.dir/src/main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/main.cpp > CMakeFiles/main.dir/src/main.cpp.i
 
 CMakeFiles/main.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/main.cpp -o CMakeFiles/main.dir/src/main.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/main.cpp -o CMakeFiles/main.dir/src/main.cpp.s
 
 CMakeFiles/main.dir/src/impl/accepter.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/accepter.cpp.o: /root/develop/ReactorServer/src/impl/accepter.cpp
 CMakeFiles/main.dir/src/impl/accepter.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/src/impl/accepter.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/accepter.cpp.o -MF CMakeFiles/main.dir/src/impl/accepter.cpp.o.d -o CMakeFiles/main.dir/src/impl/accepter.cpp.o -c /root/develop/ReactorServer/src/impl/accepter.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/accepter.cpp.o -MF CMakeFiles/main.dir/src/impl/accepter.cpp.o.d -o CMakeFiles/main.dir/src/impl/accepter.cpp.o -c /root/develop/ReactorServer/src/impl/accepter.cpp
 
 CMakeFiles/main.dir/src/impl/accepter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/accepter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/accepter.cpp > CMakeFiles/main.dir/src/impl/accepter.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/accepter.cpp > CMakeFiles/main.dir/src/impl/accepter.cpp.i
 
 CMakeFiles/main.dir/src/impl/accepter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/accepter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/accepter.cpp -o CMakeFiles/main.dir/src/impl/accepter.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/accepter.cpp -o CMakeFiles/main.dir/src/impl/accepter.cpp.s
 
 CMakeFiles/main.dir/src/impl/channel.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/channel.cpp.o: /root/develop/ReactorServer/src/impl/channel.cpp
 CMakeFiles/main.dir/src/impl/channel.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/src/impl/channel.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/channel.cpp.o -MF CMakeFiles/main.dir/src/impl/channel.cpp.o.d -o CMakeFiles/main.dir/src/impl/channel.cpp.o -c /root/develop/ReactorServer/src/impl/channel.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/channel.cpp.o -MF CMakeFiles/main.dir/src/impl/channel.cpp.o.d -o CMakeFiles/main.dir/src/impl/channel.cpp.o -c /root/develop/ReactorServer/src/impl/channel.cpp
 
 CMakeFiles/main.dir/src/impl/channel.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/channel.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/channel.cpp > CMakeFiles/main.dir/src/impl/channel.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/channel.cpp > CMakeFiles/main.dir/src/impl/channel.cpp.i
 
 CMakeFiles/main.dir/src/impl/channel.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/channel.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/channel.cpp -o CMakeFiles/main.dir/src/impl/channel.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/channel.cpp -o CMakeFiles/main.dir/src/impl/channel.cpp.s
 
 CMakeFiles/main.dir/src/impl/connection.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/connection.cpp.o: /root/develop/ReactorServer/src/impl/connection.cpp
 CMakeFiles/main.dir/src/impl/connection.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/src/impl/connection.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/connection.cpp.o -MF CMakeFiles/main.dir/src/impl/connection.cpp.o.d -o CMakeFiles/main.dir/src/impl/connection.cpp.o -c /root/develop/ReactorServer/src/impl/connection.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/connection.cpp.o -MF CMakeFiles/main.dir/src/impl/connection.cpp.o.d -o CMakeFiles/main.dir/src/impl/connection.cpp.o -c /root/develop/ReactorServer/src/impl/connection.cpp
 
 CMakeFiles/main.dir/src/impl/connection.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/connection.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/connection.cpp > CMakeFiles/main.dir/src/impl/connection.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/connection.cpp > CMakeFiles/main.dir/src/impl/connection.cpp.i
 
 CMakeFiles/main.dir/src/impl/connection.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/connection.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/connection.cpp -o CMakeFiles/main.dir/src/impl/connection.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/connection.cpp -o CMakeFiles/main.dir/src/impl/connection.cpp.s
 
 CMakeFiles/main.dir/src/impl/epoll.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/epoll.cpp.o: /root/develop/ReactorServer/src/impl/epoll.cpp
 CMakeFiles/main.dir/src/impl/epoll.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/src/impl/epoll.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/epoll.cpp.o -MF CMakeFiles/main.dir/src/impl/epoll.cpp.o.d -o CMakeFiles/main.dir/src/impl/epoll.cpp.o -c /root/develop/ReactorServer/src/impl/epoll.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/epoll.cpp.o -MF CMakeFiles/main.dir/src/impl/epoll.cpp.o.d -o CMakeFiles/main.dir/src/impl/epoll.cpp.o -c /root/develop/ReactorServer/src/impl/epoll.cpp
 
 CMakeFiles/main.dir/src/impl/epoll.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/epoll.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/epoll.cpp > CMakeFiles/main.dir/src/impl/epoll.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/epoll.cpp > CMakeFiles/main.dir/src/impl/epoll.cpp.i
 
 CMakeFiles/main.dir/src/impl/epoll.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/epoll.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/epoll.cpp -o CMakeFiles/main.dir/src/impl/epoll.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/epoll.cpp -o CMakeFiles/main.dir/src/impl/epoll.cpp.s
 
 CMakeFiles/main.dir/src/impl/eventloop.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/eventloop.cpp.o: /root/develop/ReactorServer/src/impl/eventloop.cpp
 CMakeFiles/main.dir/src/impl/eventloop.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/src/impl/eventloop.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/eventloop.cpp.o -MF CMakeFiles/main.dir/src/impl/eventloop.cpp.o.d -o CMakeFiles/main.dir/src/impl/eventloop.cpp.o -c /root/develop/ReactorServer/src/impl/eventloop.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/eventloop.cpp.o -MF CMakeFiles/main.dir/src/impl/eventloop.cpp.o.d -o CMakeFiles/main.dir/src/impl/eventloop.cpp.o -c /root/develop/ReactorServer/src/impl/eventloop.cpp
 
 CMakeFiles/main.dir/src/impl/eventloop.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/eventloop.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/eventloop.cpp > CMakeFiles/main.dir/src/impl/eventloop.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/eventloop.cpp > CMakeFiles/main.dir/src/impl/eventloop.cpp.i
 
 CMakeFiles/main.dir/src/impl/eventloop.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/eventloop.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/eventloop.cpp -o CMakeFiles/main.dir/src/impl/eventloop.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/eventloop.cpp -o CMakeFiles/main.dir/src/impl/eventloop.cpp.s
 
 CMakeFiles/main.dir/src/impl/inetaddress.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/inetaddress.cpp.o: /root/develop/ReactorServer/src/impl/inetaddress.cpp
 CMakeFiles/main.dir/src/impl/inetaddress.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/src/impl/inetaddress.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/inetaddress.cpp.o -MF CMakeFiles/main.dir/src/impl/inetaddress.cpp.o.d -o CMakeFiles/main.dir/src/impl/inetaddress.cpp.o -c /root/develop/ReactorServer/src/impl/inetaddress.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/inetaddress.cpp.o -MF CMakeFiles/main.dir/src/impl/inetaddress.cpp.o.d -o CMakeFiles/main.dir/src/impl/inetaddress.cpp.o -c /root/develop/ReactorServer/src/impl/inetaddress.cpp
 
 CMakeFiles/main.dir/src/impl/inetaddress.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/inetaddress.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/inetaddress.cpp > CMakeFiles/main.dir/src/impl/inetaddress.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/inetaddress.cpp > CMakeFiles/main.dir/src/impl/inetaddress.cpp.i
 
 CMakeFiles/main.dir/src/impl/inetaddress.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/inetaddress.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/inetaddress.cpp -o CMakeFiles/main.dir/src/impl/inetaddress.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/inetaddress.cpp -o CMakeFiles/main.dir/src/impl/inetaddress.cpp.s
 
 CMakeFiles/main.dir/src/impl/log.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/log.cpp.o: /root/develop/ReactorServer/src/impl/log.cpp
 CMakeFiles/main.dir/src/impl/log.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/src/impl/log.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/log.cpp.o -MF CMakeFiles/main.dir/src/impl/log.cpp.o.d -o CMakeFiles/main.dir/src/impl/log.cpp.o -c /root/develop/ReactorServer/src/impl/log.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/log.cpp.o -MF CMakeFiles/main.dir/src/impl/log.cpp.o.d -o CMakeFiles/main.dir/src/impl/log.cpp.o -c /root/develop/ReactorServer/src/impl/log.cpp
 
 CMakeFiles/main.dir/src/impl/log.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/log.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/log.cpp > CMakeFiles/main.dir/src/impl/log.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/log.cpp > CMakeFiles/main.dir/src/impl/log.cpp.i
 
 CMakeFiles/main.dir/src/impl/log.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/log.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/log.cpp -o CMakeFiles/main.dir/src/impl/log.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/log.cpp -o CMakeFiles/main.dir/src/impl/log.cpp.s
 
 CMakeFiles/main.dir/src/impl/myerror.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/myerror.cpp.o: /root/develop/ReactorServer/src/impl/myerror.cpp
 CMakeFiles/main.dir/src/impl/myerror.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/src/impl/myerror.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/myerror.cpp.o -MF CMakeFiles/main.dir/src/impl/myerror.cpp.o.d -o CMakeFiles/main.dir/src/impl/myerror.cpp.o -c /root/develop/ReactorServer/src/impl/myerror.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/myerror.cpp.o -MF CMakeFiles/main.dir/src/impl/myerror.cpp.o.d -o CMakeFiles/main.dir/src/impl/myerror.cpp.o -c /root/develop/ReactorServer/src/impl/myerror.cpp
 
 CMakeFiles/main.dir/src/impl/myerror.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/myerror.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/myerror.cpp > CMakeFiles/main.dir/src/impl/myerror.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/myerror.cpp > CMakeFiles/main.dir/src/impl/myerror.cpp.i
 
 CMakeFiles/main.dir/src/impl/myerror.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/myerror.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/myerror.cpp -o CMakeFiles/main.dir/src/impl/myerror.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/myerror.cpp -o CMakeFiles/main.dir/src/impl/myerror.cpp.s
 
 CMakeFiles/main.dir/src/impl/mysocket.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/mysocket.cpp.o: /root/develop/ReactorServer/src/impl/mysocket.cpp
 CMakeFiles/main.dir/src/impl/mysocket.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/src/impl/mysocket.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/mysocket.cpp.o -MF CMakeFiles/main.dir/src/impl/mysocket.cpp.o.d -o CMakeFiles/main.dir/src/impl/mysocket.cpp.o -c /root/develop/ReactorServer/src/impl/mysocket.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/mysocket.cpp.o -MF CMakeFiles/main.dir/src/impl/mysocket.cpp.o.d -o CMakeFiles/main.dir/src/impl/mysocket.cpp.o -c /root/develop/ReactorServer/src/impl/mysocket.cpp
 
 CMakeFiles/main.dir/src/impl/mysocket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/mysocket.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/mysocket.cpp > CMakeFiles/main.dir/src/impl/mysocket.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/mysocket.cpp > CMakeFiles/main.dir/src/impl/mysocket.cpp.i
 
 CMakeFiles/main.dir/src/impl/mysocket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/mysocket.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/mysocket.cpp -o CMakeFiles/main.dir/src/impl/mysocket.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/mysocket.cpp -o CMakeFiles/main.dir/src/impl/mysocket.cpp.s
 
 CMakeFiles/main.dir/src/impl/public.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/public.cpp.o: /root/develop/ReactorServer/src/impl/public.cpp
 CMakeFiles/main.dir/src/impl/public.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/src/impl/public.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/public.cpp.o -MF CMakeFiles/main.dir/src/impl/public.cpp.o.d -o CMakeFiles/main.dir/src/impl/public.cpp.o -c /root/develop/ReactorServer/src/impl/public.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/public.cpp.o -MF CMakeFiles/main.dir/src/impl/public.cpp.o.d -o CMakeFiles/main.dir/src/impl/public.cpp.o -c /root/develop/ReactorServer/src/impl/public.cpp
 
 CMakeFiles/main.dir/src/impl/public.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/public.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/public.cpp > CMakeFiles/main.dir/src/impl/public.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/public.cpp > CMakeFiles/main.dir/src/impl/public.cpp.i
 
 CMakeFiles/main.dir/src/impl/public.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/public.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/public.cpp -o CMakeFiles/main.dir/src/impl/public.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/public.cpp -o CMakeFiles/main.dir/src/impl/public.cpp.s
 
 CMakeFiles/main.dir/src/impl/semaphore.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/semaphore.cpp.o: /root/develop/ReactorServer/src/impl/semaphore.cpp
 CMakeFiles/main.dir/src/impl/semaphore.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main.dir/src/impl/semaphore.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/semaphore.cpp.o -MF CMakeFiles/main.dir/src/impl/semaphore.cpp.o.d -o CMakeFiles/main.dir/src/impl/semaphore.cpp.o -c /root/develop/ReactorServer/src/impl/semaphore.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/semaphore.cpp.o -MF CMakeFiles/main.dir/src/impl/semaphore.cpp.o.d -o CMakeFiles/main.dir/src/impl/semaphore.cpp.o -c /root/develop/ReactorServer/src/impl/semaphore.cpp
 
 CMakeFiles/main.dir/src/impl/semaphore.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/semaphore.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/semaphore.cpp > CMakeFiles/main.dir/src/impl/semaphore.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/semaphore.cpp > CMakeFiles/main.dir/src/impl/semaphore.cpp.i
 
 CMakeFiles/main.dir/src/impl/semaphore.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/semaphore.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/semaphore.cpp -o CMakeFiles/main.dir/src/impl/semaphore.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/semaphore.cpp -o CMakeFiles/main.dir/src/impl/semaphore.cpp.s
 
 CMakeFiles/main.dir/src/impl/tcpserver.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/impl/tcpserver.cpp.o: /root/develop/ReactorServer/src/impl/tcpserver.cpp
 CMakeFiles/main.dir/src/impl/tcpserver.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/develop/ReactorServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/main.dir/src/impl/tcpserver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/tcpserver.cpp.o -MF CMakeFiles/main.dir/src/impl/tcpserver.cpp.o.d -o CMakeFiles/main.dir/src/impl/tcpserver.cpp.o -c /root/develop/ReactorServer/src/impl/tcpserver.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/impl/tcpserver.cpp.o -MF CMakeFiles/main.dir/src/impl/tcpserver.cpp.o.d -o CMakeFiles/main.dir/src/impl/tcpserver.cpp.o -c /root/develop/ReactorServer/src/impl/tcpserver.cpp
 
 CMakeFiles/main.dir/src/impl/tcpserver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/impl/tcpserver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/tcpserver.cpp > CMakeFiles/main.dir/src/impl/tcpserver.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/develop/ReactorServer/src/impl/tcpserver.cpp > CMakeFiles/main.dir/src/impl/tcpserver.cpp.i
 
 CMakeFiles/main.dir/src/impl/tcpserver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/impl/tcpserver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/tcpserver.cpp -o CMakeFiles/main.dir/src/impl/tcpserver.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/develop/ReactorServer/src/impl/tcpserver.cpp -o CMakeFiles/main.dir/src/impl/tcpserver.cpp.s
 
 # Object files for target main
 main_OBJECTS = \

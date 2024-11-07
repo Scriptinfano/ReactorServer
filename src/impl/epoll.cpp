@@ -40,17 +40,6 @@ void Epoll::updateChannel(Channel *ch)
     }
 }
 
-void Epoll::addfd(int fd, uint32_t op)
-{
-    epoll_event ev;
-    ev.data.fd = fd;
-    ev.events = op;
-    if (epoll_ctl(epollfd_, EPOLL_CTL_ADD, fd, &ev) == -1)
-    {
-        logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("epoll_ctl() failed").c_str());
-        exit(-1);
-    }
-}
 std::vector<Channel *> Epoll::loop(int timeout)
 {
     std::vector<Channel *> channels; // 存放epoll_wait返回的事件

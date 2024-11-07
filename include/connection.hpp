@@ -5,9 +5,9 @@
 class Connection
 {
 private:
-    EventLoop *loop_; // 一个Accepter对应一个事件循环，在构造函数中传入
-    Socket *clientsock_; //客户端连接的套接字，构造函数中new出来
-    Channel *clientchannel_;// 客户级别的Channel 
+    EventLoop *loop_;
+    Socket *clientsock_;     // 客户端连接的套接字，构造函数中new出来
+    Channel *clientchannel_; // 客户级别的Channel
 
 public:
     /*
@@ -16,4 +16,7 @@ public:
     */
     Connection(EventLoop *loop, int fd);
     ~Connection();
+    int getFd() const;
+    std::string getIP() const;
+    in_port_t getPort() const;
 };

@@ -26,9 +26,19 @@ Socket::~Socket()
     close(fd_);
 }
 
-int Socket::fd() const
+int Socket::getFd() const
 {
     return fd_;
+}
+
+std::string Socket::getIP() const
+{
+    return ip_;
+}
+
+in_port_t Socket::getPort() const
+{
+    return port_;
 }
 void Socket::setNonBlocking(bool on)
 {
@@ -86,6 +96,8 @@ void Socket::bind(const InetAddress &servaddr)
         logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("bind() failed").c_str());
         exit(-1);
     }
+    ip_ = servaddr.ip();
+    port_ = servaddr.port();
 }
 void Socket::listen(int backlog)
 {
@@ -105,10 +117,9 @@ int Socket::accept(InetAddress &clientaddr)
     if (clientfd < 0)
     {
         logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("accept failed").c_str());
-
         exit(-1);
     }
     clientaddr.setaddr(peeraddr);
-    logger.logMessage(DEBUG, __FILE__, __LINE__, "accept client(fd=%d,ip=%s,port=%d) ok", clientfd, clientaddr.ip().c_str(), clientaddr.port());
+
     return clientfd;
 }

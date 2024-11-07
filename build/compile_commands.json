@@ -1,0 +1,236 @@
+[
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/main.cpp.o -c /root/develop/ReactorServer/src/main.cpp",
+  "file": "/root/develop/ReactorServer/src/main.cpp",
+  "output": "CMakeFiles/main.dir/src/main.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/accepter.cpp.o -c /root/develop/ReactorServer/src/impl/accepter.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/accepter.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/accepter.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/channel.cpp.o -c /root/develop/ReactorServer/src/impl/channel.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/channel.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/channel.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/connection.cpp.o -c /root/develop/ReactorServer/src/impl/connection.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/connection.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/connection.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/epoll.cpp.o -c /root/develop/ReactorServer/src/impl/epoll.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/epoll.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/epoll.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/eventloop.cpp.o -c /root/develop/ReactorServer/src/impl/eventloop.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/eventloop.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/eventloop.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/inetaddress.cpp.o -c /root/develop/ReactorServer/src/impl/inetaddress.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/inetaddress.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/inetaddress.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/log.cpp.o -c /root/develop/ReactorServer/src/impl/log.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/log.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/log.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/myerror.cpp.o -c /root/develop/ReactorServer/src/impl/myerror.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/myerror.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/myerror.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/mysocket.cpp.o -c /root/develop/ReactorServer/src/impl/mysocket.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/mysocket.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/mysocket.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/public.cpp.o -c /root/develop/ReactorServer/src/impl/public.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/public.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/public.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/semaphore.cpp.o -c /root/develop/ReactorServer/src/impl/semaphore.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/semaphore.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/semaphore.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/tcpserver.cpp.o -c /root/develop/ReactorServer/src/impl/tcpserver.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/tcpserver.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/tcpserver.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/epollclient.cpp.o -c /root/develop/ReactorServer/src/epollclient.cpp",
+  "file": "/root/develop/ReactorServer/src/epollclient.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/epollclient.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/accepter.cpp.o -c /root/develop/ReactorServer/src/impl/accepter.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/accepter.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/accepter.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/channel.cpp.o -c /root/develop/ReactorServer/src/impl/channel.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/channel.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/channel.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/connection.cpp.o -c /root/develop/ReactorServer/src/impl/connection.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/connection.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/connection.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o -c /root/develop/ReactorServer/src/impl/epoll.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/epoll.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/epoll.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/eventloop.cpp.o -c /root/develop/ReactorServer/src/impl/eventloop.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/eventloop.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/eventloop.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o -c /root/develop/ReactorServer/src/impl/inetaddress.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/inetaddress.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/inetaddress.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/log.cpp.o -c /root/develop/ReactorServer/src/impl/log.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/log.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/log.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/myerror.cpp.o -c /root/develop/ReactorServer/src/impl/myerror.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/myerror.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/myerror.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o -c /root/develop/ReactorServer/src/impl/mysocket.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/mysocket.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/public.cpp.o -c /root/develop/ReactorServer/src/impl/public.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/public.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/public.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o -c /root/develop/ReactorServer/src/impl/semaphore.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/semaphore.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/semaphore.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/tcpserver.cpp.o -c /root/develop/ReactorServer/src/impl/tcpserver.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/tcpserver.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/tcpserver.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/epollserver.cpp.o -c /root/develop/ReactorServer/src/epollserver.cpp",
+  "file": "/root/develop/ReactorServer/src/epollserver.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/epollserver.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/accepter.cpp.o -c /root/develop/ReactorServer/src/impl/accepter.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/accepter.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/accepter.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/channel.cpp.o -c /root/develop/ReactorServer/src/impl/channel.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/channel.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/channel.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/connection.cpp.o -c /root/develop/ReactorServer/src/impl/connection.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/connection.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/connection.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/epoll.cpp.o -c /root/develop/ReactorServer/src/impl/epoll.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/epoll.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/epoll.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/eventloop.cpp.o -c /root/develop/ReactorServer/src/impl/eventloop.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/eventloop.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/eventloop.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o -c /root/develop/ReactorServer/src/impl/inetaddress.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/inetaddress.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/inetaddress.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/log.cpp.o -c /root/develop/ReactorServer/src/impl/log.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/log.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/log.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o -c /root/develop/ReactorServer/src/impl/myerror.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/myerror.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/mysocket.cpp.o -c /root/develop/ReactorServer/src/impl/mysocket.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/mysocket.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/mysocket.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/public.cpp.o -c /root/develop/ReactorServer/src/impl/public.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/public.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/public.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o -c /root/develop/ReactorServer/src/impl/semaphore.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/semaphore.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/semaphore.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/tcpserver.cpp.o -c /root/develop/ReactorServer/src/impl/tcpserver.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/tcpserver.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/tcpserver.cpp.o"
+}
+]

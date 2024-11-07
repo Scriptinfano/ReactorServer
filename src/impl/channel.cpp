@@ -3,9 +3,8 @@
 #include "channel.hpp"
 #include "log.hpp"
 #include "mysocket.hpp"
-#include "connection.hpp"
 
-Channel::Channel(EventLoop *loop, int fd, Socket *sock) : loop_(loop), fd_(fd), sock_(sock)
+Channel::Channel(EventLoop *loop, int fd) : loop_(loop), fd_(fd)
 {
 }
 Channel::~Channel()
@@ -99,7 +98,6 @@ void Channel::handleNewMessage()
                 break;
             }
         }
-        
     }
     else if (revents_ & EPOLLOUT)
     {
@@ -111,17 +109,7 @@ void Channel::handleNewMessage()
         close(fd_);
     }
 }
-void Channel::handleNewConnection()
-{
-    if (revents_ & EPOLLHUP)
-    {
-        logger.logMessage(FATAL, __FILE__, __LINE__, "可能未调用listen函数使得监听套接字变为被动监听状态");
-        exit(-1);
-    }
-    InetAddress clientaddr;
-    //TODO 处理这里的内存泄漏问题
-    Connection *conn = new Connection(loop_, sock_->accept(clientaddr));
-}
+
 void Channel::setReadCallBack(std::function<void()> func)
 {
     readcallback_ = func;

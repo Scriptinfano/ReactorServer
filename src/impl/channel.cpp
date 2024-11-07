@@ -63,8 +63,7 @@ void Channel::handleNewMessage()
     // 遇到客户连接的文件描述符就绪
     if (revents_ & EPOLLRDHUP)
     {
-        logger.logMessage(WARNING, __FILE__, __LINE__, "client socket(%d) closed the connection", fd_);
-        close(fd_);
+        closecallback_();
     }
     else if (revents_ & (EPOLLIN | EPOLLPRI))
     {
@@ -87,15 +86,20 @@ void Channel::handleNewMessage()
             else if (nread == -1 && ((errno == EAGAIN) || (errno == EWOULDBLOCK)))
             {
                 // 全部的数据已读取完毕
+                logger.logMessage(DEBUG, __FILE__, __LINE__, "此时errno的值为%d", errno);
                 logger.logMessage(NORMAL, __FILE__, __LINE__, "全部数据读取完成");
                 break;
             }
             else if (nread == 0)
             {
-                // 客户端连接已断开
-                logger.logMessage(WARNING, __FILE__, __LINE__, "client socket(%d) closed the connection", fd_);
-                close(fd_);
+                // 客户端连接已断开，调用Connection的相关回调函数
+                closecallback_();
                 break;
+            }
+            else
+            {
+                // 出现其他错误的情况，调用Connection的相关回调函数
+                errorcallback_();
             }
         }
     }
@@ -113,4 +117,13 @@ void Channel::handleNewMessage()
 void Channel::setReadCallBack(std::function<void()> func)
 {
     readcallback_ = func;
+}
+
+void Channel::setCloseCallBack(std::function<void()> func)
+{
+    closecallback_ = func;
+}
+void Channel::setErrorCallBack(std::function<void()> func)
+{
+    errorcallback_ = func;
 }

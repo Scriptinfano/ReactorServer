@@ -3,6 +3,7 @@
   "C_Cpp.default.includePath": ["${workspaceFolder}/**"],
   "files.associations": {
     "*.pbl": "pb",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "*.tcc": "cpp"
   }
 }

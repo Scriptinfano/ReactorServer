@@ -19,4 +19,12 @@ public:
     int getFd() const;
     std::string getIP() const;
     in_port_t getPort() const;
+    /*
+    TCP连接关闭断开之后的回调函数，供Channel回调
+    */
+    void closeCallBack();
+    /*
+    TCP连接错误的回调函数，供Channel回调
+    */
+    void errorCallBack();
 };

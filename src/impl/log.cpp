@@ -5,7 +5,7 @@
 #include <cstdarg>
 #include <iostream>
 #include <sstream>
-
+#include <unordered_map>
 const char *Logger::levelMap[] = {"DEBUG", "NORMAL", "WARNING", "ERROR", "FATAL"};
 
 Logger::Logger() {}
@@ -30,14 +30,26 @@ bool Logger::shouldLogToFile(LogLevel level)
     if (!configFile.is_open())
     {
         std::cerr << "Failed to open config file: " << CONFIGFILE << std::endl;
-        return false;
+        exit(-1);
     }
 
-    int configLevel;
+    // 定义一个映射，将字符串日志级别映射到 LogLevel 枚举
+    std::unordered_map<std::string, LogLevel> logLevelMap = {
+        {"DEBUG", LogLevel::DEBUG},
+        {"NORMAL", LogLevel::NORMAL},
+        {"WARNING", LogLevel::WARNING},
+        {"ERROR", LogLevel::ERROR},
+        {"FATAL", LogLevel::FATAL}};
+
     std::string line;
     while (std::getline(configFile, line))
     {
-        if (std::istringstream(line) >> configLevel && configLevel == static_cast<int>(level))
+        // 移除行首尾的空格（可选）
+        line.erase(0, line.find_first_not_of(" \t"));
+        line.erase(line.find_last_not_of(" \t") + 1);
+
+        // 查找映射中的日志级别，判断是否匹配
+        if (logLevelMap.find(line) != logLevelMap.end() && logLevelMap[line] == level)
         {
             return true;
         }
@@ -47,6 +59,7 @@ bool Logger::shouldLogToFile(LogLevel level)
 
 void Logger::logMessage(LogLevel level, const char *file, int line, const char *format, ...)
 {
+
     if (level < DEBUG || level > FATAL)
     {
         std::cerr << "Invalid log level: " << level << std::endl;

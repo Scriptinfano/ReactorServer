@@ -1,0 +1,3 @@
+<WARNING>==[file->/root/develop/ReactorServer/src/impl/tcpserver.cpp][line->38][time->2024-11-08 17:55:57]:client socket(5) closed the connection
+<WARNING>==[file->/root/develop/ReactorServer/src/impl/tcpserver.cpp][line->38][time->2024-11-08 18:36:15]:client socket(5) closed the connection
+<WARNING>==[file->/root/develop/ReactorServer/src/impl/tcpserver.cpp][line->38][time->2024-11-08 18:37:30]:client socket(5) closed the connection

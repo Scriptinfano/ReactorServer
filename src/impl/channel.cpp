@@ -74,8 +74,8 @@ void Channel::handleNewMessage()
             if (nread > 0)
             {
                 logger.logMessage(NORMAL, __FILE__, __LINE__, "recv from client(fd:%d):%s", fd_, buffer);
-                // 读取完成之后原封不动的发送回去
-                send(fd_, buffer, sizeof(buffer), 0);
+
+                // send(fd_, buffer, sizeof(buffer), 0);// 读取完成之后原封不动的发送回去
             }
             else if (nread == -1 && errno == EINTR)
             {
@@ -86,13 +86,12 @@ void Channel::handleNewMessage()
             else if (nread == -1 && ((errno == EAGAIN) || (errno == EWOULDBLOCK)))
             {
                 // 全部的数据已读取完毕
-                logger.logMessage(DEBUG, __FILE__, __LINE__, "此时errno的值为%d", errno);
                 logger.logMessage(NORMAL, __FILE__, __LINE__, "全部数据读取完成");
                 break;
             }
             else if (nread == 0)
             {
-                //连接在这里断开的时候可以通过回调函数通知上层的TCPServer类，先回调到Connection的成员函数上，然后Connection再回调到TCPServer上
+                // 连接在这里断开的时候可以通过回调函数通知上层的TCPServer类，先回调到Connection的成员函数上，然后Connection再回调到TCPServer上
                 closecallback_();
                 break;
             }

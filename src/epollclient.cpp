@@ -49,29 +49,37 @@ int main(int argc, char *argv[])
 
     cout << "Connect successful." << endl;
 
-    while (true)
+
+    for (int i = 0; i < 1000; i++)
     {
         char buffer[BUFFERSIZE] = {0};
-        cout << "Please input: ";
-        cin.getline(buffer, sizeof(buffer));
-        if (send(sockfd, buffer, sizeof(buffer), 0) <= 0)
+        // cout << "Please input: ";
+        // cin.getline(buffer, sizeof(buffer));
+        // if (send(sockfd, buffer, sizeof(buffer), 0) <= 0)
+        // {
+        //     cerr << "send() failed: " << strerror(errno) << endl;
+        //     close(sockfd);
+        //     return -1;
+        // }
+
+        snprintf(buffer, sizeof(buffer), "这是第%d个数据。", i);
+        if (send(sockfd, buffer, strlen(buffer), 0) <= 0)
         {
-            cerr << "send() failed: " << strerror(errno) << endl;
+            cerr << "send failed" << endl;
             close(sockfd);
             return -1;
         }
+        //usleep(100);
 
-        char recv_buf[BUFFERSIZE] = {0};
-        if (recv(sockfd, recv_buf, sizeof(recv_buf), 0) <= 0)
-        {
-            cerr << "recv() failed: " << strerror(errno) << endl;
-            close(sockfd);
-            return -1;
-        }
-
-        cout << "Received: " << recv_buf << endl;
+        // char recv_buf[BUFFERSIZE] = {0};
+        // if (recv(sockfd, recv_buf, sizeof(recv_buf), 0) <= 0)
+        // {
+        //     cerr << "recv() failed: " << strerror(errno) << endl;
+        //     close(sockfd);
+        //     return -1;
+        // }
+        // cout << "Received: " << recv_buf << endl;
     }
-
 
     close(sockfd);
     return 0;

@@ -21,4 +21,6 @@ public:
     */
     void start();
     void handleNewConnection(int fd, InetAddress clientaddr);
+    void closeConnectionCallBack(Connection *conn);
+    void errorConnectionCallBack(Connection *conn);
 };

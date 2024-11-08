@@ -8,6 +8,8 @@ private:
     EventLoop *loop_;
     Socket *clientsock_;     // 客户端连接的套接字，构造函数中new出来
     Channel *clientchannel_; // 客户级别的Channel
+    std::function<void(Connection *)> closeCallBack_;
+    std::function<void(Connection *)> errorCallBack_;
 
 public:
     /*
@@ -27,4 +29,8 @@ public:
     TCP连接错误的回调函数，供Channel回调
     */
     void errorCallBack();
+
+    void setCloseCallBack(std::function<void(Connection *)> closeCallBack);
+
+    void setErrorCallBack(std::function<void(Connection *)> errorCallBack);
 };

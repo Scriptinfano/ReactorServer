@@ -92,14 +92,15 @@ void Channel::handleNewMessage()
             }
             else if (nread == 0)
             {
-                // 客户端连接已断开，调用Connection的相关回调函数
+                //连接在这里断开的时候可以通过回调函数通知上层的TCPServer类，先回调到Connection的成员函数上，然后Connection再回调到TCPServer上
                 closecallback_();
                 break;
             }
             else
             {
-                // 出现其他错误的情况，调用Connection的相关回调函数
+                // 出现其他错误的情况可以通过回调函数通知上层的TCPServer类，先回调到Connection的成员函数上，然后Connection再回调到TCPServer上
                 errorcallback_();
+                break;
             }
         }
     }

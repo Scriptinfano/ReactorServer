@@ -1,6 +1,6 @@
 #include "connection.hpp"
 #include "log.hpp"
-#include <unistd.h>
+
 Connection::Connection(EventLoop *loop, int fd) : loop_(loop)
 {
     // clientsock只能new出来，
@@ -33,13 +33,20 @@ in_port_t Connection::getPort() const
 
 void Connection::closeCallBack()
 {
-    int fd = getFd();
-    logger.logMessage(WARNING, __FILE__, __LINE__, "client socket(%d) closed the connection", fd);
-    // TCP连接在这里断开的时候可以通过回调函数通知上层的TCPServer类，先回调到Connection的成员函数上，然后Connection再回调到TCPServer上
-    close(fd);
+    closeCallBack_(this);
 }
 
 void Connection::errorCallBack()
 {
-    logger.logMessage(ERROR, __FILE__, __LINE__, "client socket(%d) occur unknown error", getFd());
+    errorCallBack_(this);
+}
+
+void Connection::setCloseCallBack(std::function<void(Connection *)> closeCallBack)
+{
+    closeCallBack_ = closeCallBack;
+}
+
+void Connection::setErrorCallBack(std::function<void(Connection *)> errorCallBack)
+{
+    errorCallBack_ = errorCallBack;
 }

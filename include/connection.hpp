@@ -2,6 +2,7 @@
 #include "eventloop.hpp"
 #include "mysocket.hpp"
 #include "channel.hpp"
+#include "buffer.hpp"
 class Connection
 {
 private:
@@ -10,6 +11,8 @@ private:
     Channel *clientchannel_; // 客户级别的Channel
     std::function<void(Connection *)> closeCallBack_;
     std::function<void(Connection *)> errorCallBack_;
+    Buffer inputBuffer_;//接收缓冲区
+    Buffer outputBuffer_;//发送缓冲区
 
 public:
     /*
@@ -33,4 +36,5 @@ public:
     void setCloseCallBack(std::function<void(Connection *)> closeCallBack);
 
     void setErrorCallBack(std::function<void(Connection *)> errorCallBack);
+    void handleNewMessage();
 };

@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "/root/develop/ReactorServer/bin/main.pdb"
   "CMakeFiles/main.dir/src/impl/accepter.cpp.o"
   "CMakeFiles/main.dir/src/impl/accepter.cpp.o.d"
+  "CMakeFiles/main.dir/src/impl/buffer.cpp.o"
+  "CMakeFiles/main.dir/src/impl/buffer.cpp.o.d"
   "CMakeFiles/main.dir/src/impl/channel.cpp.o"
   "CMakeFiles/main.dir/src/impl/channel.cpp.o.d"
   "CMakeFiles/main.dir/src/impl/connection.cpp.o"

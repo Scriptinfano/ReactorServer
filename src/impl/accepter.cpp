@@ -1,5 +1,4 @@
 #include "accepter.hpp"
-#include "connection.hpp"
 #include "log.hpp"
 Accepter::Accepter(EventLoop *loop, const std::string &ip, const in_port_t port) : loop_(loop)
 {

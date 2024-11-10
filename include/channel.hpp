@@ -1,6 +1,4 @@
 #pragma once
-#include "epoll.hpp"
-#include "mysocket.hpp"
 #include "eventloop.hpp"
 #include <functional>
 class Epoll; // 如果两个头文件互相包含，互相需要对方的数据结构，那么需要在两个文件做对方的前向声明，而且要在头文件的首部加入#pragme once
@@ -69,19 +67,7 @@ public:
     void handleEvent();
 
     /*
-    处理对端发送过来的消息
-    */
-    void handleNewMessage();
-    /*
     设置读事件的回调函数
     */
     void setReadCallBack(std::function<void()> func);
-    /*
-    设置客户端断掉连接时的回调函数
-    */
-    void setCloseCallBack(std::function<void()> func);
-    /*
-    设置在读取客户端数据时发生未知错误时的回调处理函数
-    */
-    void setErrorCallBack(std::function<void()> func);
 };

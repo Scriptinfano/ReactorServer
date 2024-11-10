@@ -13,6 +13,12 @@
 },
 {
   "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/buffer.cpp.o -c /root/develop/ReactorServer/src/impl/buffer.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/buffer.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/buffer.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
   "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/channel.cpp.o -c /root/develop/ReactorServer/src/impl/channel.cpp",
   "file": "/root/develop/ReactorServer/src/impl/channel.cpp",
   "output": "CMakeFiles/main.dir/src/impl/channel.cpp.o"
@@ -91,6 +97,12 @@
 },
 {
   "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/buffer.cpp.o -c /root/develop/ReactorServer/src/impl/buffer.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/buffer.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/buffer.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
   "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/channel.cpp.o -c /root/develop/ReactorServer/src/impl/channel.cpp",
   "file": "/root/develop/ReactorServer/src/impl/channel.cpp",
   "output": "CMakeFiles/epollclient.dir/src/impl/channel.cpp.o"
@@ -166,6 +178,12 @@
   "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/accepter.cpp.o -c /root/develop/ReactorServer/src/impl/accepter.cpp",
   "file": "/root/develop/ReactorServer/src/impl/accepter.cpp",
   "output": "CMakeFiles/epollserver.dir/src/impl/accepter.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/buffer.cpp.o -c /root/develop/ReactorServer/src/impl/buffer.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/buffer.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/buffer.cpp.o"
 },
 {
   "directory": "/root/develop/ReactorServer/build",

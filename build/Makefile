@@ -233,6 +233,36 @@ src/impl/accepter.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/accepter.cpp.s
 .PHONY : src/impl/accepter.cpp.s
 
+src/impl/buffer.o: src/impl/buffer.cpp.o
+.PHONY : src/impl/buffer.o
+
+# target to build an object file
+src/impl/buffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/buffer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/buffer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/buffer.cpp.o
+.PHONY : src/impl/buffer.cpp.o
+
+src/impl/buffer.i: src/impl/buffer.cpp.i
+.PHONY : src/impl/buffer.i
+
+# target to preprocess a source file
+src/impl/buffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/buffer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/buffer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/buffer.cpp.i
+.PHONY : src/impl/buffer.cpp.i
+
+src/impl/buffer.s: src/impl/buffer.cpp.s
+.PHONY : src/impl/buffer.s
+
+# target to generate assembly for a file
+src/impl/buffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/buffer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/buffer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/buffer.cpp.s
+.PHONY : src/impl/buffer.cpp.s
+
 src/impl/channel.o: src/impl/channel.cpp.o
 .PHONY : src/impl/channel.o
 
@@ -607,6 +637,9 @@ help:
 	@echo "... src/impl/accepter.o"
 	@echo "... src/impl/accepter.i"
 	@echo "... src/impl/accepter.s"
+	@echo "... src/impl/buffer.o"
+	@echo "... src/impl/buffer.i"
+	@echo "... src/impl/buffer.s"
 	@echo "... src/impl/channel.o"
 	@echo "... src/impl/channel.i"
 	@echo "... src/impl/channel.s"

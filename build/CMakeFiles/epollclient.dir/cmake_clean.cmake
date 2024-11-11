@@ -21,6 +21,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/epollclient.dir/src/impl/log.cpp.o.d"
   "CMakeFiles/epollclient.dir/src/impl/myerror.cpp.o"
   "CMakeFiles/epollclient.dir/src/impl/myerror.cpp.o.d"
+  "CMakeFiles/epollclient.dir/src/impl/myio.cpp.o"
+  "CMakeFiles/epollclient.dir/src/impl/myio.cpp.o.d"
   "CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o"
   "CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o.d"
   "CMakeFiles/epollclient.dir/src/impl/public.cpp.o"

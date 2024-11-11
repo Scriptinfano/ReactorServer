@@ -19,6 +19,9 @@ public:
     @brief 在析构函数中要关闭打开的文件描述符
     */
     ~Socket();
+
+    void setIp(std::string ip);
+    void setPort(in_port_t port);
     /*
     返回文件描述符
     */

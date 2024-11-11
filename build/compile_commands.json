@@ -61,6 +61,12 @@
 },
 {
   "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/myio.cpp.o -c /root/develop/ReactorServer/src/impl/myio.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/myio.cpp",
+  "output": "CMakeFiles/main.dir/src/impl/myio.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
   "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/main.dir/src/impl/mysocket.cpp.o -c /root/develop/ReactorServer/src/impl/mysocket.cpp",
   "file": "/root/develop/ReactorServer/src/impl/mysocket.cpp",
   "output": "CMakeFiles/main.dir/src/impl/mysocket.cpp.o"
@@ -145,6 +151,12 @@
 },
 {
   "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/myio.cpp.o -c /root/develop/ReactorServer/src/impl/myio.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/myio.cpp",
+  "output": "CMakeFiles/epollclient.dir/src/impl/myio.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
   "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o -c /root/develop/ReactorServer/src/impl/mysocket.cpp",
   "file": "/root/develop/ReactorServer/src/impl/mysocket.cpp",
   "output": "CMakeFiles/epollclient.dir/src/impl/mysocket.cpp.o"
@@ -226,6 +238,12 @@
   "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o -c /root/develop/ReactorServer/src/impl/myerror.cpp",
   "file": "/root/develop/ReactorServer/src/impl/myerror.cpp",
   "output": "CMakeFiles/epollserver.dir/src/impl/myerror.cpp.o"
+},
+{
+  "directory": "/root/develop/ReactorServer/build",
+  "command": "/usr/bin/g++  -I/root/develop/ReactorServer/include -g -std=c++11 -o CMakeFiles/epollserver.dir/src/impl/myio.cpp.o -c /root/develop/ReactorServer/src/impl/myio.cpp",
+  "file": "/root/develop/ReactorServer/src/impl/myio.cpp",
+  "output": "CMakeFiles/epollserver.dir/src/impl/myio.cpp.o"
 },
 {
   "directory": "/root/develop/ReactorServer/build",

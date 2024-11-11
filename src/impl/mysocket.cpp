@@ -123,3 +123,9 @@ int Socket::accept(InetAddress &clientaddr)
 
     return clientfd;
 }
+void Socket::setIp(std::string ip){
+    ip_ = ip;
+}
+void Socket::setPort(in_port_t port){
+    port_ = port;
+}

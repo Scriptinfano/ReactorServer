@@ -1,7 +1,7 @@
 #include "buffer.hpp"
+#include<log.hpp>
 Buffer::Buffer()
 {
-
 }
 Buffer::~Buffer()
 {
@@ -22,4 +22,12 @@ const char *Buffer::getData()
 void Buffer::clear()
 {
     return buf_.clear();
+}
+
+std::string Buffer::getString(){
+    return buf_;
+}
+
+void Buffer::erase(size_t pos, size_t n){
+    buf_.erase(pos, n);
 }

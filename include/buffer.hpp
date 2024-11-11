@@ -23,4 +23,14 @@ public:
     清空缓冲区
     */
     void clear();
+    /*
+    返回内部string对象
+    */
+    std::string getString();
+    /*
+    @param 从指定的位置之后删除指定数量的字节
+    @param pos 要删除的起始字节
+    @param n 要从指定位置之后删除多少个字节
+    */
+    void erase(size_t pos, size_t n);
 };

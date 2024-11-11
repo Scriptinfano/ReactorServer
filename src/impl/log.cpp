@@ -75,7 +75,7 @@ void Logger::logMessage(LogLevel level, const char *file, int line, const char *
         return;
     }
 
-    snprintf(fixBuffer, sizeof(fixBuffer), "<%s>==[file->%s][line->%d][time->%s]",
+    snprintf(fixBuffer, sizeof(fixBuffer), "<%s>==[%s:%d][%s]",
              levelMap[level], file, line, timestr);
 
     char defBuffer[512];
@@ -94,9 +94,6 @@ void Logger::logMessage(LogLevel level, const char *file, int line, const char *
         }
         logFile << fixBuffer << ":" << defBuffer << std::endl;
     }
-    else
-    {
-        std::cout << fixBuffer << ":" << defBuffer << std::endl;
-    }
+    std::cout << fixBuffer << ":" << defBuffer << std::endl;
 }
 Logger &logger = Logger::getInstance(); // 初始化全局 Logger 实例引用，这样其他所有模块只要包含了log.hpp，就可以引用这个全局唯一的logger输出标准化的日志

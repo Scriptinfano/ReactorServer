@@ -1,0 +1,48 @@
+// .vscode/launch.json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug epollserver",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/epollserver",
+            "args": ["127.0.0.1", "8080"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "build project",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "/usr/bin/gdb",  // 根据你的GDB路径调整
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "name": "Run epollclient",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/epollclient",
+            "args": ["127.0.0.1", "8080"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}

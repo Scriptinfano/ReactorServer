@@ -19,6 +19,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/src/impl/log.cpp.o.d"
   "CMakeFiles/main.dir/src/impl/myerror.cpp.o"
   "CMakeFiles/main.dir/src/impl/myerror.cpp.o.d"
+  "CMakeFiles/main.dir/src/impl/myio.cpp.o"
+  "CMakeFiles/main.dir/src/impl/myio.cpp.o.d"
   "CMakeFiles/main.dir/src/impl/mysocket.cpp.o"
   "CMakeFiles/main.dir/src/impl/mysocket.cpp.o.d"
   "CMakeFiles/main.dir/src/impl/public.cpp.o"

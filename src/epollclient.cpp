@@ -4,6 +4,7 @@
 #include <cstring>
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include "myio.hpp"
 using namespace std;
 
 static const int BUFFERSIZE = 1024;
@@ -47,26 +48,26 @@ int main(int argc, char *argv[])
 
     cout << "Connect successful." << endl;
 
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < 100; i++)
     {
         char buffer[BUFFERSIZE] = {0};
-        cout << "Please input: ";
-        cin.getline(buffer, sizeof(buffer));
-        if (send(sockfd, buffer, sizeof(buffer), 0) <= 0)
-        {
-            cerr << "send() failed: " << strerror(errno) << endl;
-            close(sockfd);
-            return -1;
-        }
-
-        char recv_buf[BUFFERSIZE] = {0};
-        if (recv(sockfd, recv_buf, sizeof(recv_buf), 0) <= 0)
-        {
-            cerr << "recv() failed: " << strerror(errno) << endl;
-            close(sockfd);
-            return -1;
-        }
-        cout << "Received: " << recv_buf << endl;
+        sprintf(buffer, "这是第%d个数据", i + 1);
+        char tmp[BUFFERSIZE] = {0};
+        int len = strlen(buffer);
+        memcpy(tmp, &len, sizeof(int));
+        memcpy(tmp + sizeof(int), buffer, strlen(buffer));
+        mysend(sockfd, tmp, sizeof(int) + len);
+    }
+    
+    cout << "即将开始读取服务端的回复消息" << endl;
+    while (true)
+    {
+        //先把报头读取出来
+        int len;
+        myrecv(sockfd, &len, sizeof(int));
+        char recv_buf[len+1] = {0};//这里一定要给recv_buf多留一个空字符的位置
+        myrecv(sockfd, recv_buf, len);
+        cout << "received reply msg from server:" << recv_buf << endl;
     }
 
     close(sockfd);

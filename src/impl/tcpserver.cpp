@@ -26,7 +26,8 @@ void TCPServer::start()
 }
 void TCPServer::handleNewConnection(int fd, InetAddress clientaddr)
 {
-    Connection *conn = new Connection(loop_, fd);
+    Connection *conn = new Connection(loop_, fd,&clientaddr);
+    //这里将clientaddr的值传入Connection内部
     conn->setCloseCallBack(std::bind(&TCPServer::closeConnectionCallBack, this, std::placeholders::_1));
     conn->setErrorCallBack(std::bind(&TCPServer::errorConnectionCallBack, this, std::placeholders::_1));
     logger.logMessage(DEBUG, __FILE__, __LINE__, "accept client(fd=%d,ip=%s,port=%d) ok", fd, clientaddr.ip().c_str(), clientaddr.port());

@@ -32,8 +32,8 @@ void Accepter::handleNewConnection()
         exit(-1);
     }
     InetAddress clientaddr;
-
-    accetpFunc_(servsock_->accept(clientaddr), clientaddr);
+    int fd = servsock_->accept(clientaddr);
+    accetpFunc_(fd, clientaddr);
 }
 
 void Accepter::setAcceptFunc(std::function<void(int, InetAddress &)> func)

@@ -6,7 +6,6 @@
 #include <cstring>
 InetAddress::InetAddress()
 {
-    // TODO 缺省的构造函数
     memset(&addr_, 0, sizeof(addr_));
 }
 

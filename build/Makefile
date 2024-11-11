@@ -473,6 +473,36 @@ src/impl/myerror.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/myerror.cpp.s
 .PHONY : src/impl/myerror.cpp.s
 
+src/impl/myio.o: src/impl/myio.cpp.o
+.PHONY : src/impl/myio.o
+
+# target to build an object file
+src/impl/myio.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/myio.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/myio.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/myio.cpp.o
+.PHONY : src/impl/myio.cpp.o
+
+src/impl/myio.i: src/impl/myio.cpp.i
+.PHONY : src/impl/myio.i
+
+# target to preprocess a source file
+src/impl/myio.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/myio.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/myio.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/myio.cpp.i
+.PHONY : src/impl/myio.cpp.i
+
+src/impl/myio.s: src/impl/myio.cpp.s
+.PHONY : src/impl/myio.s
+
+# target to generate assembly for a file
+src/impl/myio.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/myio.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/myio.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/myio.cpp.s
+.PHONY : src/impl/myio.cpp.s
+
 src/impl/mysocket.o: src/impl/mysocket.cpp.o
 .PHONY : src/impl/mysocket.o
 
@@ -661,6 +691,9 @@ help:
 	@echo "... src/impl/myerror.o"
 	@echo "... src/impl/myerror.i"
 	@echo "... src/impl/myerror.s"
+	@echo "... src/impl/myio.o"
+	@echo "... src/impl/myio.i"
+	@echo "... src/impl/myio.s"
 	@echo "... src/impl/mysocket.o"
 	@echo "... src/impl/mysocket.i"
 	@echo "... src/impl/mysocket.s"

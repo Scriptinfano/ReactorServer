@@ -23,4 +23,10 @@ public:
     void handleNewConnection(int fd, InetAddress clientaddr);
     void closeConnectionCallBack(Connection *conn);
     void errorConnectionCallBack(Connection *conn);
+    /*
+    该函数代表整个服务器对于客户端发来的数据的一个处理
+    @param conn 处理哪一个连接发来的数据
+    @param message 原始数据
+    */
+    void processCallBack(Connection *conn, std::string message);
 };

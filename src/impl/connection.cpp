@@ -96,11 +96,7 @@ void Connection::handleNewMessage()
                     inputBuffer_.erase(0, len + 4);                       // 从inputbuffer中删除刚才已获取的报文。
                     logger.logMessage(NORMAL, __FILE__, __LINE__, "recv from client(fd=%d,ip=%s,port=%u):%s", getFd(), getIP().c_str(), getPort(), message.c_str());
                     // 在这里，将经过若干步骤的运算。
-                    message = "reply:" + message;
-                    len = message.size();                           // 计算回应报文的大小。
-                    std::string tmpbuf((char *)&len, 4);            // 把报文头部填充到回应报文中。
-                    tmpbuf.append(message);                         // 把报文内容填充到回应报文中。
-                    send(getFd(), tmpbuf.data(), tmpbuf.size(), 0); // 把临时缓冲区中的数据直接send()出去。
+                    processCallBack_(this, message);
                 }
                 break;
             }
@@ -125,4 +121,7 @@ void Connection::handleNewMessage()
         logger.logMessage(WARNING, __FILE__, __LINE__, "client socket(%d) error", getFd());
         close(getFd());
     }
+}
+void Connection::setProcessCallBack(std::function<void(Connection *,std::string)> processCallBack){
+    processCallBack_=processCallBack;
 }

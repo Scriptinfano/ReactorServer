@@ -263,6 +263,36 @@ src/impl/buffer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/buffer.cpp.s
 .PHONY : src/impl/buffer.cpp.s
 
+src/impl/business.o: src/impl/business.cpp.o
+.PHONY : src/impl/business.o
+
+# target to build an object file
+src/impl/business.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/business.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/business.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/business.cpp.o
+.PHONY : src/impl/business.cpp.o
+
+src/impl/business.i: src/impl/business.cpp.i
+.PHONY : src/impl/business.i
+
+# target to preprocess a source file
+src/impl/business.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/business.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/business.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/business.cpp.i
+.PHONY : src/impl/business.cpp.i
+
+src/impl/business.s: src/impl/business.cpp.s
+.PHONY : src/impl/business.s
+
+# target to generate assembly for a file
+src/impl/business.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/impl/business.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollclient.dir/build.make CMakeFiles/epollclient.dir/src/impl/business.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/epollserver.dir/build.make CMakeFiles/epollserver.dir/src/impl/business.cpp.s
+.PHONY : src/impl/business.cpp.s
+
 src/impl/channel.o: src/impl/channel.cpp.o
 .PHONY : src/impl/channel.o
 
@@ -670,6 +700,9 @@ help:
 	@echo "... src/impl/buffer.o"
 	@echo "... src/impl/buffer.i"
 	@echo "... src/impl/buffer.s"
+	@echo "... src/impl/business.o"
+	@echo "... src/impl/business.i"
+	@echo "... src/impl/business.s"
 	@echo "... src/impl/channel.o"
 	@echo "... src/impl/channel.i"
 	@echo "... src/impl/channel.s"

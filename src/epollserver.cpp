@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "tcpserver.hpp"
+#include "business.hpp"
 using namespace std;
 
 int main(int argc, char **argv)
@@ -12,7 +12,7 @@ int main(int argc, char **argv)
         cout << "example, epollserver 192.168.150.128 8080" << endl;
         return -1;
     }
-    ///////////////
-    TCPServer server(argv[1], atoi(argv[2]));
+    //////////////
+    EchoServer server(argv[1], atoi(argv[2]));
     server.start();
 }

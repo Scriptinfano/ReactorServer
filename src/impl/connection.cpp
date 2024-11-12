@@ -14,7 +14,7 @@ Connection::Connection(EventLoop *loop, int fd, InetAddress *clientaddr) : loop_
     clientchannel_->setReadCallBack(std::bind(&Connection::readCallBack, this));
     clientchannel_->setCloseCallBack(std::bind(&Connection::closeCallBack, this));
     clientchannel_->setErrorCallBack(std::bind(&Connection::errorCallBack, this));
-    clientchannel_->setWriteCallBack(std::bind(&Connection::writeCallBack,this));
+    clientchannel_->setWriteCallBack(std::bind(&Connection::writeCallBack, this));
     clientchannel_->registerReadEvent(); // 加入epoll的监视，开始监视这个channel的可读事件
 }
 Connection::~Connection()
@@ -91,7 +91,7 @@ void Connection::readCallBack()
                 std::string message(inputBuffer_.getData() + 4, len); // 从inputbuffer中获取一个报文。
                 inputBuffer_.erase(0, len + 4);                       // 从inputbuffer中删除刚才已获取的报文。
                 logger.logMessage(NORMAL, __FILE__, __LINE__, "recv from client(fd=%d,ip=%s,port=%u):%s", getFd(), getIP().c_str(), getPort(), message.c_str());
-                // 在这里，将经过若干步骤的运算。
+                // 底下这个回调函数代表TCPServer对于客户端数据的处理回调函数
                 processCallBack_(this, message);
             }
             break;
@@ -109,14 +109,18 @@ void Connection::readCallBack()
     }
 }
 
-void Connection::writeCallBack(){
-    //把outputBuffer_中的数据发送出去
-    int writen=::send(getFd(),outputBuffer_.getData(),outputBuffer_.getSize(),0);
-    if(writen>0)
+void Connection::writeCallBack()
+{
+    // 把outputBuffer_中的数据发送出去
+    int writen = ::send(getFd(), outputBuffer_.getData(), outputBuffer_.getSize(), 0);
+    if (writen > 0)
         outputBuffer_.erase(0, writen);
-    //这里还要判断发送缓冲区中是否还有数据，如果没有数据了，则不应该再关注写事件
-    if(outputBuffer_.getSize()==0)
+    // 这里还要判断发送缓冲区中是否还有数据，如果没有数据了，则不应该再关注写事件
+    if (outputBuffer_.getSize() == 0)
+    {
         clientchannel_->unregisterWriteEvent();
+        sendCompleteCallBack_(this);
+    }
 }
 
 void Connection::setProcessCallBack(std::function<void(Connection *, std::string)> processCallBack)
@@ -127,4 +131,8 @@ void Connection::send(const char *data, size_t size)
 {
     outputBuffer_.append(data, size);
     clientchannel_->registerWriteEvent();
+}
+void Connection::setSendCompleteCallBack(std::function<void(Connection *)> sendCompleteCallBack)
+{
+    sendCompleteCallBack_ = sendCompleteCallBack;
 }

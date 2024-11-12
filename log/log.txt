@@ -142,3 +142,4 @@
 <FATAL>==[/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-11 23:35:06]:recv() failed or connection closed:: Success
 <WARNING>==[/root/develop/ReactorServer/src/impl/tcpserver.cpp:40][2024-11-12 14:55:46]:client socket(6) closed the connection
 <WARNING>==[/root/develop/ReactorServer/src/impl/tcpserver.cpp:40][2024-11-12 14:55:48]:client socket(5) closed the connection
+<WARNING>==[/root/develop/ReactorServer/src/impl/tcpserver.cpp:41][2024-11-12 17:17:50]:client socket(5) closed the connection

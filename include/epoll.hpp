@@ -20,5 +20,9 @@ public:
     根据Channel的内部成员所包含的信息，内部自行构造epoll_event然后将其添加或更新到红黑树上
     */
     void updateChannel(Channel *ch);
+    /*
+    在函数内部调用epoll_wait，将events中包含的信息传回Channel对象，并将Channel集合返回
+    @param timeout 内部调用epoll_wait的时候的超时参数，单位是毫秒
+    */
     std::vector<Channel *> loop(int timeout = -1);
 };

@@ -60,6 +60,7 @@ std::vector<Channel *> Epoll::loop(int timeout)
     {
         // 超时的情况
         logger.logMessage(DEBUG, __FILE__, __LINE__, "epoll_wait() timeout");
+        //如果超时，则返回的channels容器将是空的，需要在EventLoop中检测这种情况
         return channels;
     }
     for (int i = 0; i < rfdnum; i++)

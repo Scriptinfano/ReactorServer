@@ -1,6 +1,3 @@
-以下是为你的项目生成的 `README.md` 文件内容：
-
-```markdown
 # 基于Reactor模式的高并发服务器
 
 ## 项目介绍
@@ -46,4 +43,3 @@ project-root
    ```bash
    ./bin/epollserver
    ```
-```

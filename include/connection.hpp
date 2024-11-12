@@ -11,7 +11,7 @@ private:
     Channel *clientchannel_; // 客户级别的Channel
     std::function<void(Connection *)> closeCallBack_;
     std::function<void(Connection *)> errorCallBack_;
-    std::function<void(Connection *, std::string)> processCallBack_; // 处理客户端发来的数据的回调函数
+    std::function<void(Connection *, std::string&)> processCallBack_; // 处理客户端发来的数据的回调函数
     std::function<void(Connection *)> sendCompleteCallBack_;
     Buffer inputBuffer_; // 接收缓冲区
     /*
@@ -49,7 +49,7 @@ public:
     /*
     设定该如何处理客户端的数据
     */
-    void setProcessCallBack(std::function<void(Connection *, std::string)> processCallBack);
+    void setProcessCallBack(std::function<void(Connection *, std::string&)> processCallBack);
 
     void setSendCompleteCallBack(std::function<void(Connection *)> sendCompleteCallBack);
     /*

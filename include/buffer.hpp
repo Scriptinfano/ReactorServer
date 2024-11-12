@@ -11,6 +11,12 @@ public:
     将size大小的数据追加到buffer中
     */
     void append(const char *data, size_t size);
+
+    /*
+    也是将数据加到buf_中，只不过会先计算数据部分的大小，然后将大小放在报头中，然后将数据放在报头后面
+    */
+    void appendWithHead(const char *data, size_t size);
+
     /*
     获取缓冲区目前存放的数据的大小
     */

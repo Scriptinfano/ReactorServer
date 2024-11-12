@@ -56,7 +56,7 @@ void TCPServer::errorCallBack(Connection *conn)
     connectionMapper_.erase(conn->getFd());
     delete conn;
 }
-void TCPServer::processCallBack(Connection *conn, std::string message)
+void TCPServer::processCallBack(Connection *conn, std::string& message)
 {
     // 其实在这里也不应该直接处理业务，而是应该再创建一个业务处理类，让业务处理类区处理业务数据，这样的话，结构更加清晰
     // 根据业务需求也可以有其他代码
@@ -89,7 +89,7 @@ void TCPServer::setErrorCallBack(std::function<void(Connection *)> errorCallBack
 {
     errorCallBack_ = errorCallBack;
 }
-void TCPServer::setProcessCallBack(std::function<void(Connection *, std::string)> processCallBack)
+void TCPServer::setProcessCallBack(std::function<void(Connection *, std::string&)> processCallBack)
 {
     processCallBack_ = processCallBack;
 }

@@ -17,7 +17,7 @@ private:
     std::function<void(Connection*)> acceptCallBack_;
     std::function<void(Connection *)> closeCallBack_;
     std::function<void(Connection *)> errorCallBack_;
-    std::function<void(Connection *, std::string)> processCallBack_;
+    std::function<void(Connection *, std::string&)> processCallBack_;
     std::function<void(Connection *)> sendCompleteCallBack_;
     std::function<void(EventLoop *)> epollTimeoutCallBack_;
 
@@ -45,7 +45,7 @@ public:
     @param conn 处理哪一个连接发来的数据
     @param message 原始数据
     */
-    void processCallBack(Connection *conn, std::string message);
+    void processCallBack(Connection *conn, std::string& message);
 
     /*
     当Connection将数据都加到输入缓冲区中之后，回调这个函数，相当于通知TCPServer
@@ -60,7 +60,7 @@ public:
     void setAcceptCallBack(std::function<void(Connection *)> acceptCallBack);
     void setCloseCallBack(std::function<void(Connection *)> closeCallBack);
     void setErrorCallBack(std::function<void(Connection *)> errorCallBack);
-    void setProcessCallBack(std::function<void(Connection *, std::string)> processCallBack);
+    void setProcessCallBack(std::function<void(Connection *, std::string&)> processCallBack);
     void setSendCompleteCallBack(std::function<void(Connection *)> sendCompleteCallBack);
     void setEpollTimeoutCallBack(std::function<void(EventLoop *)> epollTimeoutCallBack);
 

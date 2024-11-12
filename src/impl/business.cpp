@@ -32,10 +32,7 @@ void EchoServer::errorCallBack(Connection *conn)
 void EchoServer::processCallBack(Connection *conn, std::string message)
 {
     message = "reply:" + message;
-    int len = message.size();                  // 计算回应报文的大小。
-    std::string tmpbuf((char *)&len, 4);       // 把报文头部填充到回应报文中。
-    tmpbuf.append(message);                    // 把报文内容填充到回应报文中。
-    conn->send(tmpbuf.c_str(), tmpbuf.size()); // Connection内部的send函数会把数据放到内部的outputBuffer_中，等下一次可写事件发生时会被发送出去
+    conn->send(message.c_str(), message.size()); // Connection内部的send函数会把数据放到内部的outputBuffer_中，等下一次可写事件发生时会被发送出去
 }
 
 void EchoServer::sendCompleteCallBack(Connection *conn)

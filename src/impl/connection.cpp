@@ -123,13 +123,14 @@ void Connection::writeCallBack()
     }
 }
 
-void Connection::setProcessCallBack(std::function<void(Connection *, std::string)> processCallBack)
+void Connection::setProcessCallBack(std::function<void(Connection *, std::string&)> processCallBack)
 {
     processCallBack_ = processCallBack;
 }
 void Connection::send(const char *data, size_t size)
 {
-    outputBuffer_.append(data, size);
+    //outputBuffer_.append(data, size);
+    outputBuffer_.appendWithHead(data, size);
     clientchannel_->registerWriteEvent();
 }
 void Connection::setSendCompleteCallBack(std::function<void(Connection *)> sendCompleteCallBack)

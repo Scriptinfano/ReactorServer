@@ -15,7 +15,7 @@ Accepter::Accepter(EventLoop *loop, const std::string &ip, const in_port_t port)
 
     acceptchannel_ = new Channel(loop_, servsock_->getFd());                          // 这是管理服务端监听套接字的抽象连接
     acceptchannel_->setReadCallBack(std::bind(&Accepter::handleNewConnection, this)); // 设置该Channel在读事件就绪之后应该调用的回调函数
-    acceptchannel_->monitorReadEvent();                                               // 将该Channel设为应该监视可读事件，也就是客户端来连接的事件
+    acceptchannel_->registerReadEvent();                                              // 将该Channel设为应该监视可读事件，也就是客户端来连接的事件
 }
 Accepter::~Accepter()
 {
@@ -33,10 +33,10 @@ void Accepter::handleNewConnection()
     }
     InetAddress clientaddr;
     int fd = servsock_->accept(clientaddr);
-    accetpFunc_(fd, clientaddr);
+    acceptCallBack_(fd, clientaddr);
 }
 
-void Accepter::setAcceptFunc(std::function<void(int, InetAddress &)> func)
+void Accepter::setAcceptCallBack(std::function<void(int, InetAddress &)> acceptCallBack)
 {
-    accetpFunc_ = func;
+    acceptCallBack_ = acceptCallBack;
 }

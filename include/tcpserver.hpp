@@ -20,7 +20,7 @@ public:
     开始运行事件循环，也就是开始运行这个服务器
     */
     void start();
-    void handleNewConnection(int fd, InetAddress clientaddr);
+    void acceptCallBack(int fd, InetAddress clientaddr);
     void closeConnectionCallBack(Connection *conn);
     void errorConnectionCallBack(Connection *conn);
     /*

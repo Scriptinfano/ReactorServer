@@ -18,11 +18,28 @@ void Channel::setETMode()
     events_ = events_ | EPOLLET;
 }
 
-void Channel::monitorReadEvent()
+void Channel::registerReadEvent()
 {
     events_ = events_ | EPOLLIN;
+    loop_->updateChannel(this);
+}
 
-    loop_->getEpoll()->updateChannel(this);
+void Channel::unregisterReadEvent()
+{
+    events_ &= ~EPOLLIN;
+    loop_->updateChannel(this);
+}
+
+void Channel::registerWriteEvent()
+{
+    events_ |= EPOLLOUT;
+    loop_->updateChannel(this);
+}
+
+void Channel::unregisterWriteEvent()
+{
+    events_ &= ~EPOLLOUT;
+    loop_->updateChannel(this);
 }
 
 void Channel::setInEpoll()
@@ -51,10 +68,41 @@ uint16_t Channel::getRevents()
 }
 void Channel::handleEvent()
 {
-    readcallback_();
+
+    if (revents_ & EPOLLRDHUP)
+    {
+        closecallback_();
+    }
+    else if (revents_ & (EPOLLIN | EPOLLPRI))
+    {
+        readcallback_();
+    }
+    else if (revents_ & EPOLLOUT)
+    {
+        writeCallBack_();
+    }
+    else
+    {
+        errorcallback_();
+    }
 }
 
 void Channel::setReadCallBack(std::function<void()> func)
 {
     readcallback_ = func;
+}
+// TODO 在其他地方调用下面这三个函数
+void Channel::setCloseCallBack(std::function<void()> func)
+{
+    closecallback_ = func;
+}
+
+void Channel::setErrorCallBack(std::function<void()> func)
+{
+    errorcallback_ = func;
+}
+
+void Channel::setWriteCallBack(std::function<void()> func)
+{
+    writeCallBack_ = func;
 }

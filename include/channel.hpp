@@ -1,9 +1,7 @@
 #pragma once
 #include "eventloop.hpp"
 #include <functional>
-class Epoll; // 如果两个头文件互相包含，互相需要对方的数据结构，那么需要在两个文件做对方的前向声明，而且要在头文件的首部加入#pragme once
 class EventLoop;
-
 /*
 对连接抽象化的Channel类，Channel类是Accepter和Connection的下层类
 */
@@ -19,7 +17,7 @@ private:
     EventLoop *loop_ = nullptr;           // channel需要通知事件循环对象根据自己承载的信息更新epoll树
     std::function<void()> closecallback_; // 客户端连接关闭时的回调处理函数：Connection::closeCallBack()
     std::function<void()> errorcallback_; // 在处理处理客户端连接可读事件过程中发生其他错误的回调处理函数：Connection::errorCallBack()
-
+    std::function<void()> writeCallBack_; // 可写事件发生时的回调函数
 public:
     /*
     @param loop 该Channel属于哪一个事件循环
@@ -40,7 +38,14 @@ public:
     /*
     @brief 函数内部会调用已绑定epoll实例，将读就绪事件添加到epoll的红黑树中，如果已经有了，则会修改红黑树
     */
-    void monitorReadEvent();
+    void registerReadEvent();
+
+    void unregisterReadEvent();
+
+    void registerWriteEvent();
+
+    void unregisterWriteEvent();
+
     /*
     @brief 将inepoll的值设为true
     */
@@ -70,4 +75,10 @@ public:
     设置读事件的回调函数
     */
     void setReadCallBack(std::function<void()> func);
+
+    void setCloseCallBack(std::function<void()> func);
+
+    void setErrorCallBack(std::function<void()> func);
+
+    void setWriteCallBack(std::function<void()> func);
 };

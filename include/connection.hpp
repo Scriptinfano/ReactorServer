@@ -11,8 +11,12 @@ private:
     Channel *clientchannel_; // 客户级别的Channel
     std::function<void(Connection *)> closeCallBack_;
     std::function<void(Connection *)> errorCallBack_;
-    std::function<void(Connection *,std::string)> processCallBack_;//处理客户端发来的数据的回调函数
-    Buffer inputBuffer_;  // 接收缓冲区
+    std::function<void(Connection *, std::string)> processCallBack_; // 处理客户端发来的数据的回调函数
+    Buffer inputBuffer_;                                             // 接收缓冲区
+    /*
+    TCPConnection必须要有output buffer, 考虑一个场景：程序要发送100kb的
+    数据，但是在write中操作系统只接受了80kb，
+    */
     Buffer outputBuffer_; // 发送缓冲区
 
 public:
@@ -44,10 +48,17 @@ public:
     /*
     设定该如何处理客户端的数据
     */
-    void setProcessCallBack(std::function<void(Connection *,std::string)> processCallBack);
+    void setProcessCallBack(std::function<void(Connection *, std::string)> processCallBack);
 
     /*
     此函数是真正调用read函数的
     */
-    void handleNewMessage();
+    void readCallBack();
+
+    /*
+    将outputBuffer_中积攒的数据实际发送出去
+    */
+    void writeCallBack();
+
+    void send(const char *data, size_t size);
 };

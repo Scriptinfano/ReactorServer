@@ -1,5 +1,7 @@
 #pragma once
 #include "epoll.hpp"
+#include "channel.hpp"
+class Channel;
 class Epoll;
 /*
 事件循环
@@ -17,5 +19,6 @@ public:
     运行事件循环
     */
     void run();
-    Epoll *getEpoll();
+
+    void updateChannel(Channel *chan);
 };

@@ -1,13 +1,15 @@
 #include "eventloop.hpp"
-EventLoop::EventLoop():ep_(new Epoll){
 
+EventLoop::EventLoop() : ep_(new Epoll)
+{
 }
 
-EventLoop::~EventLoop(){
-
+EventLoop::~EventLoop()
+{
 }
 
-void EventLoop::run(){
+void EventLoop::run()
+{
     while (true)
     {
         std::vector<Channel *> chans = ep_->loop(); // 开始等待就绪事件发生
@@ -19,7 +21,7 @@ void EventLoop::run(){
         }
     }
 }
-
-Epoll *EventLoop::getEpoll(){
-    return ep_;
+void EventLoop::updateChannel(Channel *chan)
+{
+    ep_->updateChannel(chan);
 }

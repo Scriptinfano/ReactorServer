@@ -6,11 +6,19 @@
 #include <iostream>
 #include <sstream>
 #include <unordered_map>
+// 类中的私有静态成员变量必须在cpp文件中先声明一遍，然后才能在静态成员函数中访问
+// 在 C++ 中，静态成员变量属于类本身而不是任何具体的对象。由于它们在类中只是声明而没有定义，因此需要在类外面对它们进行定义，这就相当于为静态成员变量分配存储空间并指定其初始值。
 const char *Logger::levelMap[] = {"DEBUG", "NORMAL", "WARNING", "ERROR", "FATAL"};
+const char *Logger::pname_ = nullptr;
 
 Logger::Logger() {}
 
 Logger::~Logger() {}
+
+void Logger::setLoggerPname(const char *pname)
+{
+    Logger::pname_ = pname;
+}
 
 Logger &Logger::getInstance()
 {
@@ -75,8 +83,8 @@ void Logger::logMessage(LogLevel level, const char *file, int line, const char *
         return;
     }
 
-    snprintf(fixBuffer, sizeof(fixBuffer), "<%s>==[%s:%d][%s]",
-             levelMap[level], file, line, timestr);
+    snprintf(fixBuffer, sizeof(fixBuffer), "<%s>==[%s:%s:%d][%s]",
+             levelMap[level], pname_, file, line, timestr);
 
     char defBuffer[512];
     va_list args;

@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
         myrecv(sockfd, recv_buf, len);
         cout << "received reply msg from server:" << recv_buf << endl;
     }
+    sleep(100);//睡过100s再断开连接
 
     close(sockfd);
     return 0;

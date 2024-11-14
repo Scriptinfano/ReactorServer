@@ -7,7 +7,7 @@ private:
     TCPServer tcpserver_;
 
 public:
-    EchoServer(const std::string &ip, in_port_t port);
+    EchoServer(const std::string &ip, in_port_t port,int threadnum);
     ~EchoServer();
     /*
     在Accepter初步accept之后，接下来的处理工作

@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "business.hpp"
+#include "log.hpp"
 using namespace std;
 
 int main(int argc, char **argv)
@@ -13,6 +14,7 @@ int main(int argc, char **argv)
         return -1;
     }
     //////////////
-    EchoServer server(argv[1], atoi(argv[2]));
+    Logger::setLoggerPname(argv[0]);
+    EchoServer server(argv[1], atoi(argv[2]), 5);
     server.start();
 }

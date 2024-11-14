@@ -3,13 +3,22 @@
 #include "channel.hpp"
 #include "connection.hpp"
 #include "log.hpp"
+#include <sys/syscall.h>
 #include <unistd.h>
-TCPServer::TCPServer(const std::string &ip, const in_port_t port)
+TCPServer::TCPServer(const std::string &ip, const in_port_t port, int threadnum)
 {
+    threadnum_ = threadnum;
     loop_ = new EventLoop();
     loop_->setEpollTimeoutCallBack(std::bind(&TCPServer::epollTimeoutCallBack, this, std::placeholders::_1));
     accepter_ = new Accepter(loop_, ip, port);
     accepter_->setAcceptCallBack(std::bind(&TCPServer::acceptCallBack, this, std::placeholders::_1, std::placeholders::_2));
+    threadpool_ = new ThreadPool(threadnum_);
+    for (int i = 0; i < threadnum_; i++)
+    {
+        subloops_.push_back(new EventLoop());
+        subloops_[i]->setEpollTimeoutCallBack(std::bind(&TCPServer::epollTimeoutCallBack, this, std::placeholders::_1));
+        threadpool_->addTask(std::bind(&EventLoop::run, subloops_[i]));
+    }
 }
 TCPServer::~TCPServer()
 {
@@ -20,6 +29,9 @@ TCPServer::~TCPServer()
     {
         delete kv.second; // 取出键值对的值
     }
+    for (auto &subloop : subloops_)
+        delete subloop;
+    delete threadpool_;
 }
 void TCPServer::start()
 {
@@ -27,7 +39,8 @@ void TCPServer::start()
 }
 void TCPServer::acceptCallBack(int fd, InetAddress clientaddr)
 {
-    Connection *conn = new Connection(loop_, fd, &clientaddr);
+    // 在这里做手脚，将线程池里线程中的loop_想办法传入下面的Connection，就能实现主线程处理传入链接，线程池里的线程处理与客户交流的连接
+    Connection *conn = new Connection(subloops_[fd % threadnum_], fd, &clientaddr);
     // 这里将clientaddr的值传入Connection内部
     conn->setCloseCallBack(std::bind(&TCPServer::closeCallBack, this, std::placeholders::_1));
     conn->setErrorCallBack(std::bind(&TCPServer::errorCallBack, this, std::placeholders::_1));
@@ -56,7 +69,7 @@ void TCPServer::errorCallBack(Connection *conn)
     connectionMapper_.erase(conn->getFd());
     delete conn;
 }
-void TCPServer::processCallBack(Connection *conn, std::string& message)
+void TCPServer::processCallBack(Connection *conn, std::string &message)
 {
     // 其实在这里也不应该直接处理业务，而是应该再创建一个业务处理类，让业务处理类区处理业务数据，这样的话，结构更加清晰
     // 根据业务需求也可以有其他代码
@@ -72,7 +85,7 @@ void TCPServer::sendCompleteCallBack(Connection *conn)
 }
 void TCPServer::epollTimeoutCallBack(EventLoop *loop)
 {
-    logger.logMessage(NORMAL, __FILE__, __LINE__, "start to handle epolltimeout situation");
+    logger.logMessage(NORMAL, __FILE__, __LINE__, "thread %d start to handle epolltimeout situation", syscall(SYS_gettid));
     if (epollTimeoutCallBack_)
         epollTimeoutCallBack_(loop);
 }
@@ -89,7 +102,7 @@ void TCPServer::setErrorCallBack(std::function<void(Connection *)> errorCallBack
 {
     errorCallBack_ = errorCallBack;
 }
-void TCPServer::setProcessCallBack(std::function<void(Connection *, std::string&)> processCallBack)
+void TCPServer::setProcessCallBack(std::function<void(Connection *, std::string &)> processCallBack)
 {
     processCallBack_ = processCallBack;
 }

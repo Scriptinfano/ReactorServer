@@ -1,6 +1,7 @@
 #include "threadpool.hpp"
 #include "log.hpp"
-#include <sstream>
+#include <unistd.h>
+#include <sys/syscall.h>
 #include <vector>
 ThreadPool::ThreadPool(size_t threadnum)
 {
@@ -11,12 +12,9 @@ ThreadPool::ThreadPool(size_t threadnum)
         // 下面传入的是一个lambda函数，[捕获列表](参数列表)->返回类型{函数体};捕获列表定义可以访问的外部变量
         threads_.emplace_back([this]
                               {
-                                std::ostringstream oss;
-                                oss << std::this_thread::get_id();
-                                std::string threadIdStr = oss.str();
                                 // 另一种获取线程ID的方式：包含unistd.h和sys/syscall.h之后，使用syscall(SYS_gittid)获取
-                                //其实更推荐使用syscall(SYS_gettid)获取更合适，代码量更少，且两种方式获取的线程id的值不太一样，
-                                logger.logMessage(DEBUG, __FILE__, __LINE__, "thread created, thread id=%s", threadIdStr.c_str());
+                                //推荐使用syscall(SYS_gettid)获取更合适，代码量更少，且两种方式获取的线程id的值不太一样，
+                                logger.logMessage(DEBUG, __FILE__, __LINE__, "thread created, thread id=%d", syscall(SYS_gettid));
                                 while(stop_==false){
                                     std::function<void()> task;
                                     {
@@ -40,8 +38,8 @@ ThreadPool::~ThreadPool()
 {
     stop_ = true;
     condition_.notify_all();
-    //给所有线程调用join()函数，相当于要等待所有线程执行完成之后才结束析构函数
-    for(std::thread &th:threads_)
+    // 给所有线程调用join()函数，相当于要等待所有线程执行完成之后才结束析构函数
+    for (std::thread &th : threads_)
         th.join();
 }
 void ThreadPool::addTask(std::function<void()> task)

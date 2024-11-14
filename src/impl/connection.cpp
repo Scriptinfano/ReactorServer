@@ -2,6 +2,7 @@
 #include <string.h>
 #include "connection.hpp"
 #include "log.hpp"
+#include <sys/syscall.h>
 Connection::Connection(EventLoop *loop, int fd, InetAddress *clientaddr) : loop_(loop)
 {
     // clientsock只能new出来，
@@ -90,7 +91,7 @@ void Connection::readCallBack()
                 }
                 std::string message(inputBuffer_.getData() + 4, len); // 从inputbuffer中获取一个报文。
                 inputBuffer_.erase(0, len + 4);                       // 从inputbuffer中删除刚才已获取的报文。
-                logger.logMessage(NORMAL, __FILE__, __LINE__, "recv from client(fd=%d,ip=%s,port=%u):%s", getFd(), getIP().c_str(), getPort(), message.c_str());
+                logger.logMessage(NORMAL, __FILE__, __LINE__, "thread %d recv from client(fd=%d,ip=%s,port=%u):%s", syscall(SYS_gettid), getFd(), getIP().c_str(), getPort(), message.c_str());
                 // 底下这个回调函数代表TCPServer对于客户端数据的处理回调函数
                 processCallBack_(this, message);
             }
@@ -123,13 +124,13 @@ void Connection::writeCallBack()
     }
 }
 
-void Connection::setProcessCallBack(std::function<void(Connection *, std::string&)> processCallBack)
+void Connection::setProcessCallBack(std::function<void(Connection *, std::string &)> processCallBack)
 {
     processCallBack_ = processCallBack;
 }
 void Connection::send(const char *data, size_t size)
 {
-    //outputBuffer_.append(data, size);
+    // outputBuffer_.append(data, size);
     outputBuffer_.appendWithHead(data, size);
     clientchannel_->registerWriteEvent();
 }

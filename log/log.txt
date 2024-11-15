@@ -147,3 +147,8 @@
 <WARNING>==[/root/develop/ReactorServer/src/impl/tcpserver.cpp:55][2024-11-12 22:13:01]:client socket(5) occur unknown error
 <WARNING>==[/root/develop/ReactorServer/src/impl/tcpserver.cpp:46][2024-11-12 22:17:59]:client socket(5) closed the connection
 <FATAL>==[(null):/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-14 23:24:32]:recv() failed or connection closed:: Success
+<FATAL>==[(null):/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-15 23:37:43]:recv() failed or connection closed:: Success
+<FATAL>==[(null):/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-15 23:50:45]:recv() failed or connection closed:: Success
+<FATAL>==[(null):/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-16 00:03:50]:recv() failed or connection closed:: Success
+<FATAL>==[(null):/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-16 00:30:58]:recv() failed or connection closed:: Success
+<FATAL>==[(null):/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-16 00:30:58]:recv() failed or connection closed:: Success

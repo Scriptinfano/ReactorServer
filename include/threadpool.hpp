@@ -30,11 +30,16 @@ private:
     */
     std::atomic_bool stop_;
 
+    /*
+    区分线程是子线程还是工作线程，两种取值，“io_thread”,"worker_thread"
+    */
+    std::string threadtype_;
+
 public:
     /*
     在构造函数中启动threadnum个线程
     */
-    ThreadPool(size_t threadnum);
+    ThreadPool(size_t threadnum,std::string threadtype);
     /*
     在析构函数中终止线程
     */

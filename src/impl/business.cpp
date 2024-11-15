@@ -2,7 +2,7 @@
 #include "log.hpp"
 #include <sys/syscall.h>
 #include <unistd.h>
-EchoServer::EchoServer(const std::string &ip, in_port_t port, int threadnum) : tcpserver_(ip, port, threadnum)
+EchoServer::EchoServer(const std::string &ip, in_port_t port, int threadnum, int workthreadnum) : tcpserver_(ip, port, threadnum), threadpool_(workthreadnum, "worker_thread")
 {
     tcpserver_.setAcceptCallBack(std::bind(&EchoServer::acceptCallBack, this, std::placeholders::_1));
     tcpserver_.setCloseCallBack(std::bind(&EchoServer::closeCallBack, this, std::placeholders::_1));
@@ -34,9 +34,8 @@ void EchoServer::errorCallBack(Connection *conn)
 
 void EchoServer::processCallBack(Connection *conn, std::string message)
 {
-    logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer::processCallBack() called, thread id=%d", syscall(SYS_gettid));
-    message = "reply:" + message;
-    conn->send(message.c_str(), message.size()); // Connection内部的send函数会把数据放到内部的outputBuffer_中，等下一次可写事件发生时会被发送出去
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer::processCallBack() called, sub thread id=%d", syscall(SYS_gettid));
+    threadpool_.addTask(std::bind(&EchoServer::wokerThreadBehavior, this, conn, message));
 }
 
 void EchoServer::sendCompleteCallBack(Connection *conn)
@@ -45,4 +44,10 @@ void EchoServer::sendCompleteCallBack(Connection *conn)
 
 void EchoServer::epollTimeoutCallBack(EventLoop *loop)
 {
+}
+void EchoServer::wokerThreadBehavior(Connection *conn, std::string message)
+{
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer::workerThreadBehavior() called, worker thread id=%d", syscall(SYS_gettid));
+    message = "reply:" + message;
+    conn->send(message.c_str(), message.size()); // Connection内部的send函数会把数据放到内部的outputBuffer_中，等下一次可写事件发生时会被发送出去
 }

@@ -113,6 +113,7 @@ void Connection::readCallBack()
 void Connection::writeCallBack()
 {
     // 把outputBuffer_中的数据发送出去
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "Connection::writeCallBack() called, current thread id=%d", syscall(SYS_gettid));
     int writen = ::send(getFd(), outputBuffer_.getData(), outputBuffer_.getSize(), 0);
     if (writen > 0)
         outputBuffer_.erase(0, writen);
@@ -130,7 +131,7 @@ void Connection::setProcessCallBack(std::function<void(Connection *, std::string
 }
 void Connection::send(const char *data, size_t size)
 {
-    // outputBuffer_.append(data, size);
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "current thread %d has put the data into outputbuffer", syscall(SYS_gettid));
     outputBuffer_.appendWithHead(data, size);
     clientchannel_->registerWriteEvent();
 }

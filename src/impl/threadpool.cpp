@@ -3,18 +3,18 @@
 #include <unistd.h>
 #include <sys/syscall.h>
 #include <vector>
-ThreadPool::ThreadPool(size_t threadnum)
+ThreadPool::ThreadPool(size_t threadnum,std::string threadtype)
 {
     // 启动threadnum个线程，将每个线程阻塞在条件变量上
     for (size_t i = 0; i < threadnum; i++)
     {
         // emplace_back用于在容器末尾直接构造一个新元素，其会直接在内存中构造元素，避免了额外的临时对象创建和复制或移动操作
         // 下面传入的是一个lambda函数，[捕获列表](参数列表)->返回类型{函数体};捕获列表定义可以访问的外部变量
-        threads_.emplace_back([this]
+        threads_.emplace_back([this,threadtype]
                               {
                                 // 另一种获取线程ID的方式：包含unistd.h和sys/syscall.h之后，使用syscall(SYS_gittid)获取
                                 //推荐使用syscall(SYS_gettid)获取更合适，代码量更少，且两种方式获取的线程id的值不太一样，
-                                logger.logMessage(DEBUG, __FILE__, __LINE__, "thread created, thread id=%d", syscall(SYS_gettid));
+                                logger.logMessage(DEBUG, __FILE__, __LINE__, "%s created, thread id=%d",threadtype.c_str(), syscall(SYS_gettid));
                                 while(stop_==false){
                                     std::function<void()> task;
                                     {

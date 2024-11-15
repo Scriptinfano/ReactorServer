@@ -15,6 +15,6 @@ int main(int argc, char **argv)
     }
     //////////////
     Logger::setLoggerPname(argv[0]);
-    EchoServer server(argv[1], atoi(argv[2]), 5);
+    EchoServer server(argv[1], atoi(argv[2]), 5, 5);
     server.start();
 }

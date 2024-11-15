@@ -16,7 +16,7 @@ private:
     Accepter *accepter_;                           // 一个TCPServer只有一个Accepter类
     ThreadPool *threadpool_;                       // 线程池
     std::map<int, Connection *> connectionMapper_; // 一个TCPServer可以有多个Connection，所以用一个Map容器将Connection管理起来
-    int threadnum_;//线程池中应该有多少个线程
+    int threadnum_;                                // 线程池中应该有多少个线程
     std::function<void(Connection *)> acceptCallBack_;
     std::function<void(Connection *)> closeCallBack_;
     std::function<void(Connection *)> errorCallBack_;
@@ -25,7 +25,7 @@ private:
     std::function<void(EventLoop *)> epollTimeoutCallBack_;
 
 public:
-    TCPServer(const std::string &ip, const in_port_t port,int threadnum);
+    TCPServer(const std::string &ip, const in_port_t port, int threadnum);
     ~TCPServer();
     /*
     开始运行事件循环，也就是开始运行这个服务器

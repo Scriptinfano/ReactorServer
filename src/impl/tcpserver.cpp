@@ -12,7 +12,7 @@ TCPServer::TCPServer(const std::string &ip, const in_port_t port, int threadnum)
     loop_->setEpollTimeoutCallBack(std::bind(&TCPServer::epollTimeoutCallBack, this, std::placeholders::_1));
     accepter_ = new Accepter(loop_, ip, port);
     accepter_->setAcceptCallBack(std::bind(&TCPServer::acceptCallBack, this, std::placeholders::_1, std::placeholders::_2));
-    threadpool_ = new ThreadPool(threadnum_);
+    threadpool_ = new ThreadPool(threadnum_,"io_thread");
     for (int i = 0; i < threadnum_; i++)
     {
         subloops_.push_back(new EventLoop());

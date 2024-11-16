@@ -22,22 +22,22 @@ public:
     */
     void start();
 
-    void acceptCallBack(Connection *conn);
+    void acceptCallBack(SharedConnectionPointer conn);
 
-    void closeCallBack(Connection *conn);
+    void closeCallBack(SharedConnectionPointer conn);
 
-    void errorCallBack(Connection *conn);
+    void errorCallBack(SharedConnectionPointer conn);
     /*
     该函数将数据处理的工作进一步交给工作线程处理，工作线程需要一个执行函数，即本类下的wokerThreadBehavior()
     @param conn 处理哪一个连接发来的数据
     @param message 原始数据
     */
-    void processCallBack(Connection *conn, std::string message);
+    void processCallBack(SharedConnectionPointer conn, std::string message);
 
     /*
     当Connection将数据都加到输入缓冲区中之后，回调这个函数，相当于通知TCPServer
     */
-    void sendCompleteCallBack(Connection *conn);
+    void sendCompleteCallBack(SharedConnectionPointer conn);
 
     /*
     在EventLoop中如果发生超时的情况，需要回调这个函数
@@ -47,5 +47,5 @@ public:
     /*
     工作线程的主代码
     */
-    void wokerThreadBehavior(Connection *conn, std::string message);
+    void wokerThreadBehavior(SharedConnectionPointer conn, std::string message);
 };

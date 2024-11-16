@@ -20,32 +20,32 @@ void EchoServer::start()
 {
     tcpserver_.start();
 }
-void EchoServer::acceptCallBack(Connection *conn)
+void EchoServer::acceptCallBack(SharedConnectionPointer conn)
 {
 }
 
-void EchoServer::closeCallBack(Connection *conn)
+void EchoServer::closeCallBack(SharedConnectionPointer conn)
 {
 }
 
-void EchoServer::errorCallBack(Connection *conn)
+void EchoServer::errorCallBack(SharedConnectionPointer conn)
 {
 }
 
-void EchoServer::processCallBack(Connection *conn, std::string message)
+void EchoServer::processCallBack(SharedConnectionPointer conn, std::string message)
 {
     logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer::processCallBack() called, sub thread id=%d", syscall(SYS_gettid));
     threadpool_.addTask(std::bind(&EchoServer::wokerThreadBehavior, this, conn, message));
 }
 
-void EchoServer::sendCompleteCallBack(Connection *conn)
+void EchoServer::sendCompleteCallBack(SharedConnectionPointer conn)
 {
 }
 
 void EchoServer::epollTimeoutCallBack(EventLoop *loop)
 {
 }
-void EchoServer::wokerThreadBehavior(Connection *conn, std::string message)
+void EchoServer::wokerThreadBehavior(SharedConnectionPointer conn, std::string message)
 {
     logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer::workerThreadBehavior() called, worker thread id=%d", syscall(SYS_gettid));
     message = "reply:" + message;

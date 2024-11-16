@@ -25,4 +25,9 @@ public:
     @param timeout 内部调用epoll_wait的时候的超时参数，单位是毫秒
     */
     std::vector<Channel *> loop(int timeout = -1);
+
+    /*
+    将监控节点从底层红黑树中删除
+    */
+    void removeChannel(Channel *ch);
 };

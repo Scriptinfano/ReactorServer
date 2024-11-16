@@ -47,6 +47,16 @@ public:
     void unregisterWriteEvent();
 
     /*
+    彻底取消监视各个类型的事件
+    */
+    void unregisterAll();
+
+    /*
+    从事件循环中删除此Channel
+    */
+    void removeSelfFromLoop();
+
+    /*
     @brief 将inepoll的值设为true
     */
     void setInEpoll();

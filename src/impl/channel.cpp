@@ -106,3 +106,12 @@ void Channel::setWriteCallBack(std::function<void()> func)
 {
     writeCallBack_ = func;
 }
+
+void Channel::unregisterAll(){
+    events_ = 0;
+    loop_->updateChannel(this);
+}
+
+void Channel::removeSelfFromLoop(){
+    loop_->removeChannel(this);
+}

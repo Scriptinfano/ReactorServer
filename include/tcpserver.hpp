@@ -15,13 +15,13 @@ private:
     std::vector<EventLoop *> subloops_;            // 从事件循环集合，增加这个成员的目的是要构建多线程下的Reactor模型
     Accepter *accepter_;                           // 一个TCPServer只有一个Accepter类
     ThreadPool *threadpool_;                       // 线程池
-    std::map<int, Connection *> connectionMapper_; // 一个TCPServer可以有多个Connection，所以用一个Map容器将Connection管理起来
+    std::map<int, SharedConnectionPointer> connectionMapper_; // 一个TCPServer可以有多个Connection，所以用一个Map容器将Connection管理起来
     int threadnum_;                                // 线程池中应该有多少个线程
-    std::function<void(Connection *)> acceptCallBack_;
-    std::function<void(Connection *)> closeCallBack_;
-    std::function<void(Connection *)> errorCallBack_;
-    std::function<void(Connection *, std::string &)> processCallBack_;
-    std::function<void(Connection *)> sendCompleteCallBack_;
+    std::function<void(SharedConnectionPointer)> acceptCallBack_;
+    std::function<void(SharedConnectionPointer)> closeCallBack_;
+    std::function<void(SharedConnectionPointer)> errorCallBack_;
+    std::function<void(SharedConnectionPointer, std::string &)> processCallBack_;
+    std::function<void(SharedConnectionPointer)> sendCompleteCallBack_;
     std::function<void(EventLoop *)> epollTimeoutCallBack_;
 
 public:
@@ -38,32 +38,32 @@ public:
     /*
 
     */
-    void closeCallBack(Connection *conn);
+    void closeCallBack(SharedConnectionPointer scp);
     /*
 
     */
-    void errorCallBack(Connection *conn);
+    void errorCallBack(SharedConnectionPointer scp);
     /*
     该函数代表整个服务器对于客户端发来的数据的一个处理
     @param conn 处理哪一个连接发来的数据
     @param message 原始数据
     */
-    void processCallBack(Connection *conn, std::string &message);
+    void processCallBack(SharedConnectionPointer scp, std::string &message);
 
     /*
     当Connection将数据都加到输入缓冲区中之后，回调这个函数，相当于通知TCPServer
     */
-    void sendCompleteCallBack(Connection *conn);
+    void sendCompleteCallBack(SharedConnectionPointer scp);
 
     /*
     在EventLoop中如果发生超时的情况，需要回调这个函数
     */
     void epollTimeoutCallBack(EventLoop *loop);
 
-    void setAcceptCallBack(std::function<void(Connection *)> acceptCallBack);
-    void setCloseCallBack(std::function<void(Connection *)> closeCallBack);
-    void setErrorCallBack(std::function<void(Connection *)> errorCallBack);
-    void setProcessCallBack(std::function<void(Connection *, std::string &)> processCallBack);
-    void setSendCompleteCallBack(std::function<void(Connection *)> sendCompleteCallBack);
+    void setAcceptCallBack(std::function<void(SharedConnectionPointer)> acceptCallBack);
+    void setCloseCallBack(std::function<void(SharedConnectionPointer)> closeCallBack);
+    void setErrorCallBack(std::function<void(SharedConnectionPointer)> errorCallBack);
+    void setProcessCallBack(std::function<void(SharedConnectionPointer, std::string &)> processCallBack);
+    void setSendCompleteCallBack(std::function<void(SharedConnectionPointer)> sendCompleteCallBack);
     void setEpollTimeoutCallBack(std::function<void(EventLoop *)> epollTimeoutCallBack);
 };

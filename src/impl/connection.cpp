@@ -3,7 +3,7 @@
 #include "connection.hpp"
 #include "log.hpp"
 #include <sys/syscall.h>
-Connection::Connection(EventLoop *loop, int fd, InetAddress *clientaddr) : loop_(loop)
+Connection::Connection(EventLoop *loop, int fd, InetAddress *clientaddr) : loop_(loop), disconnect_(false)
 {
     // clientsock只能new出来，
     clientsock_ = new Socket(fd);
@@ -20,8 +20,13 @@ Connection::Connection(EventLoop *loop, int fd, InetAddress *clientaddr) : loop_
 }
 Connection::~Connection()
 {
+    std::string ip;
+    in_port_t port;
+    ip = clientsock_->getIP();
+    port = clientsock_->getPort();
     delete clientsock_;
     delete clientchannel_;
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "连接到(%s:%d)Connection对象已被析构", ip.c_str(), port);
 }
 int Connection::getFd() const
 {
@@ -38,20 +43,24 @@ in_port_t Connection::getPort() const
 
 void Connection::closeCallBack()
 {
-    closeCallBack_(this);
+    disconnect_ = true;
+    clientchannel_->removeSelfFromLoop();
+    closeCallBack_(shared_from_this());
 }
 
 void Connection::errorCallBack()
 {
-    errorCallBack_(this);
+    disconnect_ = true;
+    clientchannel_->removeSelfFromLoop();
+    errorCallBack_(shared_from_this());
 }
 
-void Connection::setCloseCallBack(std::function<void(Connection *)> closeCallBack)
+void Connection::setCloseCallBack(std::function<void(SharedConnectionPointer)> closeCallBack)
 {
     closeCallBack_ = closeCallBack;
 }
 
-void Connection::setErrorCallBack(std::function<void(Connection *)> errorCallBack)
+void Connection::setErrorCallBack(std::function<void(SharedConnectionPointer)> errorCallBack)
 {
     errorCallBack_ = errorCallBack;
 }
@@ -93,7 +102,7 @@ void Connection::readCallBack()
                 inputBuffer_.erase(0, len + 4);                       // 从inputbuffer中删除刚才已获取的报文。
                 logger.logMessage(NORMAL, __FILE__, __LINE__, "thread %d recv from client(fd=%d,ip=%s,port=%u):%s", syscall(SYS_gettid), getFd(), getIP().c_str(), getPort(), message.c_str());
                 // 底下这个回调函数代表TCPServer对于客户端数据的处理回调函数
-                processCallBack_(this, message);
+                processCallBack_(shared_from_this(), message);
             }
             break;
         }
@@ -121,21 +130,26 @@ void Connection::writeCallBack()
     if (outputBuffer_.getSize() == 0)
     {
         clientchannel_->unregisterWriteEvent();
-        sendCompleteCallBack_(this);
+        sendCompleteCallBack_(shared_from_this());
     }
 }
 
-void Connection::setProcessCallBack(std::function<void(Connection *, std::string &)> processCallBack)
+void Connection::setProcessCallBack(std::function<void(SharedConnectionPointer, std::string &)> processCallBack)
 {
     processCallBack_ = processCallBack;
 }
 void Connection::send(const char *data, size_t size)
 {
-    logger.logMessage(DEBUG, __FILE__, __LINE__, "current thread %d has put the data into outputbuffer", syscall(SYS_gettid));
+    if (disconnect_ == true)
+    {
+        logger.logMessage(DEBUG, __FILE__, __LINE__, "客户端连接已断开，Connection::send直接返回", syscall(SYS_gettid));
+        return;
+    }
     outputBuffer_.appendWithHead(data, size);
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "current thread %d has put the data into outputbuffer", syscall(SYS_gettid));
     clientchannel_->registerWriteEvent();
 }
-void Connection::setSendCompleteCallBack(std::function<void(Connection *)> sendCompleteCallBack)
+void Connection::setSendCompleteCallBack(std::function<void(SharedConnectionPointer)> sendCompleteCallBack)
 {
     sendCompleteCallBack_ = sendCompleteCallBack;
 }

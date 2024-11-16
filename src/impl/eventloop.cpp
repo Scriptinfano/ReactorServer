@@ -36,3 +36,6 @@ void EventLoop::setEpollTimeoutCallBack(std::function<void(EventLoop *)> epollTi
 {
     epollTimeoutCallBack_ = epollTimeoutCallBack;
 }
+void EventLoop::removeChannel(Channel *chan){
+    ep_->removeChannel(chan);
+}

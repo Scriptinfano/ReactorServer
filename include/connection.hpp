@@ -3,22 +3,28 @@
 #include "mysocket.hpp"
 #include "channel.hpp"
 #include "buffer.hpp"
-class Connection
+#include <memory>
+#include <atomic>
+class Connection;
+using SharedConnectionPointer = std::shared_ptr<Connection>;
+class Connection:public std::enable_shared_from_this<Connection>
 {
 private:
     EventLoop *loop_;
     Socket *clientsock_;     // 客户端连接的套接字，构造函数中new出来
     Channel *clientchannel_; // 客户级别的Channel
-    std::function<void(Connection *)> closeCallBack_;
-    std::function<void(Connection *)> errorCallBack_;
-    std::function<void(Connection *, std::string&)> processCallBack_; // 处理客户端发来的数据的回调函数
-    std::function<void(Connection *)> sendCompleteCallBack_;
+    std::function<void(SharedConnectionPointer)> closeCallBack_;
+    std::function<void(SharedConnectionPointer)> errorCallBack_;
+    std::function<void(SharedConnectionPointer, std::string&)> processCallBack_; // 处理客户端发来的数据的回调函数
+    std::function<void(SharedConnectionPointer)> sendCompleteCallBack_;
     Buffer inputBuffer_; // 接收缓冲区
     /*
     TCPConnection必须要有output buffer, 考虑一个场景：程序要发送100kb的
     数据，但是在write中操作系统只接受了80kb，
     */
     Buffer outputBuffer_; // 发送缓冲区
+
+    std::atomic_bool disconnect_;//标记客户端连接是否已断开，如果已断开则设置为true
 
 public:
     /*
@@ -41,17 +47,17 @@ public:
     /*
     设定当连接关闭的时候该执行的回调函数
     */
-    void setCloseCallBack(std::function<void(Connection *)> closeCallBack);
+    void setCloseCallBack(std::function<void(SharedConnectionPointer)> closeCallBack);
     /*
     设定当错误发生时该执行的回调函数
     */
-    void setErrorCallBack(std::function<void(Connection *)> errorCallBack);
+    void setErrorCallBack(std::function<void(SharedConnectionPointer)> errorCallBack);
     /*
     设定该如何处理客户端的数据
     */
-    void setProcessCallBack(std::function<void(Connection *, std::string&)> processCallBack);
+    void setProcessCallBack(std::function<void(SharedConnectionPointer, std::string&)> processCallBack);
 
-    void setSendCompleteCallBack(std::function<void(Connection *)> sendCompleteCallBack);
+    void setSendCompleteCallBack(std::function<void(SharedConnectionPointer)> sendCompleteCallBack);
     /*
     此函数是真正调用read函数的
     */

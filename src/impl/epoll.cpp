@@ -24,7 +24,7 @@ void Epoll::updateChannel(Channel *ch)
         // 如果已经在树上则更新
         if (epoll_ctl(epollfd_, EPOLL_CTL_MOD, ch->fd(), &ev) == -1)
         {
-            logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("epoll_ctl() failed").c_str());
+            logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("update epoll tree failed").c_str());
             exit(-1);
         }
     }
@@ -70,4 +70,19 @@ std::vector<Channel *> Epoll::loop(int timeout)
         channels.push_back(ch);
     }
     return channels;
+}
+
+void Epoll::removeChannel(Channel *ch)
+{
+    int fd = ch->fd();
+    if (ch->getInEpoll())
+    {
+        // 如果已经在树上则更新
+        if (epoll_ctl(epollfd_, EPOLL_CTL_DEL, ch->fd(), 0) == -1)
+        {
+            logger.logMessage(FATAL, __FILE__, __LINE__, logger.createErrorMessage("delete epoll node failed").c_str());
+            exit(-1);
+        }
+        logger.logMessage(DEBUG, __FILE__, __LINE__, "channel(fd:%d) removed", fd);
+    }
 }

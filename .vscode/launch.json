@@ -34,6 +34,7 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
+            "preLaunchTask": "build project",
             "MIMode": "gdb",
             "setupCommands": [
                 {

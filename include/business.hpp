@@ -5,8 +5,9 @@
 class EchoServer
 {
 private:
-    TCPServer tcpserver_;
-    ThreadPool threadpool_;
+    //TODO 这里可能需要将两个成员改为unique_ptr
+    std::unique_ptr<TCPServer> tcpserver_;
+    std::unique_ptr<ThreadPool> threadpool_;
 
 public:
     /*

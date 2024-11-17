@@ -91,7 +91,7 @@ void Channel::setReadCallBack(std::function<void()> func)
 {
     readcallback_ = func;
 }
-// TODO 在其他地方调用下面这三个函数
+
 void Channel::setCloseCallBack(std::function<void()> func)
 {
     closecallback_ = func;

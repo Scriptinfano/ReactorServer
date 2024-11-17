@@ -2,8 +2,9 @@
 #include "log.hpp"
 #include <sys/syscall.h>
 #include <unistd.h>
-EventLoop::EventLoop() : ep_(new Epoll)
+EventLoop::EventLoop() : ep_(std::make_unique<Epoll>())
 {
+    
 }
 
 EventLoop::~EventLoop()

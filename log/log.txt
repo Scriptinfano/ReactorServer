@@ -5,4 +5,7 @@
 <FATAL>==[(null):/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-17 23:15:07]:recv() failed or connection closed:: Success
 <WARNING>==[./bin/epollserver:/root/develop/ReactorServer/src/impl/tcpserver.cpp:55][2024-11-17 23:31:41]:client socket(11) closed the connection
 <FATAL>==[(null):/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-17 23:31:56]:recv() failed or connection closed:: Success
+<<<<<<< HEAD
 <WARNING>==[./bin/epollserver:/root/develop/ReactorServer/src/impl/tcpserver.cpp:55][2024-11-17 23:45:29]:client socket(10) closed the connection
+=======
+>>>>>>> refs/remotes/origin/master

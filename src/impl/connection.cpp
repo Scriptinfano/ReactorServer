@@ -5,12 +5,11 @@
 #include <sys/syscall.h>
 Connection::Connection(EventLoop *loop, int fd, InetAddress *clientaddr) : loop_(loop), disconnect_(false)
 {
-    // clientsock只能new出来，
-    clientsock_ = new Socket(fd);
-    clientsock_->setNonBlocking(true); // 在边缘触发模式下的epollsevrer必须将clintsock设为非阻塞模式
+    clientsock_ = std::make_unique<Socket>(fd);
+    clientsock_->setNonBlocking(true); // 在边缘触发模式下必须将clintsock设为非阻塞模式
     clientsock_->setIp(clientaddr->ip());
     clientsock_->setPort(clientaddr->port());
-    clientchannel_ = new Channel(loop_, clientsock_->getFd());
+    clientchannel_ = std::make_unique<Channel>(loop_, clientsock_->getFd());
     clientchannel_->setETMode(); // 一定要在start_monitor_read()之前调用设置边缘触发的方法
     clientchannel_->setReadCallBack(std::bind(&Connection::readCallBack, this));
     clientchannel_->setCloseCallBack(std::bind(&Connection::closeCallBack, this));
@@ -24,9 +23,7 @@ Connection::~Connection()
     in_port_t port;
     ip = clientsock_->getIP();
     port = clientsock_->getPort();
-    delete clientsock_;
-    delete clientchannel_;
-    logger.logMessage(DEBUG, __FILE__, __LINE__, "连接到(%s:%d)Connection对象已被析构", ip.c_str(), port);
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "连接到(%s:%d)的Connection对象的生命周期已结束", ip.c_str(), port);
 }
 int Connection::getFd() const
 {

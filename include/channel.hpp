@@ -13,8 +13,8 @@ private:
     uint32_t events_ = 0;  // fd_需要监视的事件，listenfd和clientfd需要监视EPOLLIN，clientfd可能还需要监视EPOLLOUT
     uint32_t revents_ = 0; // fd_已经发生的事件
     // Socket *sock_ = nullptr;//可以是server socket也可以是client socket
-    std::function<void()> readcallback_;  // 遇到可读事件的回调函数
     EventLoop *loop_ = nullptr;           // channel需要通知事件循环对象根据自己承载的信息更新epoll树
+    std::function<void()> readcallback_;  // 遇到可读事件的回调函数
     std::function<void()> closecallback_; // 客户端连接关闭时的回调处理函数：Connection::closeCallBack()
     std::function<void()> errorcallback_; // 在处理处理客户端连接可读事件过程中发生其他错误的回调处理函数：Connection::errorCallBack()
     std::function<void()> writeCallBack_; // 可写事件发生时的回调函数

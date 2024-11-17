@@ -11,8 +11,8 @@ class Connection:public std::enable_shared_from_this<Connection>
 {
 private:
     EventLoop *loop_;
-    Socket *clientsock_;     // 客户端连接的套接字，构造函数中new出来
-    Channel *clientchannel_; // 客户级别的Channel
+    std::unique_ptr<Socket> clientsock_;     // 客户端连接的套接字，通过make_unique调用Socket的构造函数将地址赋给智能指针
+    std::unique_ptr<Channel> clientchannel_; // 客户级别的Channel
     std::function<void(SharedConnectionPointer)> closeCallBack_;
     std::function<void(SharedConnectionPointer)> errorCallBack_;
     std::function<void(SharedConnectionPointer, std::string&)> processCallBack_; // 处理客户端发来的数据的回调函数

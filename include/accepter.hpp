@@ -3,14 +3,15 @@
 #include "mysocket.hpp"
 #include "channel.hpp"
 #include <functional>
+#include <memory>
 class Accepter
 {
 
 private:
     EventLoop *loop_;  // 指明这个Accepter属于哪一个事件循环，因为多线程服务器中最顶层的TCPServer可能有多个事件循环
-    Socket *servsock_; // Accepter接受连接得由具体的套接字负责
-    Channel *acceptchannel_;
-    std::function<void(int, InetAddress &)> acceptCallBack_; // 具体调用相关accept函数的回调
+    std::unique_ptr<Socket> servsock_; // 负责监听传入连接的服务端套接字
+    std::unique_ptr<Channel> acceptchannel_;//管理epoll的channel
+    std::function<void(int, InetAddress &)> acceptCallBack_; // 回调到TCPServer中，在上层类中构建Connection接管连接
 public:
     /*
     Accepter一旦初始化，内部的servsock就根据设置初始化完成并开始监听

@@ -2,14 +2,16 @@
 #include "log.hpp"
 #include <sys/syscall.h>
 #include <unistd.h>
-EchoServer::EchoServer(const std::string &ip, in_port_t port, int threadnum, int workthreadnum) : tcpserver_(ip, port, threadnum), threadpool_(workthreadnum, "worker_thread")
+EchoServer::EchoServer(const std::string &ip, in_port_t port, int threadnum, int workthreadnum)
 {
-    tcpserver_.setAcceptCallBack(std::bind(&EchoServer::acceptCallBack, this, std::placeholders::_1));
-    tcpserver_.setCloseCallBack(std::bind(&EchoServer::closeCallBack, this, std::placeholders::_1));
-    tcpserver_.setEpollTimeoutCallBack(std::bind(&EchoServer::epollTimeoutCallBack, this, std::placeholders::_1));
-    tcpserver_.setErrorCallBack(std::bind(&EchoServer::errorCallBack, this, std::placeholders::_1));
-    tcpserver_.setProcessCallBack(std::bind(&EchoServer::processCallBack, this, std::placeholders::_1, std::placeholders::_2));
-    tcpserver_.setSendCompleteCallBack(std::bind(&EchoServer::sendCompleteCallBack, this, std::placeholders::_1));
+    tcpserver_ = std::make_unique<TCPServer>(ip, port, threadnum);
+    threadpool_ = std::make_unique<ThreadPool>(workthreadnum, "worker_thread");
+    tcpserver_->setAcceptCallBack(std::bind(&EchoServer::acceptCallBack, this, std::placeholders::_1));
+    tcpserver_->setCloseCallBack(std::bind(&EchoServer::closeCallBack, this, std::placeholders::_1));
+    tcpserver_->setEpollTimeoutCallBack(std::bind(&EchoServer::epollTimeoutCallBack, this, std::placeholders::_1));
+    tcpserver_->setErrorCallBack(std::bind(&EchoServer::errorCallBack, this, std::placeholders::_1));
+    tcpserver_->setProcessCallBack(std::bind(&EchoServer::processCallBack, this, std::placeholders::_1, std::placeholders::_2));
+    tcpserver_->setSendCompleteCallBack(std::bind(&EchoServer::sendCompleteCallBack, this, std::placeholders::_1));
 }
 
 EchoServer::~EchoServer()
@@ -18,7 +20,7 @@ EchoServer::~EchoServer()
 
 void EchoServer::start()
 {
-    tcpserver_.start();
+    tcpserver_->start();
 }
 void EchoServer::acceptCallBack(SharedConnectionPointer conn)
 {
@@ -35,7 +37,8 @@ void EchoServer::errorCallBack(SharedConnectionPointer conn)
 void EchoServer::processCallBack(SharedConnectionPointer conn, std::string message)
 {
     logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer::processCallBack() called, sub thread id=%d", syscall(SYS_gettid));
-    threadpool_.addTask(std::bind(&EchoServer::wokerThreadBehavior, this, conn, message));
+    threadpool_->addTask(std::bind(&EchoServer::wokerThreadBehavior, this, conn, message));
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer threadpool addTask to task queue, sub thread id=%d", syscall(SYS_gettid));
 }
 
 void EchoServer::sendCompleteCallBack(SharedConnectionPointer conn)

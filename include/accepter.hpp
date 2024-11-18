@@ -8,7 +8,7 @@ class Accepter
 {
 
 private:
-    EventLoop *loop_;  // 指明这个Accepter属于哪一个事件循环，因为多线程服务器中最顶层的TCPServer可能有多个事件循环
+    EventLoop *loop_;  // 主从Reactor多线程模型中负责监听传入连接的上层类Acceptor，由主进程负责运行事件循环
     std::unique_ptr<Socket> servsock_; // 负责监听传入连接的服务端套接字
     std::unique_ptr<Channel> acceptchannel_;//管理epoll的channel
     std::function<void(int, InetAddress &)> acceptCallBack_; // 回调到TCPServer中，在上层类中构建Connection接管连接

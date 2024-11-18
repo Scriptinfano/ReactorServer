@@ -11,7 +11,7 @@ class Epoll;
 class EventLoop
 {
 private:
-    std::unique_ptr<Epoll> ep_;
+    std::unique_ptr<Epoll> ep_;//实际负责管理epoll。调用epoll相关底层接口的的底层对象
     std::function<void(EventLoop *)> epollTimeoutCallBack_;
 
 public:

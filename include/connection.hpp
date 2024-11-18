@@ -10,20 +10,15 @@ using SharedConnectionPointer = std::shared_ptr<Connection>;
 class Connection:public std::enable_shared_from_this<Connection>
 {
 private:
-    EventLoop *loop_;
+    EventLoop *loop_;//此事件循环负责监听已连接的客户端的读事件
     std::unique_ptr<Socket> clientsock_;     // 客户端连接的套接字，通过make_unique调用Socket的构造函数将地址赋给智能指针
     std::unique_ptr<Channel> clientchannel_; // 客户级别的Channel
     std::function<void(SharedConnectionPointer)> closeCallBack_;
     std::function<void(SharedConnectionPointer)> errorCallBack_;
     std::function<void(SharedConnectionPointer, std::string&)> processCallBack_; // 处理客户端发来的数据的回调函数
     std::function<void(SharedConnectionPointer)> sendCompleteCallBack_;
-    Buffer inputBuffer_; // 接收缓冲区
-    /*
-    TCPConnection必须要有output buffer, 考虑一个场景：程序要发送100kb的
-    数据，但是在write中操作系统只接受了80kb，
-    */
-    Buffer outputBuffer_; // 发送缓冲区
-
+    Buffer inputBuffer_; // 接收缓冲区，每次调用read需要读多次，读一次没有读完就先放到读缓冲区中
+    Buffer outputBuffer_; // 发送缓冲区，每次工作线程处理完业务数据之后将处理之后的业务数据会先写在写缓冲区中，只有下一次写事件就绪之后才会一次性地被从线程发送出去
     std::atomic_bool disconnect_;//标记客户端连接是否已断开，如果已断开则设置为true
 
 public:

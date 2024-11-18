@@ -9,9 +9,9 @@ class Channel; // 如果两个头文件互相包含，互相需要对方的数�
 class Epoll
 {
 private:
-    static const int MAXEVENTS = 100;
-    int epollfd_ = -1;
-    epoll_event events_[MAXEVENTS] = {};
+    static const int MAXEVENTS = 100;//定义每一个epoll可以监听的最大文件描述符的数量
+    int epollfd_ = -1;//epfd，调用epoll_create之后返回的文件描述符
+    epoll_event events_[MAXEVENTS] = {};//epoll_wait的第二个参数，用来接收由内核返回的事件数据，需要预先分配足够的内存空间
 
 public:
     Epoll();

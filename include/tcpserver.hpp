@@ -11,12 +11,12 @@
 class TCPServer
 {
 private:
-    EventLoop *loop_;                              // 一个TCPServer可以有多个事件循环，现在是单线程，暂时只用一个事件循环
-    std::vector<EventLoop *> subloops_;            // 从事件循环集合，增加这个成员的目的是要构建多线程下的Reactor模型
+    EventLoop *loop_;                              // 在主从多线程Reactor模型下，该事件循环负责监听是否新连接传入
+    std::vector<EventLoop *> subloops_;            // 从事件循环集合，每个从事件循环都在监听已连接的客户端的可读或者其他事件是否就绪，如果就绪则接收数据，然后将处理业务数据的任务提交给工作线程池的任务队列，让其中的工作线程处理数据的处理
     Accepter *accepter_;                           // 一个TCPServer只有一个Accepter类
-    ThreadPool *threadpool_;                       // 线程池
+    ThreadPool *threadpool_;                       // 从线程的线程池
     std::map<int, SharedConnectionPointer> connectionMapper_; // 一个TCPServer可以有多个Connection，所以用一个Map容器将Connection管理起来
-    int threadnum_;                                // 线程池中应该有多少个线程
+    int threadnum_;                                // 从线程的线程池中应该有多少个线程
     std::function<void(SharedConnectionPointer)> acceptCallBack_;
     std::function<void(SharedConnectionPointer)> closeCallBack_;
     std::function<void(SharedConnectionPointer)> errorCallBack_;

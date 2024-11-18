@@ -5,9 +5,9 @@
 class EchoServer
 {
 private:
-    //TODO 这里可能需要将两个成员改为unique_ptr
+    
     std::unique_ptr<TCPServer> tcpserver_;
-    std::unique_ptr<ThreadPool> threadpool_;
+    std::unique_ptr<ThreadPool> threadpool_;//工作线程的线程池，负责处理客户端发来的数据
 
 public:
     /*

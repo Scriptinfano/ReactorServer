@@ -3,7 +3,7 @@
 #include "connection.hpp"
 #include "log.hpp"
 #include <sys/syscall.h>
-Connection::Connection(EventLoop *loop, int fd, InetAddress *clientaddr) : loop_(loop), disconnect_(false)
+Connection::Connection(std::shared_ptr<EventLoop> loop, int fd, InetAddress *clientaddr) : loop_(loop), disconnect_(false)
 {
     clientsock_ = std::make_unique<Socket>(fd);
     clientsock_->setNonBlocking(true); // 在边缘触发模式下必须将clintsock设为非阻塞模式

@@ -10,7 +10,7 @@ using SharedConnectionPointer = std::shared_ptr<Connection>;
 class Connection:public std::enable_shared_from_this<Connection>
 {
 private:
-    EventLoop *loop_;//此事件循环负责监听已连接的客户端的读事件
+    std::shared_ptr<EventLoop> loop_;//此事件循环负责监听已连接的客户端的读事件
     std::unique_ptr<Socket> clientsock_;     // 客户端连接的套接字，通过make_unique调用Socket的构造函数将地址赋给智能指针
     std::unique_ptr<Channel> clientchannel_; // 客户级别的Channel
     std::function<void(SharedConnectionPointer)> closeCallBack_;
@@ -26,7 +26,7 @@ public:
     @param loop 这个Connection属于哪一个事件循环
     @param fd 客户端连接的文件描述符
     */
-    Connection(EventLoop *loop, int fd, InetAddress *clientaddr);
+    Connection(std::shared_ptr<EventLoop> loop, int fd, InetAddress *clientaddr);
     ~Connection();
     int getFd() const;
     std::string getIP() const;

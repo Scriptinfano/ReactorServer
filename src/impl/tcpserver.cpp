@@ -8,26 +8,21 @@
 TCPServer::TCPServer(const std::string &ip, const in_port_t port, int threadnum)
 {
     threadnum_ = threadnum;
-    loop_ = new EventLoop();
+    loop_ = std::make_shared<EventLoop>();
     loop_->setEpollTimeoutCallBack(std::bind(&TCPServer::epollTimeoutCallBack, this, std::placeholders::_1));
-    accepter_ = new Accepter(loop_, ip, port);
+    //TODO 这里Accepter的构造函数的第一个参数可能需要修改，而且这里将unique_ptr传入其他函数的做法不太妥当，可能需要改为shared_ptr
+    accepter_ =std::make_unique<Accepter>(loop_, ip, port);
     accepter_->setAcceptCallBack(std::bind(&TCPServer::acceptCallBack, this, std::placeholders::_1, std::placeholders::_2));
-    threadpool_ = new ThreadPool(threadnum_, "io_thread");
+    threadpool_ = std::make_unique<ThreadPool>(threadnum_, "io_thread");
     for (int i = 0; i < threadnum_; i++)
     {
-        subloops_.push_back(new EventLoop());
+        subloops_.emplace_back(std::make_unique<EventLoop>());
         subloops_[i]->setEpollTimeoutCallBack(std::bind(&TCPServer::epollTimeoutCallBack, this, std::placeholders::_1));
-        threadpool_->addTask(std::bind(&EventLoop::run, subloops_[i]));
+        threadpool_->addTask(std::bind(&EventLoop::run, subloops_[i].get()));//对智能指针调用get()接口可以转化为普通指针
     }
 }
 TCPServer::~TCPServer()
 {
-    delete loop_;
-    delete accepter_;
-    // 由于现在Connection被智能指针接管了，不需要再释放connectionMapper_中的Connection对象了
-    for (auto &subloop : subloops_)
-        delete subloop;
-    delete threadpool_;
 }
 void TCPServer::start()
 {
@@ -36,7 +31,7 @@ void TCPServer::start()
 void TCPServer::acceptCallBack(int fd, InetAddress clientaddr)
 {
     // 在这里做手脚，将线程池里线程中的loop_想办法传入下面的Connection，就能实现主线程处理传入链接，线程池里的线程处理与客户交流的连接
-    SharedConnectionPointer conn(new Connection(subloops_[fd % threadnum_], fd, &clientaddr));
+    SharedConnectionPointer conn=std::make_shared<Connection>(subloops_[fd % threadnum_], fd, &clientaddr);
     // 这里将clientaddr的值传入Connection内部
     conn->setCloseCallBack(std::bind(&TCPServer::closeCallBack, this, std::placeholders::_1));
     conn->setErrorCallBack(std::bind(&TCPServer::errorCallBack, this, std::placeholders::_1));

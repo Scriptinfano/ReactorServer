@@ -1,6 +1,6 @@
 #include "channel.hpp"
 
-Channel::Channel(EventLoop *loop, int fd) : loop_(loop), fd_(fd)
+Channel::Channel(std::shared_ptr<EventLoop> loop, int fd) : loop_(loop), fd_(fd)
 {
 }
 Channel::~Channel()

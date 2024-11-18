@@ -1,7 +1,8 @@
 #include "accepter.hpp"
 #include "log.hpp"
-Accepter::Accepter(EventLoop *loop, const std::string &ip, const in_port_t port) : loop_(loop)
+Accepter::Accepter(std::shared_ptr<EventLoop> loop, const std::string &ip, const in_port_t port) 
 {
+    loop_ = loop;
     servsock_ = std::make_unique<Socket>(createNonBlockingSocket());
     // 设置几个套接字选项
     servsock_->setKeepAlive(true);

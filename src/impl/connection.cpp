@@ -137,16 +137,32 @@ void Connection::setProcessCallBack(std::function<void(SharedConnectionPointer, 
 }
 void Connection::send(const char *data, size_t size)
 {
+    //这段代码如果由工作线程执行，工作线程将处理之后的数据放到自定义缓冲区中，然后下次写事件就绪之后，才发送出去
+    //这段代码也可能由从线程执行，这是在没有工作线程的情况下
     if (disconnect_ == true)
     {
         logger.logMessage(DEBUG, __FILE__, __LINE__, "客户端连接已断开，Connection::send直接返回", syscall(SYS_gettid));
         return;
     }
-    outputBuffer_.appendWithHead(data, size);
-    logger.logMessage(DEBUG, __FILE__, __LINE__, "current thread %d has put the data into outputbuffer", syscall(SYS_gettid));
-    clientchannel_->registerWriteEvent();
+    //因为前面做了优化，导致从线程在没有工作线程的情况下会直接处理业务数据，所以如果是从线程直接处理业务数据，则处理完成之后可以安全的操作自定义输出缓冲区，因为此时不涉及多线程安全问题，如果不是从线程，就需要异步事件通知机制了
+    //所以这里判断当前线程是从线程还是工作线程
+    if(loop_->isIOThread()){
+        //loop_中记录着从线程的线程id，这个函数会比较当前线程的id是否和从线程的id相同，因为这段代码可能被工作线程执行，这样就会导致loop_记载的线程id和当前获取的线程id不一样
+        //进入这个if就代表目前这段代码是从线程在执行，从线程可以直接安全的操控自定义输出缓冲区，所以直接执行sendInIOThread函数即可
+        sendInIOThread(data, size);
+    }
+    else
+    {
+        //TODO 工作线程这里还要通知从线程将处理之后的数据放到自定义输出缓冲区中
+    }
 }
 void Connection::setSendCompleteCallBack(std::function<void(SharedConnectionPointer)> sendCompleteCallBack)
 {
     sendCompleteCallBack_ = sendCompleteCallBack;
+}
+
+void Connection::sendInIOThread(const char *data, size_t size){
+    outputBuffer_.appendWithHead(data, size);
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "current thread %d has put the data into outputbuffer", syscall(SYS_gettid));
+    clientchannel_->registerWriteEvent();
 }

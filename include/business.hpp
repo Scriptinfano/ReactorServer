@@ -46,7 +46,7 @@ public:
     void epollTimeoutCallBack(EventLoop *loop);
 
     /*
-    工作线程的主代码
+    工作线程的主代码，如果没有工作线程，则这个函数的代码将由从线程执行
     */
     void wokerThreadBehavior(SharedConnectionPointer conn, std::string message);
 };

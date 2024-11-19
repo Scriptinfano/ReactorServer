@@ -32,7 +32,7 @@ public:
     */
     void start();
     /*
-
+    Accepter让servsock_调用accept函数之后会回调到这个函数上，这个函数将创建Connection对象，将从事件循环分配给Connection对象
     */
     void acceptCallBack(int fd, InetAddress clientaddr);
     /*

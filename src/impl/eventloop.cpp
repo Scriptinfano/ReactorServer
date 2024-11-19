@@ -4,7 +4,6 @@
 #include <unistd.h>
 EventLoop::EventLoop() : ep_(std::make_unique<Epoll>())
 {
-    
 }
 
 EventLoop::~EventLoop()
@@ -13,10 +12,11 @@ EventLoop::~EventLoop()
 
 void EventLoop::run()
 {
+    threadid_ = syscall(SYS_gettid);
     logger.logMessage(DEBUG, __FILE__, __LINE__, "EventLoop::run() called, thread is %d", syscall(SYS_gettid));
     while (true)
     {
-        std::vector<Channel *> chans = ep_->loop(10*1000); // 开始等待就绪事件发生
+        std::vector<Channel *> chans = ep_->loop(10 * 1000); // 开始等待就绪事件发生
         // 如果chans是空的，那么应该回调TCPServer中的epolltimeout函数
         if (chans.empty())
         {
@@ -37,6 +37,11 @@ void EventLoop::setEpollTimeoutCallBack(std::function<void(EventLoop *)> epollTi
 {
     epollTimeoutCallBack_ = epollTimeoutCallBack;
 }
-void EventLoop::removeChannel(Channel *chan){
+void EventLoop::removeChannel(Channel *chan)
+{
     ep_->removeChannel(chan);
+}
+bool EventLoop::isIOThread()
+{
+    return threadid_ == syscall(SYS_gettid);
 }

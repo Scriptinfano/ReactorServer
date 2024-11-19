@@ -36,9 +36,16 @@ void EchoServer::errorCallBack(SharedConnectionPointer conn)
 
 void EchoServer::processCallBack(SharedConnectionPointer conn, std::string message)
 {
-    logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer::processCallBack() called, sub thread id=%d", syscall(SYS_gettid));
-    threadpool_->addTask(std::bind(&EchoServer::wokerThreadBehavior, this, conn, message));
-    logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer threadpool addTask to task queue, sub thread id=%d", syscall(SYS_gettid));
+    //这个判断是为了适应如果没有工作线程，那就必须由从线程自己来负责处理数据并发送数据的工作
+    if(threadpool_->getThreadSize()==0){
+        logger.logMessage(DEBUG, __FILE__, __LINE__, "there is no worker thread, the sub thread will be responsible for handling and sending data itself.");
+        wokerThreadBehavior(conn, message);
+    }else{
+        logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer::processCallBack() called, sub thread id=%d", syscall(SYS_gettid));
+        threadpool_->addTask(std::bind(&EchoServer::wokerThreadBehavior, this, conn, message));
+        logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer threadpool addTask to task queue, sub thread id=%d", syscall(SYS_gettid));
+    }
+
 }
 
 void EchoServer::sendCompleteCallBack(SharedConnectionPointer conn)

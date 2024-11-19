@@ -48,5 +48,8 @@ public:
     将任务添加到队列中
     */
     void addTask(std::function<void()> task);
+    /*
+    得到此时线程池中线程的数量
+    */
+    int getThreadSize();
 };
-

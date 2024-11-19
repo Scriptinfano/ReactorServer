@@ -18,6 +18,9 @@ public:
     */
     Accepter(std::shared_ptr<EventLoop> loop, const std::string &ip, const in_port_t port);
     ~Accepter();
+    /*
+    实际调用servsock_的accept函数来接受连接，得到代表客户端的文件描述符
+    */
     void handleNewConnection();
     void setAcceptCallBack(std::function<void(int, InetAddress &)> acceptCallBack);
 };

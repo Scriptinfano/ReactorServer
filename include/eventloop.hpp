@@ -13,6 +13,7 @@ class EventLoop
 private:
     std::unique_ptr<Epoll> ep_;//实际负责管理epoll。调用epoll相关底层接口的的底层对象
     std::function<void(EventLoop *)> epollTimeoutCallBack_;
+    pid_t threadid_;//标识这个事件循环属于哪一个线程
 
 public:
     EventLoop();
@@ -34,4 +35,8 @@ public:
     将和chan相关节点从epoll中删除
     */
     void removeChannel(Channel *chan);
+    /*
+    
+    */
+    bool isIOThread();
 };

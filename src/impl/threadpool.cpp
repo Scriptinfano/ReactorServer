@@ -42,6 +42,7 @@ ThreadPool::~ThreadPool()
     for (std::thread &th : threads_)
         th.join();
 }
+
 void ThreadPool::addTask(std::function<void()> task)
 {
     {
@@ -50,4 +51,8 @@ void ThreadPool::addTask(std::function<void()> task)
         taskqueue_.push(task);
     }
     condition_.notify_one();
+}
+
+int ThreadPool::getThreadSize(){
+    return threads_.size();
 }

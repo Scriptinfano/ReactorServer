@@ -60,7 +60,7 @@ void TCPServer::errorCallBack(SharedConnectionPointer conn)
 }
 void TCPServer::processCallBack(SharedConnectionPointer conn, std::string &message)
 {
-    // 其实在这里也不应该直接处理业务，而是应该再创建一个业务处理类，让业务处理类区处理业务数据，这样的话，结构更加清晰
+    // 这里不应该直接处理业务，创建一个业务处理类，让业务处理类去处理业务数据，这样的话，结构更加清晰，可扩展性更强，想要增加不同的业务处理逻辑也更加方便
     // 根据业务需求也可以有其他代码
     if (processCallBack_)
         processCallBack_(conn, message);

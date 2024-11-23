@@ -3,6 +3,7 @@
 #include "connection.hpp"
 #include "log.hpp"
 #include <sys/syscall.h>
+#include"public.hpp"
 Connection::Connection(std::shared_ptr<EventLoop> loop, int fd, InetAddress *clientaddr) : loop_(loop), disconnect_(false)
 {
     clientsock_ = std::make_unique<Socket>(fd);
@@ -119,8 +120,9 @@ void Connection::readCallBack()
 void Connection::writeCallBack()
 {
     // 把outputBuffer_中的数据发送出去
-    logger.logMessage(DEBUG, __FILE__, __LINE__, "Connection::writeCallBack() called, current thread id=%d", syscall(SYS_gettid));
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "即将调用底层send函数，当前时间点为%s", getCurrentTimeInNanoseconds().c_str());
     int writen = ::send(getFd(), outputBuffer_.getData(), outputBuffer_.getSize(), 0);
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "完成调用底层send将数据发出，当前时间点为%s，当前线程id为%d", getCurrentTimeInNanoseconds().c_str(), syscall(SYS_gettid));
     if (writen > 0)
         outputBuffer_.erase(0, writen);
     // 这里还要判断发送缓冲区中是否还有数据，如果没有数据了，则不应该再关注写事件
@@ -149,20 +151,24 @@ void Connection::send(const char *data, size_t size)
     if(loop_->isIOThread()){
         //loop_中记录着从线程的线程id，这个函数会比较当前线程的id是否和从线程的id相同，因为这段代码可能被工作线程执行，这样就会导致loop_记载的线程id和当前获取的线程id不一样
         //进入这个if就代表目前这段代码是从线程在执行，从线程可以直接安全的操控自定义输出缓冲区，所以直接执行sendInIOThread函数即可
+        logger.logMessage(DEBUG, __FILE__, __LINE__, "没有工作线程，从线程将直接处理之后的数据加上报头之后放入自定义输出缓冲区");
         sendInIOThread(data, size);
     }
     else
     {
-        //TODO 工作线程这里还要通知从线程将处理之后的数据放到自定义输出缓冲区中
+        //工作线程这里还要通知从线程将处理之后的数据放到自定义输出缓冲区中
+        logger.logMessage(DEBUG, __FILE__, __LINE__,"当前工作线程是%d,即将把填充自定义输出缓冲区的任务放入从线程的任务队列中,当前数据为%s",syscall(SYS_gettid),data);
+        loop_->addTaskToQueue(std::bind(&Connection::sendInIOThread, this, data, size));
     }
 }
 void Connection::setSendCompleteCallBack(std::function<void(SharedConnectionPointer)> sendCompleteCallBack)
 {
     sendCompleteCallBack_ = sendCompleteCallBack;
 }
-
+// TODO sendInIOThread函数的参数和当初传入时的不一致，需要解决
 void Connection::sendInIOThread(const char *data, size_t size){
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "即将把处理之后的数据加上报头放入自定义输出缓冲区，当前时间点为%s，未加报头的数据为%s", getCurrentTimeInNanoseconds().c_str(),data);
     outputBuffer_.appendWithHead(data, size);
-    logger.logMessage(DEBUG, __FILE__, __LINE__, "current thread %d has put the data into outputbuffer", syscall(SYS_gettid));
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "已完成将处理之后的数据加上报头并放入自定义输出缓冲区，当前时间点为%s，当前线程id为%d，当前输出输出缓冲区中的内容为%s", getCurrentTimeInNanoseconds().c_str(), syscall(SYS_gettid),outputBuffer_.getData());
     clientchannel_->registerWriteEvent();
 }

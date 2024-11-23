@@ -1,5 +1,5 @@
 #include "buffer.hpp"
-#include <log.hpp>
+
 Buffer::Buffer()
 {
 }

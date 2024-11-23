@@ -8,15 +8,15 @@
 TCPServer::TCPServer(const std::string &ip, const in_port_t port, int threadnum)
 {
     threadnum_ = threadnum;
-    loop_ = std::make_shared<EventLoop>();
+    loop_ = std::make_shared<EventLoop>();//主进程的事件循环，负责监听传入连接事件
     loop_->setEpollTimeoutCallBack(std::bind(&TCPServer::epollTimeoutCallBack, this, std::placeholders::_1));
-    //TODO 这里Accepter的构造函数的第一个参数可能需要修改，而且这里将unique_ptr传入其他函数的做法不太妥当，可能需要改为shared_ptr
     accepter_ =std::make_unique<Accepter>(loop_, ip, port);
     accepter_->setAcceptCallBack(std::bind(&TCPServer::acceptCallBack, this, std::placeholders::_1, std::placeholders::_2));
     threadpool_ = std::make_unique<ThreadPool>(threadnum_, "io_thread");
     for (int i = 0; i < threadnum_; i++)
     {
-        subloops_.emplace_back(std::make_unique<EventLoop>());
+        subloops_.emplace_back(std::make_shared<EventLoop>());//创建从事件循环容器，调用emplace_back直接在容器中构造EventLoop对象
+        subloops_[i]->setWakeChannel();
         subloops_[i]->setEpollTimeoutCallBack(std::bind(&TCPServer::epollTimeoutCallBack, this, std::placeholders::_1));
         threadpool_->addTask(std::bind(&EventLoop::run, subloops_[i].get()));//对智能指针调用get()接口可以转化为普通指针
     }
@@ -30,9 +30,8 @@ void TCPServer::start()
 }
 void TCPServer::acceptCallBack(int fd, InetAddress clientaddr)
 {
-    // 在这里做手脚，将线程池里线程中的loop_想办法传入下面的Connection，就能实现主线程处理传入链接，线程池里的线程处理与客户交流的连接
+    // 在这里做手脚，将线程池里线程中的loop_想办法传入下面的Connection，就能实现主线程处理传入链接，从线程池里的线程处理与客户交流的连接
     SharedConnectionPointer conn=std::make_shared<Connection>(subloops_[fd % threadnum_], fd, &clientaddr);
-    // 这里将clientaddr的值传入Connection内部
     conn->setCloseCallBack(std::bind(&TCPServer::closeCallBack, this, std::placeholders::_1));
     conn->setErrorCallBack(std::bind(&TCPServer::errorCallBack, this, std::placeholders::_1));
     conn->setProcessCallBack(std::bind(&TCPServer::processCallBack, this, std::placeholders::_1, std::placeholders::_2));

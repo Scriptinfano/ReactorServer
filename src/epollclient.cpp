@@ -48,24 +48,27 @@ int main(int argc, char *argv[])
 
     cout << "Connect successful." << endl;
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 1; i++)
     {
         char buffer[BUFFERSIZE] = {0};
-        sprintf(buffer, "这是第%d个数据", i + 1);
+        sprintf(buffer, "this is data which number is %d", i + 1);
+        
         char tmp[BUFFERSIZE] = {0};
         int len = strlen(buffer);
         memcpy(tmp, &len, sizeof(int));
         memcpy(tmp + sizeof(int), buffer, strlen(buffer));
         mysend(sockfd, tmp, sizeof(int) + len);
+        cout << "data has been sent, the strlen of data is" << strlen(buffer) << endl;
     }
-    
+
     cout << "即将开始读取服务端的回复消息" << endl;
     while (true)
     {
         //先把报头读取出来
         int len;
         myrecv(sockfd, &len, sizeof(int));
-        char recv_buf[len+1] = {0};//这里一定要给recv_buf多留一个空字符的位置
+        cout << "len=" << len<<"--";
+        char recv_buf[len + 1] = {0}; // 这里一定要给recv_buf多留一个空字符的位置
         myrecv(sockfd, recv_buf, len);
         cout << "received reply msg from server:" << recv_buf << endl;
     }

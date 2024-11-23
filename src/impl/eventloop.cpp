@@ -2,7 +2,10 @@
 #include "log.hpp"
 #include <sys/syscall.h>
 #include <unistd.h>
-EventLoop::EventLoop() : ep_(std::make_unique<Epoll>())
+#include <mutex>
+#include <sys/eventfd.h>
+#include <memory>
+EventLoop::EventLoop() : ep_(std::make_unique<Epoll>()), wakeupfd_(eventfd(0, EFD_NONBLOCK))
 {
 }
 
@@ -44,4 +47,41 @@ void EventLoop::removeChannel(Channel *chan)
 bool EventLoop::isIOThread()
 {
     return threadid_ == syscall(SYS_gettid);
+}
+
+void EventLoop::addTaskToQueue(std::function<void(const char *, size_t)> fn)
+{
+    {
+        std::lock_guard<std::mutex> guard(mutex_);
+        taskQueue_.push(fn);
+    }
+    // 唤醒从线程
+    wakeup();
+}
+
+void EventLoop::wakeup()
+{
+    uint64_t val = 1; // eventfd计数器的值必须是一个uint64_t类型的整型
+    write(wakeupfd_, &val, sizeof(val));
+}
+
+void EventLoop::handleWakeUp()
+{
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "EventLoop::handleWakeUp() called, thread id is %d.", syscall(SYS_gettid));
+    uint64_t val;
+    read(wakeupfd_, &val, sizeof(val)); // 读出wakeupfd_的值，如果不读取，那么这个值不会清零，相当于唤醒的闹铃声一直不关
+    std::function<void(const char *, size_t)> fn;
+    std::lock_guard<std::mutex> guard(mutex_); // 给任务队列加锁
+    while (taskQueue_.size() > 0)
+    {
+        fn = std::move(taskQueue_.front()); // 如果函数对象在调用std::bind的时候捕获了复杂的变量，那内部就需要存储，std::move避免了拷贝操作，使得fn直接接管了内部的资源
+        taskQueue_.pop();
+        fn(nullptr, 0);
+    }
+}
+void EventLoop::setWakeChannel()
+{
+    wakeChannel_ = std::make_unique<Channel>(shared_from_this(), wakeupfd_);
+    wakeChannel_->setReadCallBack(std::bind(&EventLoop::handleWakeUp, this));
+    wakeChannel_->registerReadEvent();
 }

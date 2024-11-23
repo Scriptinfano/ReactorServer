@@ -4,7 +4,7 @@
 #include <memory>
 class EventLoop;
 /*
-对连接抽象化的Channel类，Channel类是Accepter和Connection的下层类
+对连接抽象化的Channel类，Channel类是Accepter和Connection的下层类，代表要对文件描述符监视哪种事件，事件循环和Channel是一对多的关系
 */
 class Channel
 {

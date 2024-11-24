@@ -1,5 +1,5 @@
 #include "buffer.hpp"
-
+#include "log.hpp"
 Buffer::Buffer()
 {
 }
@@ -33,8 +33,11 @@ void Buffer::erase(size_t pos, size_t n)
     buf_.erase(pos, n);
 }
 
-void Buffer::appendWithHead(const char *data, size_t size)
+void Buffer::appendWithHead(std::string data)
 {
-    buf_.append((char *)&size, sizeof(int));
-    buf_.append(data, size);
+    size_t size = data.size();
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "已经进入appendWithHead,数据为%s，大小为%d", data.c_str(), data.size());
+    buf_.append((char *)&size, sizeof(int)); // 添加数据头
+    buf_.append(data);                       // 添加实际数据
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "appendWithHead调用完成,此时自定义缓冲区中的数据为%s", buf_.c_str());
 }

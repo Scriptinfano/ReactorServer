@@ -66,6 +66,5 @@ void EchoServer::wokerThreadBehavior(SharedConnectionPointer conn, std::string m
     logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer::workerThreadBehavior() called, worker thread id=%d", syscall(SYS_gettid));
     message = "reply:" + message;
     // 有可能是工作线程或者从线程执行下面这段代码
-
-    conn->send(message.c_str(), message.size());
+    conn->send(message);
 }

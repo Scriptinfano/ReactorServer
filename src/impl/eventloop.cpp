@@ -49,11 +49,12 @@ bool EventLoop::isIOThread()
     return threadid_ == syscall(SYS_gettid);
 }
 
-void EventLoop::addTaskToQueue(std::function<void(const char *, size_t)> fn)
+void EventLoop::addTaskToQueue(std::function<void(std::string)> fn,std::string data)
 {
     {
         std::lock_guard<std::mutex> guard(mutex_);
-        taskQueue_.push(fn);
+        std::pair<std::function<void(std::string)>, std::string> mypair(fn, data);
+        taskQueue_.push(mypair);
     }
     // 唤醒从线程
     wakeup();
@@ -70,13 +71,16 @@ void EventLoop::handleWakeUp()
     logger.logMessage(DEBUG, __FILE__, __LINE__, "EventLoop::handleWakeUp() called, thread id is %d.", syscall(SYS_gettid));
     uint64_t val;
     read(wakeupfd_, &val, sizeof(val)); // 读出wakeupfd_的值，如果不读取，那么这个值不会清零，相当于唤醒的闹铃声一直不关
-    std::function<void(const char *, size_t)> fn;
+    
     std::lock_guard<std::mutex> guard(mutex_); // 给任务队列加锁
     while (taskQueue_.size() > 0)
     {
-        fn = std::move(taskQueue_.front()); // 如果函数对象在调用std::bind的时候捕获了复杂的变量，那内部就需要存储，std::move避免了拷贝操作，使得fn直接接管了内部的资源
+        auto pair = std::move(taskQueue_.front()); // 如果函数对象在调用std::bind的时候捕获了复杂的变量，那内部就需要存储，std::move避免了拷贝操作，使得fn直接接管了内部的资源
         taskQueue_.pop();
-        fn(nullptr, 0);
+        auto fn=pair.first;
+        auto str = pair.second;
+        logger.logMessage(DEBUG, __FILE__, __LINE__, "已经将任务从任务队列中取出，数据部分为%s",str.c_str());
+        fn(str);
     }
 }
 void EventLoop::setWakeChannel()

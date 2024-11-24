@@ -25,3 +25,11 @@
 <FATAL>==[(null):/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-24 00:04:53]:recv() failed or connection closed:: Success
 <FATAL>==[(null):/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-24 00:16:37]:recv() failed or connection closed:: Success
 <FATAL>==[(null):/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-24 00:20:47]:recv() failed or connection closed:: Success
+<FATAL>==[(null):/root/develop/ReactorServer/src/impl/myio.cpp:10][2024-11-24 14:07:47]:recv() failed or connection closed:: Success
+<WARNING>==[./bin/epollserver:/root/develop/ReactorServer/src/impl/tcpserver.cpp:49][2024-11-24 14:29:02]:client socket(16) closed the connection
+<WARNING>==[./bin/epollserver:/root/develop/ReactorServer/src/impl/tcpserver.cpp:49][2024-11-24 14:52:35]:client socket(16) closed the connection
+<WARNING>==[./bin/epollserver:/root/develop/ReactorServer/src/impl/tcpserver.cpp:49][2024-11-24 14:57:11]:client socket(16) closed the connection
+<WARNING>==[./bin/epollserver:/root/develop/ReactorServer/src/impl/tcpserver.cpp:49][2024-11-24 14:59:00]:client socket(16) closed the connection
+<WARNING>==[./bin/epollserver:/root/develop/ReactorServer/src/impl/tcpserver.cpp:49][2024-11-24 15:02:39]:client socket(16) closed the connection
+<WARNING>==[./bin/epollserver:/root/develop/ReactorServer/src/impl/tcpserver.cpp:49][2024-11-24 15:14:29]:client socket(16) closed the connection
+<WARNING>==[./bin/epollserver:/root/develop/ReactorServer/src/impl/tcpserver.cpp:49][2024-11-24 15:14:35]:client socket(17) closed the connection

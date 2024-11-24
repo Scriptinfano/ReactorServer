@@ -69,10 +69,10 @@ public:
     /*
     不管线程是从线程还是工作线程，发送数据的第一步一定是先调用这个函数，在里面判断是哪一种线程在调用这个函数，决定是直接将数据放入自定义输出缓冲区还是调用异步事件通知机制让从线程发送数据（工作线程不能直接操作自定义输出缓冲区，可能造成线程不安全）
     */
-    void send(const char *data, size_t size);
+    void send(std::string data);
 
     /*
     将报头和处理之后的数据合在一起放到自定义输出缓冲区中，然后注册clientchannel_的可写监听事件
     */
-    void sendInIOThread(const char *data,size_t size);
+    void sendInIOThread(std::string data);
 };

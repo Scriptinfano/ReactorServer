@@ -95,7 +95,117 @@ project-root
     ├── main.cpp    # 主程序文件
     └── impl        # 头文件对应的实现文件
 ```
+## 关键bug修复记录
+### Connection::sendInIOThread调用时参数不一致问题
+因为后期要解决多线程操作共享区的问题，工作线程不能自己直接将处理后的数据加上报头然后放到自定义输出缓冲区，改成了工作线程通过eventfd通知从线程将处理之后的数据加上报头然后由从线程将数据放到自定义输出缓冲区。
+起初的设计方案：  
+是在EventLoop中增加任务队列  
+```C++
+ std::queue<std::function<void()>> taskQueue_;
+```
+其中的元素存放函数对象，代表要执行的任务，工作线程在Connection::send内部调用EventLoop::addTaskToQueue将Connection::sendInIOThread函数作为任务加入任务队列 
+```C++
+loop_->addTaskToQueue(std::bind(&Connection::sendInIOThread, this, data));
+```
+addTaskToQueue会在内部将函数对象放入队列，并调用EventLoop::wakeup()唤醒相应的从线程，而从线程的EventLoop中已经利用内部的Channel注册了wakeupfd的可读事件  
+```C++
+void EventLoop::setWakeChannel()
+{
+    wakeChannel_ = std::make_unique<Channel>(shared_from_this(), wakeupfd_);
+    wakeChannel_->setReadCallBack(std::bind(&EventLoop::handleWakeUp, this));
+    wakeChannel_->registerReadEvent();
+}
+```
+EventLoop::setWakeChannel 会在TCPServer初始化的时候调用，确保每个从事件循环都通过内部的Channel监听并注册了wakeupfd的可读事件，保证了从事件循环可以被wakeupfd唤醒并执行相应的回调函数handleWakeUp 
+```C++
+void EventLoop::handleWakeUp()
+{
+    uint64_t val;
+    read(wakeupfd_, &val, sizeof(val)); // 读出wakeupfd_的值，如果不读取，那么这个值不会清零，相当于唤醒的闹铃声一直不关   
+    std::lock_guard<std::mutex> guard(mutex_); // 给任务队列加锁
+    while (taskQueue_.size() > 0)
+    {
+        auto fn = std::move(taskQueue_.front()); // 如果函数对象在调用std::bind的时候捕获了复杂的变量，那内部就需要存储，std::move避免了拷贝操作，使得fn直接接管了内部的资源
+        taskQueue_.pop();
+        fn();
+    }
+}
+```
+经过调试验证后发现，function函数对象的模版参数不能为空，原本以为调用fn之后内部是可以检测到bind函数调用时绑定的数据的，但是并不能，我采用了以下几种方案解决问题：  
+1. 将function函数对象的类型改为function<std::string>，string本身就记录了数据的长度，免去了之前传入const char *还要再额外传入数据长度的问题
+2. 函数对象类型更改之后面临调用时需要传入参数的问题，而data并不在handleWakeUp函数中，经过查gpt之后，得知传入任意参数即可，调用时会忽略手动传入的参数，采用bind时绑定的参数，事实证明仍然不行
+3. 此时我觉得靠bind将参数绑定到函数对象中并不靠谱，决定另辟蹊径，将任务队列的元素类型改为键值对，键存放函数对象，值存放实际的数据，这样就能确保一定能将要传入的数据和函数对象对应起来  
+```C++
+std::queue<std::pair<std::function<void(std::string)>,std::string>> taskQueue_;
+```
+更改所有相关函数的参数和内容：  
+```C++
+void Buffer::appendWithHead(std::string data)
+{
+    size_t size = data.size();
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "已经进入appendWithHead,数据为%s，大小为%d", data.c_str(), data.size());
+    buf_.append((char *)&size, sizeof(int)); // 添加数据头
+    buf_.append(data);                       // 添加实际数据
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "appendWithHead调用完成,此时自定义缓冲区中的数据为%s", buf_.c_str());
+}
 
+void EventLoop::addTaskToQueue(std::function<void(std::string)> fn,std::string data)
+{
+    {
+        std::lock_guard<std::mutex> guard(mutex_);
+        std::pair<std::function<void(std::string)>, std::string> mypair(fn, data);
+        taskQueue_.push(mypair);
+    }
+    // 唤醒从线程
+    wakeup();
+}
+
+void EchoServer::wokerThreadBehavior(SharedConnectionPointer conn, std::string message)
+{
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "EchoServer::workerThreadBehavior() called, worker thread id=%d", syscall(SYS_gettid));
+    message = "reply:" + message;
+    // 有可能是工作线程或者从线程执行下面这段代码
+    conn->send(message);
+}
+
+void Connection::send(std::string data)
+{
+    if (disconnect_ == true)
+    {
+        return;
+    }
+    if(loop_->isIOThread()){
+        sendInIOThread(data);
+    }
+    else
+    {
+        loop_->addTaskToQueue(std::bind(&Connection::sendInIOThread, this, std::placeholders::_1),data);
+    }
+}
+
+void Connection::sendInIOThread(std::string data){
+    outputBuffer_.appendWithHead(data);
+    clientchannel_->registerWriteEvent();
+}
+
+void EventLoop::handleWakeUp()
+{
+    logger.logMessage(DEBUG, __FILE__, __LINE__, "EventLoop::handleWakeUp() called, thread id is %d.", syscall(SYS_gettid));
+    uint64_t val;
+    read(wakeupfd_, &val, sizeof(val)); // 读出wakeupfd_的值，如果不读取，那么这个值不会清零，相当于唤醒的闹铃声一直不关
+    std::lock_guard<std::mutex> guard(mutex_); // 给任务队列加锁
+    while (taskQueue_.size() > 0)
+    {
+        auto pair = std::move(taskQueue_.front());
+        taskQueue_.pop();
+        auto fn=pair.first;
+        auto str = pair.second;
+        logger.logMessage(DEBUG, __FILE__, __LINE__, "已经将任务从任务队列中取出，数据部分为%s",str.c_str());
+        fn(str);//关键就在于这一句才能真正将数据传进去
+    }
+}
+```
+经过上面的改造之后，终于可以实现将键值对所代表的任务取出之后将数据传入函数实现数据的发送
 ## 如何运行项目
 1. 首先运行编译脚本：
    ```bash
